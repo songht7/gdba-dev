@@ -1,0 +1,61 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "法国里昂商学院",
+				"navigationStyle": "custom"
+				// ,"app-plus": {
+				// 	"titleNView": {
+				// 		"type": "transparent"
+				// 	}
+				// }
+			}
+		}, {
+			"path": "pages/tablist/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"backgroundColor": "#E3E3E3"
+				// ,"navigationStyle": "custom",
+				// "app-plus": {
+				// 	"titleNView": {
+				// 		"type": "transparent"
+				// 	}
+				// }
+			}
+		},
+		{
+			"path": "pages/college/index",
+			"style": {
+				"navigationBarTitleText": "关于学院",
+				"backgroundColor": "#E3E3E3"
+				// ,"navigationStyle": "custom",
+				// "app-plus": {
+				// 	"titleNView": {
+				// 		"type": "transparent"
+				// 	}
+				// }
+			}
+		},
+		{
+			"path": "pages/doctor/index",
+			"style": {
+				"navigationBarTitleText": "同窗学友",
+				"backgroundColor": "#E3E3E3"
+			}
+		},
+		{
+			"path": "pages/contact/index",
+			"style": {
+				"navigationBarTitleText": "联系我们",
+				"backgroundColor": "#E3E3E3"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "法国里昂商学院",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}

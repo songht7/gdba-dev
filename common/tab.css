@@ -1,0 +1,106 @@
+
+.uni-page-body{
+	background-color: #ededed;
+}
+
+.tabs {
+	flex: 1;
+	flex-direction: column;
+	overflow: hidden;
+	background-color: #ffffff;
+	/* #ifdef MP-ALIPAY || MP-BAIDU */
+	height: 100vh;
+	/* #endif */
+}
+
+.tab-img-list {
+	padding: 0;
+	margin: 0;
+	line-height: 0;
+}
+
+.scroll-h {
+	width: 750rpx;
+	height: 80rpx;
+	flex-direction: row;
+	/* #ifndef APP-PLUS */
+	white-space: nowrap;
+	/* #endif */
+	/* flex-wrap: nowrap; */
+	/* border-color: #cccccc;
+		border-bottom-style: solid;
+		border-bottom-width: 1px; */
+}
+
+.line-h {
+	height: 1rpx;
+	background-color: #cccccc;
+}
+
+.uni-tab-item {
+	/* #ifndef APP-PLUS */
+	display: inline-block;
+	/* #endif */
+	flex-wrap: nowrap;
+	padding-left: 34rpx;
+	padding-right: 34rpx;
+}
+
+.uni-tab-item-title {
+	color: #555;
+	font-size: 30rpx;
+	height: 80rpx;
+	line-height: 80rpx;
+	flex-wrap: nowrap;
+	/* #ifndef APP-PLUS */
+	white-space: nowrap;
+	/* #endif */
+}
+
+.uni-tab-item-title-active {
+	color: #007AFF;
+}
+
+.swiper-box {
+	flex: 1;
+}
+
+.swiper-item {
+	flex: 1;
+	flex-direction: row;
+}
+
+.scroll-v {
+	flex: 1;
+	/* #ifndef MP-ALIPAY */
+	flex-direction: column;
+	/* #endif */
+	width: 750rpx;
+}
+
+.tab-dtl-img {
+	width: 100%;
+}
+
+.tabs {
+	background-color: #ededed;
+}
+
+.title-block {
+	color: #000;
+	background-color: inherit;
+}
+
+.title-block.uni-tab-item-title-active {
+	position: relative;
+}
+
+.title-block.uni-tab-item-title-active::after {
+	content: "";
+	width: 60%;
+	height: 5upx;
+	background-color: #e2001a;
+	position: absolute;
+	left: 25%;
+	bottom: -18upx;
+}
