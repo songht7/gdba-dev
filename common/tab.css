@@ -1,5 +1,47 @@
+.tab-box {
+	display: flex;
+	flex-direction: row;
+}
 
-.uni-page-body{
+.tab-nav {
+	width: 80upx;
+	background-color: #ededed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
+.drawer-nav .tab-nav {
+	background-color: #fff;
+	margin-bottom: 50upx;
+	justify-content: flex-start;
+}
+
+.drawer-menu {
+	width: 50%;
+}
+
+.drawer-nav {
+	padding: 40upx 20upx 0 40upx;
+}
+
+.drawer-nav-btn.active {
+	color: #e2001a;
+}
+
+.d-nav-list {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	line-height: 3;
+}
+
+.drawer-nav-btn {
+	font-size: 30upx;
+}
+
+.uni-page-body {
 	background-color: #ededed;
 }
 

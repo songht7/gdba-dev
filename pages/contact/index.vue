@@ -1,14 +1,20 @@
 <template>
 	<view class="content" :style="{'background-image':`url(/static/${$store.state.lang}/contact/bg.png)`}">
 		<view class="pg-main">
-			<view class="tabs">
-				<scroll-view id="tab-bar" class="scroll-h" :scroll-x="true" :show-scrollbar="false">
-					<view class="uni-tab-item">
-						<text
-							class="uni-tab-item-title uni-tab-item-title-active title-block">{{list.title[$store.state.lang]}}</text>
-					</view>
-				</scroll-view>
-				<block></block>
+			<view class="tab-box">
+				<!-- 头部菜单按钮 -->
+				<view class="tab-nav" @click="drawerShow()">
+					<img src="/static/menu.png" class="drawer-menu" />
+				</view>
+				<view class="tabs">
+					<scroll-view id="tab-bar" class="scroll-h" :scroll-x="true" :show-scrollbar="false">
+						<view class="uni-tab-item">
+							<text
+								class="uni-tab-item-title uni-tab-item-title-active title-block">{{list.title[$store.state.lang]}}</text>
+						</view>
+					</scroll-view>
+					<block></block>
+				</view>
 			</view>
 			<view class="form-box">
 				<form class="" @submit="formSubmit" @reset="formReset">
@@ -56,28 +62,62 @@
 				</view>
 			</view>
 			<view class="">
-				<img src="/static/footer-logos.jpg" class="img-full"/>
+				<img src="/static/footer-logos.jpg" class="img-full" />
 			</view>
-
 		</view>
+
+		<!-- 侧滑菜单 -->
+		<uni-drawer :visible="showLeft" mode="left" @close="drawerHide('left')">
+			<view class="drawer-nav">
+				<view class="d-nav-list">
+					<view class="tab-nav" @click="drawerHide()">
+						<img src="/static/menu.png" class="drawer-menu" />
+					</view>
+					<navigator class="drawer-nav-btn" :url='navFix["home"][$store.state.lang]["link"]'>
+						{{navFix["home"][$store.state.lang]["title"]}}
+					</navigator>
+					<block v-for="(obj,key) in nav[$store.state.lang]" :key="key">
+						<navigator :class="['drawer-nav-btn',obj.key==pageis?'active':'']"
+							:url="obj.link+$store.state.lang">
+							{{obj.title}}
+						</navigator>
+					</block>
+					<navigator :class="['drawer-nav-btn','active']" :url='navFix["contact"][$store.state.lang]["link"]'>
+						{{navFix["contact"][$store.state.lang]["title"]}}
+					</navigator>
+				</view>
+			</view>
+		</uni-drawer>
+		<!-- 侧滑菜单/ -->
 	</view>
 </template>
 
 <script>
 	import {
+		Home,
 		Contact
 	} from "../../common/data.js"
 	var graceChecker = require("../../common/graceChecker.js");
+	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
 	export default {
 		data() {
 			return {
+				nav: Home.nav,
+				navFix: Home.navFix,
+				pageis: "",
 				list: Contact,
-				loading: false
+				loading: false,
+				showLeft: false, //侧滑菜单
 			}
 		},
-		components: {},
+		components: {
+			uniDrawer
+		},
 		onLoad(option) {
 			const that = this;
+			let pageis = option.id || "";
+			this.pageis = pageis;
+			
 			// let lang = option.lg || "cn";
 			// this.setLang(lang)
 			that.$store.dispatch('getLang');
@@ -178,10 +218,18 @@
 				}
 
 			},
-			phoneCall(numb){
+			phoneCall(numb) {
 				uni.makePhoneCall({
-				    phoneNumber: numb
+					phoneNumber: numb
 				});
+			},
+			drawerShow(e) {
+				console.log("show", e);
+				this.showLeft = true
+			},
+			drawerHide() {
+				console.log("hide");
+				this.showLeft = false
 			}
 		}
 	}

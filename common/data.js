@@ -3,40 +3,78 @@ const Home = {
 		"cn": "法国里昂商学院",
 		"en": "Global DBA (Asia Track)",
 	},
+	"navFix": {
+		'home': {
+			"cn": {
+				"btn": "",
+				"link": "/pages/index/index?id=home&lg=",
+				"title": "首页",
+				"key": "home"
+			},
+			"en": {
+				"btn": "",
+				"link": "/pages/index/index?id=home&lg=",
+				"title": "Home",
+				"key": "home"
+			}
+		},
+		'contact': {
+			"cn": {
+				"btn": "",
+				"link": "/pages/contact/index?id=ct&lg=",
+				"title": "联系我们",
+				"key": "ct"
+			},
+			"en": {
+				"btn": "",
+				"link": "/pages/contact/index?id=ct&lg=",
+				"title": "Contact Us",
+				"key": "ct"
+			}
+		},
+	},
 	"nav": {
 		"cn": [{
 			"btn": "/home/nav-1.png",
 			"link": "/pages/tablist/index?id=college&lg=",
 			"title": "关于学院",
+			"key": "college"
 		}, {
 			"btn": `/home/nav-2.png`,
 			"link": `/pages/tablist/index?id=project&lg=`,
 			"title": "关于项目",
+			"key": "project"
 		}, {
 			"btn": `/home/nav-3.png`,
-			"link": `/pages/doctor/index?lg=`,
+			"link": `/pages/tablist/index?id=doctor&lg=`,
 			"title": "同窗学友",
+			"key": "doctor"
 		}, {
 			"btn": `/home/nav-4.png`,
 			"link": "/pages/tablist/index?id=study&lg=",
 			"title": "学习之旅",
+			"key": "study"
 		}],
 		"en": [{
 			"btn": "/home/nav-1.png",
 			"link": "/pages/tablist/index?id=college&lg=",
 			"title": "about college",
+			"key": "college"
 		}, {
 			"btn": `/home/nav-2.png`,
 			"link": `/pages/tablist/index?id=project&lg=`,
 			"title": "project",
+			"key": "project"
 		}, {
 			"btn": `/home/nav-3.png`,
-			"link": `/pages/doctor/index?lg=`,
+			"link": `/pages/tablist/index?id=doctor&lg=`,
 			"title": "doctor",
+			"key": "doctor"
 		}, {
 			"btn": `/home/nav-4.png`,
 			"link": "/pages/tablist/index?id=study&lg=",
 			"title": "study",
+			"key": "study"
 		}],
 	}
 };
@@ -153,11 +191,11 @@ const Doctor = {
 	"contList": {
 		"cn": [{
 			"id": 1,
-			"val": "/doctor/1.jpg"
+			"val": ["/doctor/1.jpg"]
 		}],
 		"en": [{
 			"id": 1,
-			"val": "aaa"
+			"val": ["/doctor/1.jpg"]
 		}],
 	},
 	"docList": {

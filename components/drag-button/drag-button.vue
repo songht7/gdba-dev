@@ -1,13 +1,7 @@
 <template>
 	<view>
-		<view
-			id="_drag_button"
-			class="drag"
-			:style="'left: ' + left + 'px; top:' + top + 'px;'"
-			@touchmove.stop.prevent="touchmove"
-			@click.stop.prevent="click"
-			:class="{transition: isDock && !isMove }"
-		>
+		<view id="_drag_button" class="drag" :style="'left: ' + left + 'px; top:' + top + 'px;'"
+			@touchmove.stop.prevent="touchmove" @click.stop.prevent="click" :class="{transition: isDock && !isMove }">
 			<img src="/static/msg-btn.png" class="drag-btn" alt="">
 			<!-- <text>{{ text }}</text> -->
 		</view>
@@ -15,22 +9,26 @@
 </template>
 
 <script>
+	import {
+		Home
+	} from "../../common/data.js"
 	export default {
 		name: 'drag-button',
 		props: {
-			isDock:{
+			isDock: {
 				type: Boolean,
 				default: false
 			},
-			existTabBar:{
+			existTabBar: {
 				type: Boolean,
 				default: false
 			}
 		},
 		data() {
 			return {
-				top:0,
-				left:0,
+				navFix: Home.navFix,
+				top: 0,
+				left: 0,
 				width: 0,
 				height: 0,
 				offsetWidth: 0,
@@ -44,18 +42,18 @@
 		},
 		mounted() {
 			const sys = uni.getSystemInfoSync();
-			
+
 			this.windowWidth = sys.windowWidth;
 			this.windowHeight = sys.windowHeight;
-			
+
 			// #ifdef APP-PLUS
-				this.existTabBar && (this.windowHeight -= 50);
+			this.existTabBar && (this.windowHeight -= 50);
 			// #endif
 			if (sys.windowTop) {
 				this.windowHeight += sys.windowTop;
 			}
 			console.log(sys)
-			
+
 			const query = uni.createSelectorQuery().in(this);
 			query.select('#_drag_button').boundingClientRect(data => {
 				this.width = data.width;
@@ -63,15 +61,16 @@
 				this.offsetWidth = data.width / 2;
 				this.offsetHeight = data.height / 2;
 				this.left = this.windowWidth - this.width - this.edge;
-				this.top = (this.windowHeight - this.height)/1.5;
+				this.top = (this.windowHeight - this.height) / 1.5;
 			}).exec();
 		},
 		methods: {
 			click() {
 				// this.$emit('btnClick');
-				console.log("drag-button");
+				var that = this;
+				// console.log(that.navFix);
 				uni.navigateTo({
-				    url: '/pages/contact/index'
+					url: that.navFix["contact"][that.$store.state.lang]["link"]
 				});
 			},
 			touchstart(e) {
@@ -82,14 +81,14 @@
 				if (e.touches.length !== 1) {
 					return false;
 				}
-				
+
 				this.isMove = true;
-				
+
 				this.left = e.touches[0].clientX - this.offsetWidth;
-				
+
 				let clientY = e.touches[0].clientY - this.offsetHeight;
 				// #ifdef H5
-					clientY += this.height;
+				clientY += this.height;
 				// #endif
 				let edgeBottom = this.windowHeight - this.height - this.edge;
 
@@ -101,25 +100,26 @@
 				} else {
 					this.top = clientY
 				}
-				
+
 			},
 			touchend(e) {
 				if (this.isDock) {
 					let edgeRigth = this.windowWidth - this.width - this.edge;
-					
+
 					if (this.left < this.windowWidth / 2 - this.offsetWidth) {
 						this.left = this.edge;
 					} else {
 						this.left = edgeRigth;
 					}
-					
+
 				}
-				
+
 				this.isMove = false;
-				
+
 				this.$emit('btnTouchend');
 			},
-		}}
+		}
+	}
 </script>
 
 <style lang="scss">
@@ -136,14 +136,14 @@
 		font-size: $uni-font-size-sm;
 		position: fixed;
 		z-index: 999999;
-		
+
 		&.transition {
-			transition: left .3s ease,top .3s ease;
+			transition: left .3s ease, top .3s ease;
 		}
-		.drag-btn{
+
+		.drag-btn {
 			width: 100%;
 			height: 100%;
 		}
 	}
-	
 </style>
