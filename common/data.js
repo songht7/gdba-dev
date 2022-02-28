@@ -106,15 +106,15 @@ const College = {
 	"contList": {
 		"cn": [{
 				"id": 1,
-				"val": ["/college/1.jpg"]
+				"val": ["/college/1-1.jpg", "/college/1-2.jpg", "/college/1-3.jpg"]
 			},
 			{
 				"id": 2,
-				"val": ["/college/2.jpg"]
+				"val": ["/college/2-1.jpg", "/college/2-2.jpg", "/college/2-3.jpg"]
 			},
 			{
 				"id": 3,
-				"val": ["/college/3.jpg"]
+				"val": ["/college/3-1.jpg", "/college/3-2.jpg"]
 			}
 		],
 		"en": [{
@@ -151,15 +151,15 @@ const Project = {
 	"contList": {
 		"cn": [{
 				"id": 1,
-				"val": ["/project/1.jpg"]
+				"val": ["/project/1-1.jpg", "/project/1-2.jpg", "/project/1-3.jpg", "/project/1-4.jpg"]
 			},
 			{
 				"id": 2,
-				"val": ["/project/2.jpg"]
+				"val": ["/project/2-1.jpg", "/project/2-2.jpg", "/project/2-3.jpg", "/project/2-4.jpg"]
 			},
 			{
 				"id": 3,
-				"val": ["/project/3.jpg"]
+				"val": ["/project/3-1.jpg", "/project/3-2.jpg", "/project/3-3.jpg", "/project/3-4.jpg"]
 			}
 		],
 		"en": [{
@@ -274,23 +274,25 @@ const Study = {
 		"cn": [{
 				"id": 1,
 				"imgArray": true,
-				"val": ["/study/1-1.jpg", "/study/1-2.jpg", "/study/1-3.jpg"]
+				"val": ["/study/1-1.jpg", "/study/1-2.jpg", "/study/1-3.jpg", "/study/1-4.jpg"]
 			},
 			{
 				"id": 2,
-				"val": ["/study/2-1.jpg", "/study/2-2.jpg"]
+				"val": ["/study/2-1.jpg", "/study/2-2.jpg", "/study/2-3.jpg", "/study/2-4.jpg",
+					"/study/2-5.jpg"
+				]
 			},
 			{
 				"id": 3,
-				"val": ["/study/3-1.jpg", "/study/3-2.jpg"]
+				"val": ["/study/3-1.jpg", "/study/3-2.jpg", "/study/3-3.jpg"]
 			},
 			{
 				"id": 4,
-				"val": ["/study/4-1.jpg", "/study/4-2.jpg"]
+				"val": ["/study/4-1.jpg", "/study/4-2.jpg", "/study/4-3.jpg", "/study/4-4.jpg"]
 			},
 			{
 				"id": 5,
-				"val": ["/study/5-1.jpg", "/study/5-2.jpg"]
+				"val": ["/study/5-1.jpg", "/study/5-2.jpg", "/study/5-3.jpg", "/study/5-4.jpg"]
 			}
 		],
 		"en": [{

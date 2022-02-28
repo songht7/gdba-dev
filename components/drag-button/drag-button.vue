@@ -36,7 +36,7 @@
 				windowWidth: 0,
 				windowHeight: 0,
 				isMove: true,
-				edge: 20,
+				edge: 15,
 				text: '按钮'
 			}
 		},
@@ -61,7 +61,7 @@
 				this.offsetWidth = data.width / 2;
 				this.offsetHeight = data.height / 2;
 				this.left = this.windowWidth - this.width - this.edge;
-				this.top = (this.windowHeight - this.height) / 1.5;
+				this.top = (this.windowHeight - this.height) / 1.4;
 			}).exec();
 		},
 		methods: {
@@ -130,8 +130,8 @@
 		background-color: rgba(0, 0, 0, 0.5);
 		box-shadow: 0 0 6upx rgba(0, 0, 0, 0.4);
 		color: $uni-text-color-inverse;
-		width: 120upx;
-		height: 120upx;
+		width: 100upx;
+		height: 100upx;
 		border-radius: 50%;
 		font-size: $uni-font-size-sm;
 		position: fixed;

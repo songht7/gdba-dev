@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<view class="pg-main">
+		<view class="pg-main" :class="[pageis=='doctor'?'doctor-main':'']">
 			<view class="tab-box">
 				<!-- 头部菜单按钮 -->
 				<view class="tab-nav" @click="drawerShow()">
@@ -8,8 +8,8 @@
 				</view>
 				<!-- 可拖地顶部选项卡 -->
 				<view class="tabs">
-					<scroll-view id="tab-bar" style="width: 98%;" class="scroll-h" :scroll-x="true" :show-scrollbar="false"
-						:scroll-into-view="scrollInto">
+					<scroll-view id="tab-bar" style="width: 98%;" class="scroll-h" :scroll-x="true"
+						:show-scrollbar="false" :scroll-into-view="scrollInto">
 						<view v-for="(tab,index) in tabBars" :key="tab.id" class="uni-tab-item" :id="tab.id"
 							:data-current="index" @click="ontabtap">
 							<text class="uni-tab-item-title title-block"
@@ -219,5 +219,10 @@
 		width: 100%;
 		position: relative;
 		/* padding-top: 50upx; */
+	}
+
+	.doctor-main {
+		background: url(../../static/cn/doctor/bg.jpg) no-repeat 50% bottom;
+		background-size: cover;
 	}
 </style>
