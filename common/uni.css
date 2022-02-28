@@ -6,8 +6,8 @@
 }
 
 page,
-body {
-}
+body {}
+
 .img-full {
 	width: 100%;
 }
@@ -23,38 +23,26 @@ body {
 	overflow: hidden;
 }
 
-.txt-black {
-	color: #282828;
+
+.lang-box {
+	position: absolute;
+	width: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	flex-direction: row;
+	border: 1upx solid #f40;
+	padding: 5upx 10upx;
+	border-radius: 20upx;
+	color: #f40;
+	top: 2%;
+	right: 25%;
 }
 
-.txt-light-black {
-	color: #535353;
-}
-
-.txt-gray {
-	color: #9F9F9F;
-}
-
-.txt-red {
-	color: #F25358;
-}
-
-.txt-orange {
-	color: #F69A22;
-}
-
-.txt-yellow {
-	color: #F8B234;
-}
-
-.txt-green {
-	color: #00bf47;
-}
-
-.txt-sross {
-	font-size: 34upx;
-	color: #222222;
-	font-weight: 600;
+.lg-btn {
+	font-size: 12upx;
+	padding: 0 10upx;
 }
 
 .pages {

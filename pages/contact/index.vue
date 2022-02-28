@@ -85,6 +85,15 @@
 					<navigator :class="['drawer-nav-btn','active']" :url='navFix["contact"][$store.state.lang]["link"]'>
 						{{navFix["contact"][$store.state.lang]["title"]}}
 					</navigator>
+
+					<view v-if="$lgChane" class="lang-box">
+						<view v-if="$store.state.lang=='en'" class="lg-btn" @click="setLang('cn')">
+							中文
+						</view>
+						<view v-if="$store.state.lang=='cn'" class="lg-btn" @click="setLang('en')">
+							EN
+						</view>
+					</view>
 				</view>
 			</view>
 		</uni-drawer>
@@ -230,6 +239,24 @@
 			drawerHide() {
 				console.log("hide");
 				this.showLeft = false
+			},
+			setLang(val) {
+				var that = this;
+				uni.setStorage({
+					key: 'DBA-Lang',
+					data: val,
+					success: function() {
+						let lg = val || "cn";
+						that.$store.state.lang = lg;
+						that.$store.dispatch('getLang');
+						uni.setNavigationBarTitle({
+							title: that.list['title'][that.$store.state.lang]
+						})
+					},
+					fail() {
+						// that.$store.state.lang = "cn";
+					}
+				});
 			}
 		}
 	}
@@ -238,4 +265,12 @@
 <style scoped>
 	@import "/common/tab.css";
 	@import "./contact.css";
+
+	.lang-box {
+		top: auto;
+		right: auto;
+		left: 10%;
+		bottom: 30%;
+		height: auto;
+	}
 </style>

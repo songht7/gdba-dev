@@ -1,13 +1,23 @@
 <template>
 	<view class="drawer-menu">
-		<uni-drawer :visible="showLeft" mode="left" @close="drawerHide('left')">
+		<uni-drawer :visible="showLeft" mode="left" @close="drawerHide()">
 			<view class="drawer-nav">
 				<view class="d-nav-list">
+					<view class="tab-nav" @click="drawerHide()">
+						<img src="/static/menu.png" class="drawer-menu" />
+					</view>
+					<navigator class="drawer-nav-btn" url="/pages/index/index">
+						{{navFix["home"][$store.state.lang]["title"]}}
+					</navigator>
 					<block v-for="(obj,key) in nav[$store.state.lang]" :key="key">
-						<navigator class="nav-btn" :url="obj.link+$store.state.lang">
+						<navigator :class="['drawer-nav-btn',obj.key==pageis?'active':'']"
+							:url="obj.link+$store.state.lang">
 							{{obj.title}}
 						</navigator>
 					</block>
+					<navigator class="drawer-nav-btn" url="/pages/contact/index">
+						{{navFix["contact"][$store.state.lang]["title"]}}
+					</navigator>
 				</view>
 			</view>
 		</uni-drawer>
@@ -23,12 +33,15 @@
 	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue'
 
 	export default {
-        props: {
-            showLeft: false,
-        },
+		props: {
+			visible: false
+		},
 		data() {
 			return {
-				nav: Home.nav
+				nav: Home.nav,
+				navFix: Home.navFix,
+				pageis: "",
+				showLeft: false, //侧滑菜单
 			};
 		},
 		onShow() {},
@@ -40,9 +53,11 @@
 			drawerShow(e) {
 				console.log("show", e);
 				this.showLeft = true
+				this.$emit()
 			},
 			drawerHide() {
 				console.log("hide");
+				this.$emit()
 				this.showLeft = false
 			}
 		}

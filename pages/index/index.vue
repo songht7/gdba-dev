@@ -4,17 +4,17 @@
 
 			<img lazy-load="true" class="logo-type" src='/static/logo-type.png' />
 			<img lazy-load="true" class="logo" src='/static/logo.png' />
-			<!-- <view class="lang-box">
-				<view class="lg-btn" @click="setLang('cn')">
+			<view v-if="$lgChane" class="lang-box">
+				<view v-if="$store.state.lang=='en'" class="lg-btn" @click="setLang('cn')">
 					中文
 				</view>
-				<view class="lg-cut">
+				<!-- <view class="lg-cut">
 					/
-				</view>
-				<view class="lg-btn" @click="setLang('en')">
+				</view> -->
+				<view v-if="$store.state.lang=='cn'" class="lg-btn" @click="setLang('en')">
 					EN
 				</view>
-			</view> -->
+			</view>
 			<view class="nav-box">
 				<block v-for="(obj,key) in list['nav'][$store.state.lang]" :key="key">
 					<navigator class="nav-btn" :url="obj.link+$store.state.lang">
@@ -116,27 +116,6 @@
 		top: 2%;
 		right: auto;
 		left: 3%;
-	}
-
-	.lang-box {
-		position: absolute;
-		width: auto;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		align-content: center;
-		flex-direction: row;
-		border: 1upx solid #f40;
-		padding: 5upx 10upx;
-		border-radius: 15upx;
-		color: #f40;
-		top: 2%;
-		right: 25%;
-	}
-
-	.lg-btn {
-		font-size: 12upx;
-		padding: 0 10upx;
 	}
 
 	.nav-box {

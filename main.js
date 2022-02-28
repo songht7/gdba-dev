@@ -20,12 +20,15 @@ Vue.prototype.now = Date.now || function() {
 import swiper from "./components/swiper-block.vue"
 Vue.component("swiper-block", swiper)
 
-Vue.prototype.websiteUrl = 'http://dba.meeting.com';
+Vue.prototype.websiteUrl = 'http://emlyon.meetji.com';
 Vue.prototype.sourceUrl = 'http://api_test.meetji.com';
+
+
+Vue.prototype.$lgChane = false; //中英文切换
 
 App.mpType = 'app'
 
 const app = new Vue({
-    ...App
+	...App
 })
 app.$mount()

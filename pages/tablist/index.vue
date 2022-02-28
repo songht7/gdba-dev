@@ -54,7 +54,7 @@
 					<view class="tab-nav" @click="drawerHide()">
 						<img src="/static/menu.png" class="drawer-menu" />
 					</view>
-					<navigator class="drawer-nav-btn" url="/pages/index/index">
+					<navigator class="drawer-nav-btn" :url='navFix["home"][$store.state.lang]["link"]'>
 						{{navFix["home"][$store.state.lang]["title"]}}
 					</navigator>
 					<block v-for="(obj,key) in nav[$store.state.lang]" :key="key">
@@ -63,9 +63,18 @@
 							{{obj.title}}
 						</navigator>
 					</block>
-					<navigator class="drawer-nav-btn" url="/pages/contact/index">
+					<navigator class="drawer-nav-btn" :url='navFix["contact"][$store.state.lang]["link"]'>
 						{{navFix["contact"][$store.state.lang]["title"]}}
 					</navigator>
+
+					<view v-if="$lgChane" class="lang-box">
+						<view v-if="$store.state.lang=='en'" class="lg-btn" @click="setLang('cn')">
+							中文
+						</view>
+						<view v-if="$store.state.lang=='cn'" class="lg-btn" @click="setLang('en')">
+							EN
+						</view>
+					</view>
 				</view>
 			</view>
 		</uni-drawer>
@@ -131,50 +140,53 @@
 
 			let pageis = option.id || "";
 			this.pageis = pageis;
+			this.getData();
 
-			var _lg = this.$store.state.lang
-			switch (pageis) {
-				case 'college':
-					uni.setNavigationBarTitle({
-						title: College['title'][_lg]
-					})
-					this.tabBars = College['tabBars'][_lg];
-					this.contList = College['contList'][_lg];
-					break;
-				case 'project':
-					uni.setNavigationBarTitle({
-						title: Project['title'][_lg]
-					})
-					this.tabBars = Project['tabBars'][_lg];
-					this.contList = Project['contList'][_lg];
-					break;
-				case 'study':
-					uni.setNavigationBarTitle({
-						title: Study['title'][_lg]
-					})
-					this.tabBars = Study['tabBars'][_lg];
-					this.contList = Study['contList'][_lg];
-					break;
-				case 'doctor':
-					uni.setNavigationBarTitle({
-						title: Doctor['title'][_lg]
-					})
-					this.list = Doctor;
-					this.tabBars = Doctor['tabBars'][_lg];
-					this.contList = Doctor['contList'][_lg];
-					this.base_lsit = Doctor['docList'][_lg];
-					break;
-				default:
-					uni.redirectTo({
-						url: '/pages/index/index',
-					})
-					break;
-			}
 			// let lang = option.lg || "cn";
 			// this.setLang(lang)
 		},
 		onReady() {},
 		methods: {
+			getData() {
+				var _lg = this.$store.state.lang
+				switch (this.pageis) {
+					case 'college':
+						uni.setNavigationBarTitle({
+							title: College['title'][_lg]
+						})
+						this.tabBars = College['tabBars'][_lg];
+						this.contList = College['contList'][_lg];
+						break;
+					case 'project':
+						uni.setNavigationBarTitle({
+							title: Project['title'][_lg]
+						})
+						this.tabBars = Project['tabBars'][_lg];
+						this.contList = Project['contList'][_lg];
+						break;
+					case 'study':
+						uni.setNavigationBarTitle({
+							title: Study['title'][_lg]
+						})
+						this.tabBars = Study['tabBars'][_lg];
+						this.contList = Study['contList'][_lg];
+						break;
+					case 'doctor':
+						uni.setNavigationBarTitle({
+							title: Doctor['title'][_lg]
+						})
+						this.list = Doctor;
+						this.tabBars = Doctor['tabBars'][_lg];
+						this.contList = Doctor['contList'][_lg];
+						this.base_lsit = Doctor['docList'][_lg];
+						break;
+					default:
+						uni.redirectTo({
+							url: '/pages/index/index',
+						})
+						break;
+				}
+			},
 			ontabtap(e) {
 				// console.log(e)
 				let index = e.target.dataset.current || e.currentTarget.dataset.current;
@@ -200,12 +212,28 @@
 			drawerHide() {
 				console.log("hide");
 				this.showLeft = false
+			},
+			setLang(val) {
+				var that = this;
+				uni.setStorage({
+					key: 'DBA-Lang',
+					data: val,
+					success: function() {
+						let lg = val || "cn";
+						that.$store.state.lang = lg;
+						that.$store.dispatch('getLang');
+						that.getData();
+					},
+					fail() {
+						// that.$store.state.lang = "cn";
+					}
+				});
 			}
 		}
 	}
 </script>
 
-<style>
+<style scoped>
 	@import "/common/tab.css";
 
 	.content {
@@ -224,5 +252,13 @@
 	.doctor-main {
 		background: url(../../static/cn/doctor/bg.jpg) no-repeat 50% bottom;
 		background-size: cover;
+	}
+
+	.lang-box {
+		top: auto;
+		right: auto;
+		left: 10%;
+		bottom: 30%;
+		height: auto;
 	}
 </style>

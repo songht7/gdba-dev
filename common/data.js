@@ -7,13 +7,13 @@ const Home = {
 		'home': {
 			"cn": {
 				"btn": "",
-				"link": "/pages/index/index?id=home&lg=",
+				"link": "/pages/index/index?id=home&lg=cn",
 				"title": "首页",
 				"key": "home"
 			},
 			"en": {
 				"btn": "",
-				"link": "/pages/index/index?id=home&lg=",
+				"link": "/pages/index/index?id=home&lg=en",
 				"title": "Home",
 				"key": "home"
 			}
@@ -21,13 +21,13 @@ const Home = {
 		'contact': {
 			"cn": {
 				"btn": "",
-				"link": "/pages/contact/index?id=ct&lg=",
+				"link": "/pages/contact/index?id=ct&lg=cn",
 				"title": "联系我们",
 				"key": "ct"
 			},
 			"en": {
 				"btn": "",
-				"link": "/pages/contact/index?id=ct&lg=",
+				"link": "/pages/contact/index?id=ct&lg=en",
 				"title": "Contact Us",
 				"key": "ct"
 			}
@@ -58,22 +58,22 @@ const Home = {
 		"en": [{
 			"btn": "/home/nav-1.png",
 			"link": "/pages/tablist/index?id=college&lg=",
-			"title": "about college",
+			"title": "About College",
 			"key": "college"
 		}, {
 			"btn": `/home/nav-2.png`,
 			"link": `/pages/tablist/index?id=project&lg=`,
-			"title": "project",
+			"title": "Project",
 			"key": "project"
 		}, {
 			"btn": `/home/nav-3.png`,
 			"link": `/pages/tablist/index?id=doctor&lg=`,
-			"title": "doctor",
+			"title": "Doctor",
 			"key": "doctor"
 		}, {
 			"btn": `/home/nav-4.png`,
 			"link": "/pages/tablist/index?id=study&lg=",
-			"title": "study",
+			"title": "Study",
 			"key": "study"
 		}],
 	}
@@ -309,7 +309,7 @@ const Contact = {
 	},
 	"tip": {
 		"cn": "如果您感兴趣，请与我们联系",
-		"en": "If you are interested, please contact us",
+		"en": "If you are interested, contact us",
 	},
 	"submit": {
 		"cn": "提交",
