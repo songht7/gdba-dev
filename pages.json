@@ -37,13 +37,13 @@
 				// }
 			}
 		},
-		{
-			"path": "pages/doctor/index",
-			"style": {
-				"navigationBarTitleText": "同窗学友",
-				"backgroundColor": "#E3E3E3"
-			}
-		},
+		// {
+		// 	"path": "pages/doctor/index",
+		// 	"style": {
+		// 		"navigationBarTitleText": "同窗学友",
+		// 		"backgroundColor": "#E3E3E3"
+		// 	}
+		// },
 		{
 			"path": "pages/contact/index",
 			"style": {
