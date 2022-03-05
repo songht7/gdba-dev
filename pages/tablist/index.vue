@@ -28,7 +28,7 @@
 			<block v-for="(lst,index1) in contList" :key="index1">
 				<view class="tab-img-list" v-show="tabIndex===index1">
 					<block v-if="lst['val'].length" v-for="(img,k) in lst.val" :key="k">
-						<img class="tab-dtl-img" :src='"/static/"+$store.state.lang+img' alt="">
+						<img class="tab-dtl-img" :src='"/static/"+$store.state.lang+img' @click="linkto(lst,k)" alt="">
 					</block>
 				</view>
 			</block>
@@ -122,7 +122,7 @@
 				/*doctor*/
 				previousMargin: 30,
 				nextMargin: 100,
-				height: 450,
+				height: 400,
 				imgRadius: 5,
 				base_lsit: [],
 				/*doctor end*/
@@ -187,6 +187,15 @@
 						break;
 				}
 			},
+			linkto(obj, index) {
+				var that = this;
+				if (obj.link) {
+					// console.log(obj["link"][index])
+					uni.navigateTo({
+						url: `${obj["link"][index]}${that.$store.state.lang}`
+					})
+				}
+			},
 			ontabtap(e) {
 				// console.log(e)
 				let index = e.target.dataset.current || e.currentTarget.dataset.current;
@@ -238,9 +247,11 @@
 
 	.content {
 		display: flex;
-		flex-direction: column;
+		/* flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: center; */
+		min-height: 100%;
+		background: #f1f1f1;
 	}
 
 	.pg-main {

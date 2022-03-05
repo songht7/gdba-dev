@@ -15,7 +15,8 @@
 			"path": "pages/tablist/index",
 			"style": {
 				"navigationBarTitleText": "",
-				"backgroundColor": "#E3E3E3"
+				"navigationStyle": "custom"
+				// ,"backgroundColor": "#E3E3E3"
 				// ,"navigationStyle": "custom",
 				// "app-plus": {
 				// 	"titleNView": {
@@ -28,7 +29,7 @@
 			"path": "pages/college/index",
 			"style": {
 				"navigationBarTitleText": "关于学院",
-				"backgroundColor": "#E3E3E3"
+				"navigationStyle": "custom"
 				// ,"navigationStyle": "custom",
 				// "app-plus": {
 				// 	"titleNView": {
@@ -48,7 +49,7 @@
 			"path": "pages/contact/index",
 			"style": {
 				"navigationBarTitleText": "联系我们",
-				"backgroundColor": "#E3E3E3"
+				"navigationStyle": "custom"
 			}
 		}
 	],

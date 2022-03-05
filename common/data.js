@@ -222,7 +222,7 @@ const Doctor = {
 			imgUrl: '/static/cn/doctor/d7.png',
 		}, {
 			name: '8',
-			imgUrl: '/static/cn/doctor/d7.png',
+			imgUrl: '/static/cn/doctor/d8.png',
 		}, {
 			name: '9',
 			imgUrl: '/static/cn/doctor/d9.png',
@@ -292,7 +292,8 @@ const Study = {
 			},
 			{
 				"id": 5,
-				"val": ["/study/5-1.jpg", "/study/5-2.jpg", "/study/5-3.jpg", "/study/5-4.jpg"]
+				"val": ["/study/5-1.jpg", "/study/5-2.jpg", "/study/5-3.jpg", "/study/5-4.jpg"],
+				"link": ['/pages/contact/index?id=ct&lg=']
 			}
 		],
 		"en": [{
