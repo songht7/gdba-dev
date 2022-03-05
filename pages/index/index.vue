@@ -90,7 +90,7 @@
 		height: 100%;
 		/* background: url(../../static/cn/home/1.jpg) no-repeat 50% bottom; */
 		background-repeat: no-repeat;
-		background-position: 50% bottom;
+		background-position: 50% top;
 		background-size: cover;
 		display: flex;
 		flex-direction: column;
@@ -119,10 +119,10 @@
 	}
 
 	.nav-box {
-		width: 70%;
+		width: 320px;
 		position: absolute;
 		top: 45%;
-		left: 15%;
+		left: 8%;
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
@@ -134,11 +134,12 @@
 	.nav-btn {
 		width: 13vh;
 		height: calc(width * 1);
+		margin: 0 10upx;
 	}
 
 	.nav-btn:nth-child(3),
 	.nav-btn:nth-child(4) {
-		top: -15px;
+		top: -12px;
 		position: relative;
 	}
 

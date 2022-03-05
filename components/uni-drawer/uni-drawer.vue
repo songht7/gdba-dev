@@ -97,7 +97,7 @@
 		display: block;
 		/* #endif */
 		position: fixed;
-		top: 85upx;
+		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
