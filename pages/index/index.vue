@@ -119,7 +119,7 @@
 	}
 
 	.nav-box {
-		width: 320px;
+		width: 500upx;
 		position: absolute;
 		top: 45%;
 		left: 8%;
@@ -132,7 +132,7 @@
 	}
 
 	.nav-btn {
-		width: 13vh;
+		width: 45%;
 		height: calc(width * 1);
 		margin: 0 10upx;
 	}
