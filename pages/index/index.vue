@@ -57,13 +57,14 @@
 			that.$store.dispatch('getLang');
 
 			if (this.$store.state.isWeixin) {
-				var share_url = "http://emlyon.meetji.com",
-					title = "法国里昂商学院",
-					dec = "全球工商管理博士项目",
-					imgUrl = "http://emlyon.meetji.com/static/logo.png";
-				//console.log(share_url)
-				mdl.wxShare(share_url, title, imgUrl, dec);
+
 			}
+			var share_url = "http://emlyon.meetji.com",
+				title = "法国里昂商学院",
+				dec = "全球工商管理博士项目",
+				imgUrl = "http://emlyon.meetji.com/static/logo.png";
+			//console.log(share_url)
+			mdl.wxShare(share_url, title, imgUrl, dec);
 		},
 		onReady() {
 			// console.log("isWeixin：", this.$store.state.isWeixin)

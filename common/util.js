@@ -123,7 +123,7 @@ const module = {
 					"expires_in": res.expires_in
 				},
 				success: function() {
-
+					
 				}
 			});
 			var _config = {
@@ -142,7 +142,8 @@ const module = {
 			}
 			wx.config(_config);
 		}
-		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + location.origin;
+		var __domain = "http://emlyon.meetji.com";
+		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + __domain;
 		let _head = {};
 		let channel_code = that.queryString("channel_code");
 		if (channel_code) {
@@ -154,13 +155,14 @@ const module = {
 
 
 		// _href = "http://main.meetji.com:3001?wxr=" + encodeURIComponent(_href)
+		var _imgUrl = __domain + "/static/logo.png";
 		var wxSet = {
 			title: title || "法国里昂商学院",
 			desc: dec || "全球工商管理博士项目",
-			link: share_url || "http://emlyon.meetji.com",
-			imgUrl: imgUrl || "http://emlyon.meetji.com/static/logo.png",
+			link: share_url || __domain,
+			imgUrl: imgUrl || _imgUrl,
 			success: function() {
-				
+
 			}
 		};
 		wx.ready(function() {
