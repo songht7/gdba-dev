@@ -65,6 +65,9 @@ body {
 	border-bottom: 1rpx solid #dcdddd;
 	padding: 10upx;
 }
+.alignTop{
+	align-items: flex-start;
+}
 
 .uni-list-block:last-child {
 	border-bottom: none;
@@ -73,6 +76,15 @@ body {
 .uni-list-left {
 	width: 21%;
 	font-size: 34upx;
+}
+
+.uni-list-right {
+	flex: 1;
+}
+
+.u-txtarea {
+	height: 100upx;
+	width: auto;
 }
 
 .u-ipt {

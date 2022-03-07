@@ -24,13 +24,18 @@
 					<view class="form-block uni-list-box">
 						<view class="form-row">
 							<block v-for="(obj,key) in list['form'][$store.state.lang]" :key="key">
-								<view class="uni-list-block">
+								<view class="uni-list-block" :class="[obj.type=='textarea'?'alignTop':'']">
 									<view class="uni-list-left">
 										<text v-if="obj.notnull">*</text>{{obj.label}}
 									</view>
 									<view class="uni-list-right">
-										<input class="uni-input u-ipt" :name="obj.name" :type="obj.type" placeholder=""
-											value="" />
+										<block v-if="obj.type=='textarea'">
+											<textarea class="uni-input u-ipt u-txtarea" :name="obj.name" :type="obj.type" />
+										</block>
+										<block v-else>
+											<input class="uni-input u-ipt" :name="obj.name" :type="obj.type"
+												placeholder="" value="" />
+										</block>
 									</view>
 								</view>
 							</block>
@@ -126,7 +131,7 @@
 			const that = this;
 			let pageis = option.id || "";
 			this.pageis = pageis;
-			
+
 			// let lang = option.lg || "cn";
 			// this.setLang(lang)
 			that.$store.dispatch('getLang');

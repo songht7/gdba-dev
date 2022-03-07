@@ -200,38 +200,48 @@ const Doctor = {
 	},
 	"docList": {
 		"cn": [{
-			name: '1',
-			imgUrl: '/static/cn/doctor/d1.png',
-		}, {
-			name: '2',
-			imgUrl: '/static/cn/doctor/d2.png',
-		}, {
-			name: '3',
-			imgUrl: '/static/cn/doctor/d3.png',
-		}, {
-			name: '4',
-			imgUrl: '/static/cn/doctor/d4.png',
-		}, {
-			name: '5',
-			imgUrl: '/static/cn/doctor/d5.png',
-		}, {
-			name: '6',
-			imgUrl: '/static/cn/doctor/d6.png',
-		}, {
-			name: '7',
-			imgUrl: '/static/cn/doctor/d7.png',
-		}, {
-			name: '8',
-			imgUrl: '/static/cn/doctor/d8.png',
-		}, {
-			name: '9',
+			id: '9',
 			imgUrl: '/static/cn/doctor/d9.png',
+			name:"张振坤"
 		}, {
-			name: '10',
+			id: '8',
+			imgUrl: '/static/cn/doctor/d8.png',
+			name:"周月容"
+		},  {
+			id: '7',
+			imgUrl: '/static/cn/doctor/d7.png',
+			name:"高毓霖"
+		}, {
+			id: '6',
+			imgUrl: '/static/cn/doctor/d6.png',
+			name:"马磊"
+		},{
+			id: '5',
+			imgUrl: '/static/cn/doctor/d5.png',
+			name:"黎永强"
+		},{
+			id: '4',
+			imgUrl: '/static/cn/doctor/d4.png',
+			name:"周平"
+		}, {
+			id: '3',
+			imgUrl: '/static/cn/doctor/d3.png',
+			name:"唐卫民"
+		}, {
+			id: '2',
+			imgUrl: '/static/cn/doctor/d2.png',
+			name:"刘静晶"
+		},  {
+			id: '10',
 			imgUrl: '/static/cn/doctor/d10.png',
+			name:"林云逸"
+		}, {
+			id: '1',
+			imgUrl: '/static/cn/doctor/d1.png',
+			name:"刘志彬"
 		}],
 		"en": [{
-			name: '1',
+			id: '1',
 			imgUrl: '',
 		}],
 	}
@@ -313,7 +323,7 @@ const Contact = {
 		"en": "If you are interested, contact us",
 	},
 	"submit": {
-		"cn": "提交",
+		"cn": "提      交",
 		"en": "Submit",
 	},
 	"c-tip": {
@@ -350,7 +360,7 @@ const Contact = {
 			"name": "position",
 			"label": "职位"
 		}, {
-			"type": "text",
+			"type": "textarea",
 			"name": "mark",
 			"label": "附言"
 		}],
@@ -379,7 +389,7 @@ const Contact = {
 			"label": "Position",
 			"name": "position"
 		}, {
-			"type": "text",
+			"type": "textarea",
 			"name": "mark",
 			"label": "Mark"
 		}],
