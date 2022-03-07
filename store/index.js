@@ -13,7 +13,7 @@ const store = new Vuex.Store({
 		openid: "",
 		phone: "",
 		data: "",
-		isWeixin: true,
+		isWeixin: false,
 		sysInfo: "",
 		popup_user: "on",
 		lang: ""

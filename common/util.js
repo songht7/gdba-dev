@@ -107,12 +107,12 @@ const module = {
 	wxShare: function(share_url, title, imgUrl, dec) {
 		var that = this;
 		if (!that.isWeixin()) {
-			return
+			// return
 		}
 		//console.log(share_url, title, dec)
 		var funTicket = function(res) {
-			// 			console.log("=======getTicket======")
-			// 			console.log(res)
+			console.log("=======getTicket======")
+			console.log(res)
 			uni.setStorage({
 				key: 'wx_ticket',
 				data: {
@@ -140,11 +140,7 @@ const module = {
 			}
 			wx.config(_config);
 		}
-		var getTicketUrl = location.origin + "/#/";
-		if (that.isIOS()) {
-			getTicketUrl = location.origin + "/";
-		}
-		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + getTicketUrl;
+		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + location.origin;
 		let _head = {};
 		let channel_code = that.queryString("channel_code");
 		if (channel_code) {
@@ -154,53 +150,15 @@ const module = {
 		}
 		let wx_ticket = that.getData(url_ticket, funTicket, "GET", "", _head)
 
-		var storFun = function(res) {
-			if (res == "") {}
-		}
-		//that.getMyStorage("wx_ticket", "", storFun);
 
-
-		let _href = location.origin + "/" + location.hash;
-		// 		console.log("======share_url=====")
-		// 		console.log(_href)
-		_href = "http://main.meetji.com:3001?wxr=" + encodeURIComponent(_href)
-		var share_url = share_url ? share_url : _href;
-		imgUrl = imgUrl ? imgUrl : Interface.domain + "/static/share.jpg";
+		// _href = "http://main.meetji.com:3001?wxr=" + encodeURIComponent(_href)
 		var wxSet = {
-			title: title || "英语免费试听",
-			desc: dec || "英语免费试听课，在这里找到你想要的",
-			link: share_url,
-			imgUrl: imgUrl,
+			title: title || "法国里昂商学院",
+			desc: dec || "全球工商管理博士项目",
+			link: share_url || "http://emlyon.meetji.com",
+			imgUrl: imgUrl || "http://emlyon.meetji.com/static/logo.png",
 			success: function() {
-				let fun = function(storageRes) {
-					let openid = storageRes.openid ? storageRes.openid : "";
-					let test_openid = Interface.wx.test_openid;
-					let _head = {
-						"openid": openid || test_openid
-					};
-					console.log("-----share succ----")
-					console.log(_head)
-					let funSave = function(res) {
-						if (res.point) {
-							uni.getStorage({
-								key: 'uWXInfo',
-								success: function(ress) {
-									let _uWXInfo = ress.data;
-									_uWXInfo["point"] = res.point;
-									uni.setStorage({
-										key: 'uWXInfo',
-										data: _uWXInfo,
-										success: function() {}
-									})
-								},
-							})
-						}
-					}
-					let url_savePoint = Interface.apiurl + Interface.addr.savePoint;
-					/*分享获得积分*/
-					let _savePoint = that.getData(url_savePoint, funSave, "POST", "", _head);
-				}
-				that.getMyStorage("uWXInfo", "", fun)
+				console.log(123)
 			}
 		};
 		wx.ready(function() {
