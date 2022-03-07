@@ -122,7 +122,9 @@ const module = {
 					"signature": res.signature,
 					"expires_in": res.expires_in
 				},
-				success: function() {}
+				success: function() {
+
+				}
 			});
 			var _config = {
 				debug: false,
@@ -158,7 +160,7 @@ const module = {
 			link: share_url || "http://emlyon.meetji.com",
 			imgUrl: imgUrl || "http://emlyon.meetji.com/static/logo.png",
 			success: function() {
-				console.log(123)
+				
 			}
 		};
 		wx.ready(function() {
@@ -231,7 +233,7 @@ const module = {
 					//console.log(_url)
 					if (code) {
 						//console.log(code)
-						_this.userLogin(code);
+						// _this.userLogin(code);
 					} else {
 						window.location.href = _url;
 					}
