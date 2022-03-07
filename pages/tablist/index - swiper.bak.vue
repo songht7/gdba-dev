@@ -1,81 +1,25 @@
 <template>
-	<view class="content">
-		<view class="pg-main" :class="[pageis=='doctor'?'doctor-main':'']">
-			<view :class="[pageis!='doctor'?'uni-tab-bar':'']">
-				<view class="tab-box">
-					<!-- 头部菜单按钮 -->
-					<view class="tab-nav" @click="drawerShow()">
-						<img src="/static/menu.png" class="drawer-menu" />
-					</view>
-					<scroll-view id="tab-bar" style="width: 90%;" class="uni-swiper-tab" :scroll-x="true"
-						:show-scrollbar="false" :scroll-into-view="scrollInto">
-						<view v-for="(tab,index) in tabBars" :key="tab.id" class="uni-tab-item" :id="`tb-${tab.id}`"
-							:data-current="index" @click="ontabtap">
-							<text class="uni-tab-item-title title-block"
-								:class="tabIndex==index ? 'uni-tab-item-title-active' : ''">{{tab.name}}</text>
-						</view>
-					</scroll-view>
-				</view>
-				<swiper :current="tabIndex" class="swiper-box" duration="300" @change="ontabchange">
-					<swiper-item v-for="(lst,index1) in contList" :key="index1">
-						<scroll-view class="list" scroll-y @scrolltolower="loadMore(index1)">
-							<view class="tab-img-list">
-								<block v-if="lst['val'].length" v-for="(img,k) in lst.val" :key="k">
-									<img class="tab-dtl-img" :src='"/static/"+$store.state.lang+img'
-										@click="linkto(lst,k)" alt="">
-								</block>
-							</view>
-						</scroll-view>
-					</swiper-item>
-				</swiper>
-
+	<view class="uni-tab-bar">
+		<scroll-view id="tab-bar" class="uni-swiper-tab" :scroll-x="true" :show-scrollbar="false"
+			:scroll-into-view="scrollInto">
+			<view v-for="(tab,index) in tabBars" :key="tab.id" class="uni-tab-item" :id="`tb-${tab.id}`"
+				:data-current="index" @click="ontabtap">
+				<text class="uni-tab-item-title title-block"
+					:class="tabIndex==index ? 'uni-tab-item-title-active' : ''">{{tab.name}}</text>
 			</view>
-			<!-- 同窗学友页（同窗寄语） -->
-			<block v-if="pageis=='doctor'">
-				<view>
-					<container :titleImg='"/static/"+$store.state.lang+list["titleImg"][$store.state.lang]'>
-						<ls-swiper :list="base_lsit" imgKey="imgUrl" imgWidth="98%" :previousMargin="previousMargin"
-							:nextMargin="nextMargin" :height="height" :imgRadius="imgRadius" />
-					</container>
-				</view>
-			</block>
-		</view>
-
-		<!-- 浮动按钮 (联系我们) -->
-		<drag-button :isDock="true" :existTabBar="true" />
-		<!-- 侧滑菜单 -->
-		<uni-drawer :visible="showLeft" mode="left" @close="drawerHide('left')">
-			<view class="drawer-nav">
-				<view class="d-nav-list">
-					<view class="tab-nav" @click="drawerHide()">
-						<img src="/static/menu.png" class="drawer-menu" />
+		</scroll-view>
+		<swiper :current="tabIndex" class="swiper-box" duration="300" @change="ontabchange">
+			<swiper-item v-for="(lst,index1) in contList" :key="index1">
+				<scroll-view class="list" scroll-y @scrolltolower="loadMore(index1)">
+					<view class="tab-img-list">
+						<block v-if="lst['val'].length" v-for="(img,k) in lst.val" :key="k">
+							<img class="tab-dtl-img" :src='"/static/"+$store.state.lang+img' @click="linkto(lst,k)"
+								alt="">
+						</block>
 					</view>
-					<navigator class="drawer-nav-btn" :url='navFix["home"][$store.state.lang]["link"]'>
-						{{navFix["home"][$store.state.lang]["title"]}}
-					</navigator>
-					<block v-for="(obj,key) in nav[$store.state.lang]" :key="key">
-						<navigator :class="['drawer-nav-btn',obj.key==pageis?'active':'']"
-							:url="obj.link+$store.state.lang">
-							{{obj.title}}
-						</navigator>
-					</block>
-					<navigator class="drawer-nav-btn" :url='navFix["contact"][$store.state.lang]["link"]'>
-						{{navFix["contact"][$store.state.lang]["title"]}}
-					</navigator>
-
-					<view v-if="$lgChane" class="lang-box">
-						<view v-if="$store.state.lang=='en'" class="lg-btn" @click="setLang('cn')">
-							中文
-						</view>
-						<view v-if="$store.state.lang=='cn'" class="lg-btn" @click="setLang('en')">
-							EN
-						</view>
-					</view>
-				</view>
-			</view>
-		</uni-drawer>
-		<!-- 侧滑菜单/ -->
-
+				</scroll-view>
+			</swiper-item>
+		</swiper>
 	</view>
 </template>
 

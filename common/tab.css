@@ -49,12 +49,14 @@
 	flex: 1;
 	flex-direction: column;
 	overflow: hidden;
-	background-color: #ffffff;
+	background-color: #ededed;
 	/* #ifdef MP-ALIPAY || MP-BAIDU */
 	height: 100vh;
 	/* #endif */
 }
-
+.uni-swiper-tab{
+	border-bottom: none;
+}
 .tab-img-list {
 	padding: 0;
 	margin: 0;
@@ -122,10 +124,6 @@
 
 .tab-dtl-img {
 	width: 100%;
-}
-
-.tabs {
-	background-color: #ededed;
 }
 
 .title-block {

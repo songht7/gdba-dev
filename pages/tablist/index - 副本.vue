@@ -1,35 +1,38 @@
 <template>
 	<view class="content">
 		<view class="pg-main" :class="[pageis=='doctor'?'doctor-main':'']">
-			<view :class="[pageis!='doctor'?'uni-tab-bar':'']">
-				<view class="tab-box">
-					<!-- 头部菜单按钮 -->
-					<view class="tab-nav" @click="drawerShow()">
-						<img src="/static/menu.png" class="drawer-menu" />
-					</view>
-					<scroll-view id="tab-bar" style="width: 90%;" class="uni-swiper-tab" :scroll-x="true"
+			<view class="tab-box">
+				<!-- 头部菜单按钮 -->
+				<view class="tab-nav" @click="drawerShow()">
+					<img src="/static/menu.png" class="drawer-menu" />
+				</view>
+				<!-- 可拖地顶部选项卡 -->
+				<view class="tabs">
+					<scroll-view id="tab-bar" style="width: 98%;" class="scroll-h" :scroll-x="true"
 						:show-scrollbar="false" :scroll-into-view="scrollInto">
-						<view v-for="(tab,index) in tabBars" :key="tab.id" class="uni-tab-item" :id="`tb-${tab.id}`"
+						<view v-for="(tab,index) in tabBars" :key="tab.id" class="uni-tab-item" :id="tab.id"
 							:data-current="index" @click="ontabtap">
 							<text class="uni-tab-item-title title-block"
 								:class="tabIndex==index ? 'uni-tab-item-title-active' : ''">{{tab.name}}</text>
 						</view>
 					</scroll-view>
-				</view>
-				<swiper :current="tabIndex" class="swiper-box" duration="300" @change="ontabchange">
-					<swiper-item v-for="(lst,index1) in contList" :key="index1">
-						<scroll-view class="list" scroll-y @scrolltolower="loadMore(index1)">
-							<view class="tab-img-list">
-								<block v-if="lst['val'].length" v-for="(img,k) in lst.val" :key="k">
-									<img class="tab-dtl-img" :src='"/static/"+$store.state.lang+img'
-										@click="linkto(lst,k)" alt="">
-								</block>
-							</view>
-						</scroll-view>
+					<!-- <view class="line-h"></view> -->
+					<!-- <swiper :current="tabIndex" class="swiper-box" style="flex: 1;" :duration="300" @change="ontabchange">
+					<swiper-item class="swiper-item" v-for="(tab,index1) in contList" :key="index1">
+						<img class="tab-dtl-img" :src='"/static/"+$store.state.lang+tab.val' alt="">
 					</swiper-item>
-				</swiper>
-
+				</swiper> -->
+				</view>
 			</view>
+			<!-- 页面列表内容（图） -->
+			<block v-for="(lst,index1) in contList" :key="index1">
+				<view class="tab-img-list" v-show="tabIndex===index1">
+					<block v-if="lst['val'].length" v-for="(img,k) in lst.val" :key="k">
+						<img class="tab-dtl-img" :src='"/static/"+$store.state.lang+img' @click="linkto(lst,k)" alt="">
+					</block>
+				</view>
+			</block>
+
 			<!-- 同窗学友页（同窗寄语） -->
 			<block v-if="pageis=='doctor'">
 				<view>
@@ -39,6 +42,7 @@
 					</container>
 				</view>
 			</block>
+
 		</view>
 
 		<!-- 浮动按钮 (联系我们) -->
@@ -111,8 +115,6 @@
 				cacheTab: [],
 				tabIndex: 0,
 				scrollInto: "",
-				scrollLeft: 0,
-				isClickChange: false,
 				showTips: false,
 				navigateFlag: false,
 				pulling: false,
@@ -210,10 +212,7 @@
 					return;
 				}
 				this.tabIndex = index;
-				this.scrollInto = `tb-${this.tabBars[index].id}`;
-			},
-			loadMore(e) {
-				var that = this;
+				// this.scrollInto = this.tabBars[index].id;
 			},
 			drawerShow(e) {
 				console.log("show", e);
