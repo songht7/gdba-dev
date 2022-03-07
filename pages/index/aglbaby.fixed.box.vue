@@ -9,10 +9,18 @@
 			href="javascript:;"><img src="http://www.aglbaby.com/wp-content/uploads/2022/03/icon-wx.png"
 				class="icon icon-phone">微信</a></div>
 </div>
+<div id="WeiXinBox">
+	<div class="wx-row">
+		<p class="wx-block">微信号：<text>13797252451</text></p>
+	</div>
+	<div class="wx-row">
+		<p>我们将提供专业一对一咨询服务</p>
+	</div>
+</div>
 <div id="dialog" title="已复制微信号">
 	<div style="font-size: 1.2rem;line-height: 1.4;padding:10px 0 0">
 		<p>微信号：<text>13797252451</text></p>
-		<p>添加微信，咨询更多</p>
+		<p>赶快添加好友吧</p>
 	</div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -95,5 +103,29 @@
 		background: #1e80df;
 		color: #f7f7f7;
 		font-weight: bold;
+	}
+
+	#dialog {
+		display: none
+	}
+
+	#WeiXinBox {
+		background-color: #62a5e9;
+		color: #FFFFFF;
+		padding: .8rem 1rem 0.005rem;
+		font-size: 1.4rem;
+		line-height: 2;
+		text-align: center;
+	}
+
+	#WeiXinBox p {
+		margin-bottom: 5px;
+	}
+
+	.wx-block {
+		background-color: #ffc73c;
+		padding: 0.5rem 2rem;
+		display: inline;
+		border-radius: 2rem;
 	}
 </style>

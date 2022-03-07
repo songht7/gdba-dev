@@ -99,9 +99,17 @@ const College = {
 			}
 		],
 		"en": [{
-			"id": 1,
-			"name": "school"
-		}],
+				"id": 1,
+				"name": "SCHOOL INTRODUCTION"
+			},
+			{
+				"id": 2,
+				"name": "RANKING"
+			},
+			{
+				"id": 3,
+				"name": "RESEARERCH CENTERS"
+			}],
 	},
 	"contList": {
 		"cn": [{
@@ -118,9 +126,18 @@ const College = {
 			}
 		],
 		"en": [{
-			"id": 1,
-			"val": "aaa"
-		}],
+				"id": 1,
+				"val": ["/college/1-1.jpg", "/college/1-2.jpg", "/college/1-3.jpg"]
+			},
+			{
+				"id": 2,
+				"val": ["/college/2-1.jpg", "/college/2-2.jpg", "/college/2-3.jpg"]
+			},
+			{
+				"id": 3,
+				"val": ["/college/3-1.jpg", "/college/3-2.jpg"]
+			}
+		],
 	},
 };
 const Project = {
