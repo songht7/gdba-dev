@@ -47,7 +47,6 @@ body {
 	font-size: 40upx;
 	width: 60%;
 	border-radius: 60upx;
-	letter-spacing: 20upx;
 }
 
 .uni-list-box {
@@ -65,7 +64,8 @@ body {
 	border-bottom: 1rpx solid #dcdddd;
 	padding: 10upx;
 }
-.alignTop{
+
+.alignTop {
 	align-items: flex-start;
 }
 
@@ -75,7 +75,7 @@ body {
 
 .uni-list-left {
 	width: 21%;
-	font-size: 34upx;
+	font-size: 30upx;
 }
 
 .uni-list-right {
@@ -89,6 +89,7 @@ body {
 
 .u-ipt {
 	font-size: 34upx;
+	padding: 5upx 8upx;
 	background-color: transparent;
 }
 
@@ -153,4 +154,23 @@ body {
 a.mailto {
 	color: #fff;
 	text-decoration: none;
+}
+.lang-en .form-tip{
+	font-size: 34upx;
+}
+.lang-en .form-phone .uni-list-left {
+	width: 40%;
+}
+
+.lang-en .form-company .uni-list-left {
+	width: 30%;
+}
+
+.lang-en .form-mark .uni-list-left,
+.lang-en .form-mark .uni-list-right {
+	width: 100%;
+}
+
+.lang-en .form-mark {
+	flex-direction: column
 }

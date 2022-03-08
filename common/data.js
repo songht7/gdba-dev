@@ -109,7 +109,8 @@ const College = {
 			{
 				"id": 3,
 				"name": "RESEARERCH CENTERS"
-			}],
+			}
+		],
 	},
 	"contList": {
 		"cn": [{
@@ -161,9 +162,18 @@ const Project = {
 			}
 		],
 		"en": [{
-			"id": 1,
-			"name": "Global DBA"
-		}],
+				"id": 1,
+				"name": "Global DBA"
+			},
+			{
+				"id": 2,
+				"name": "Distinctive Program Features"
+			},
+			{
+				"id": 3,
+				"name": "program directors vision"
+			}
+		],
 	},
 	"contList": {
 		"cn": [{
@@ -180,9 +190,18 @@ const Project = {
 			}
 		],
 		"en": [{
-			"id": 1,
-			"val": "aaa"
-		}],
+				"id": 1,
+				"val": ["/project/1-1.jpg", "/project/1-2.jpg", "/project/1-3.jpg", "/project/1-4.jpg"]
+			},
+			{
+				"id": 2,
+				"val": ["/project/2-1.jpg", "/project/2-2.jpg", "/project/2-3.jpg", "/project/2-4.jpg"]
+			},
+			{
+				"id": 3,
+				"val": ["/project/3-1.jpg", "/project/3-2.jpg", "/project/3-3.jpg", "/project/3-4.jpg"]
+			}
+		],
 	},
 };
 const Doctor = {
@@ -202,7 +221,7 @@ const Doctor = {
 		}],
 		"en": [{
 			"id": 1,
-			"name": "Global DBA"
+			"name": "STUDENTS PROFILE"
 		}],
 	},
 	"contList": {
@@ -218,48 +237,85 @@ const Doctor = {
 	"docList": {
 		"cn": [{
 			id: '9',
-			imgUrl: '/static/cn/doctor/d9.png',
-			name:"张振坤"
+			imgUrl: '/doctor/d9.png',
+			name: "张振坤"
 		}, {
 			id: '8',
-			imgUrl: '/static/cn/doctor/d8.png',
-			name:"周月容"
-		},  {
+			imgUrl: '/doctor/d8.png',
+			name: "周月容"
+		}, {
 			id: '7',
-			imgUrl: '/static/cn/doctor/d7.png',
-			name:"高毓霖"
+			imgUrl: '/doctor/d7.png',
+			name: "高毓霖"
 		}, {
 			id: '6',
-			imgUrl: '/static/cn/doctor/d6.png',
-			name:"马磊"
-		},{
+			imgUrl: '/doctor/d6.png',
+			name: "马磊"
+		}, {
 			id: '5',
-			imgUrl: '/static/cn/doctor/d5.png',
-			name:"黎永强"
-		},{
+			imgUrl: '/doctor/d5.png',
+			name: "黎永强"
+		}, {
 			id: '4',
-			imgUrl: '/static/cn/doctor/d4.png',
-			name:"周平"
+			imgUrl: '/doctor/d4.png',
+			name: "周平"
 		}, {
 			id: '3',
-			imgUrl: '/static/cn/doctor/d3.png',
-			name:"唐卫民"
+			imgUrl: '/doctor/d3.png',
+			name: "唐卫民"
 		}, {
 			id: '2',
-			imgUrl: '/static/cn/doctor/d2.png',
-			name:"刘静晶"
-		},  {
+			imgUrl: '/doctor/d2.png',
+			name: "刘静晶"
+		}, {
 			id: '10',
-			imgUrl: '/static/cn/doctor/d10.png',
-			name:"林云逸"
+			imgUrl: '/doctor/d10.png',
+			name: "林云逸"
 		}, {
 			id: '1',
-			imgUrl: '/static/cn/doctor/d1.png',
-			name:"刘志彬"
+			imgUrl: '/doctor/d1.png',
+			name: "刘志彬"
 		}],
 		"en": [{
+			id: '9',
+			imgUrl: '/doctor/d9.png',
+			name: "张振坤"
+		}, {
+			id: '8',
+			imgUrl: '/doctor/d8.png',
+			name: "周月容"
+		}, {
+			id: '7',
+			imgUrl: '/doctor/d7.png',
+			name: "高毓霖"
+		}, {
+			id: '6',
+			imgUrl: '/doctor/d6.png',
+			name: "马磊"
+		}, {
+			id: '5',
+			imgUrl: '/doctor/d5.png',
+			name: "黎永强"
+		}, {
+			id: '4',
+			imgUrl: '/doctor/d4.png',
+			name: "周平"
+		}, {
+			id: '3',
+			imgUrl: '/doctor/d3.png',
+			name: "唐卫民"
+		}, {
+			id: '2',
+			imgUrl: '/doctor/d2.png',
+			name: "刘静晶"
+		}, {
+			id: '10',
+			imgUrl: '/doctor/d10.png',
+			name: "林云逸"
+		}, {
 			id: '1',
-			imgUrl: '',
+			imgUrl: '/doctor/d1.png',
+			name: "刘志彬"
 		}],
 	}
 };
@@ -293,9 +349,26 @@ const Study = {
 			}
 		],
 		"en": [{
-			"id": 1,
-			"name": "Global DBA"
-		}],
+				"id": 1,
+				"name": "STUDY PROCESS"
+			},
+			{
+				"id": 2,
+				"name": "Exclusive Module"
+			},
+			{
+				"id": 3,
+				"name": "FACULTY"
+			},
+			{
+				"id": 4,
+				"name": "PROGRAM AT A GLANCE"
+			},
+			{
+				"id": 5,
+				"name": "APPLICATION PROCEDURES"
+			}
+		],
 	},
 	"contList": {
 		"cn": [{
@@ -324,9 +397,30 @@ const Study = {
 			}
 		],
 		"en": [{
-			"id": 1,
-			"val": "aaa"
-		}],
+				"id": 1,
+				"imgArray": true,
+				"val": ["/study/1-1.jpg", "/study/1-2.jpg", "/study/1-3.jpg", "/study/1-4.jpg"]
+			},
+			{
+				"id": 2,
+				"val": ["/study/2-1.jpg", "/study/2-2.jpg", "/study/2-3.jpg", "/study/2-4.jpg",
+					"/study/2-5.jpg"
+				]
+			},
+			{
+				"id": 3,
+				"val": ["/study/3-1.jpg", "/study/3-2.jpg", "/study/3-3.jpg"]
+			},
+			{
+				"id": 4,
+				"val": ["/study/4-1.jpg", "/study/4-2.jpg", "/study/4-3.jpg", "/study/4-4.jpg"]
+			},
+			{
+				"id": 5,
+				"val": ["/study/5-1.jpg", "/study/5-2.jpg", "/study/5-3.jpg", "/study/5-4.jpg"],
+				"link": ['/pages/contact/index?id=ct&lg=']
+			}
+		],
 	},
 };
 const Contact = {
@@ -337,7 +431,7 @@ const Contact = {
 	},
 	"tip": {
 		"cn": "如果您感兴趣，请与我们联系",
-		"en": "If you are interested, contact us",
+		"en": "If you are interested, please contact us",
 	},
 	"submit": {
 		"cn": "提      交",
@@ -345,7 +439,7 @@ const Contact = {
 	},
 	"c-tip": {
 		"cn": "招生信息请详询",
-		"en": "Please Contact",
+		"en": "Contact",
 	},
 	"c-name": {
 		"cn": "喻老师 Helen YU",
@@ -388,7 +482,7 @@ const Contact = {
 			"notnull": true
 		}, {
 			"type": "phone",
-			"label": "Phone",
+			"label": "Phone Number",
 			"name": "phone",
 			"notnull": true
 		}, {
@@ -407,8 +501,8 @@ const Contact = {
 			"name": "position"
 		}, {
 			"type": "textarea",
-			"name": "mark",
-			"label": "Mark"
+			"label": "Additional comments",
+			"name": "mark"
 		}],
 	}
 };

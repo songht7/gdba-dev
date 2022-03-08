@@ -1,5 +1,6 @@
 <template>
-	<view class="content" :style="{'background-image':`url(/static/${$store.state.lang}/contact/bg.png)`}">
+	<view :class="['content','lang-'+$store.state.lang]"
+		:style="{'background-image':`url(/static/${$store.state.lang}/contact/bg.png)`}">
 		<view class="pg-main">
 			<view class="tab-box">
 				<!-- 头部菜单按钮 -->
@@ -24,13 +25,15 @@
 					<view class="form-block uni-list-box">
 						<view class="form-row">
 							<block v-for="(obj,key) in list['form'][$store.state.lang]" :key="key">
-								<view class="uni-list-block" :class="[obj.type=='textarea'?'alignTop':'']">
+								<view class="uni-list-block"
+									:class="[obj.type=='textarea'?'alignTop':'','form-'+obj.name]">
 									<view class="uni-list-left">
 										<text v-if="obj.notnull">*</text>{{obj.label}}
 									</view>
 									<view class="uni-list-right">
 										<block v-if="obj.type=='textarea'">
-											<textarea class="uni-input u-ipt u-txtarea" :name="obj.name" :type="obj.type" />
+											<textarea class="uni-input u-ipt u-txtarea" :name="obj.name"
+												:type="obj.type" />
 										</block>
 										<block v-else>
 											<input class="uni-input u-ipt" :name="obj.name" :type="obj.type"

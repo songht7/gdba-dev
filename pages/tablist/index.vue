@@ -1,5 +1,5 @@
 <template>
-	<view class="content">
+	<view :class="['content','lang-'+$store.state.lang]">
 		<view class="pg-main" :class="[pageis=='doctor'?'doctor-main':'']">
 			<view :class="[pageis!='doctor'?'uni-tab-bar':'']">
 				<view class="tab-box">

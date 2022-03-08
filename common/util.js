@@ -5,6 +5,7 @@ import md5 from "./md5.js";
 const isArray = Array.isArray || function(obj) {
 	return obj instanceof Array;
 };
+const __domain = "http://emlyon.meetji.com";
 const Interface = {
 	"SendMail": {
 		"url": "http://www.spacehu.com/space/mail/mail.php?leo=",
@@ -18,7 +19,7 @@ const Interface = {
 	},
 	// 	,"getData":"http://api_test.meetji.com/v1/ApiEnum-getRegion.htm?id=110000"
 	"apiurl": "http://api_test.meetji.com",
-	"domain": "http://www.meetji.com",
+	"domain": "http://emlyon.meetji.com",
 	"template_id": "lArO_3bhjAAoCMdv78bmJ2l46L-HByz-4Co4tCDEiyI", //'4M8RWgwsGDYlZL_NuWg--FecFh3QKWMW1hVZIfm34IU'
 	"addr": {
 		"sendRegistSms": "/v4/ApiSms-sendRegistSms.htm", //发送验证码(有阻拦：手机号已使用) 测试：1111
@@ -64,8 +65,8 @@ const module = {
 			data: data || {},
 			header: _head || {},
 			success: function(res) {
-				// console.log("mdl.getData:", url);
-				// console.log(res);
+				console.log("mdl.getData:", url);
+				console.log(res);
 				let __res = res.data;
 				resultAll = __res;
 				if (__res.success) {
@@ -142,10 +143,9 @@ const module = {
 			}
 			wx.config(_config);
 		}
-		var __domain = "http://emlyon.meetji.com";
-		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + __domain;
+		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + Interface.domain;
 		let _head = {};
-		let channel_code = that.queryString("channel_code");
+		let channel_code = 'emlyon'; //that.queryString("channel_code");
 		if (channel_code) {
 			_head = {
 				"channel_code": channel_code
@@ -155,11 +155,11 @@ const module = {
 
 
 		// _href = "http://main.meetji.com:3001?wxr=" + encodeURIComponent(_href)
-		var _imgUrl = __domain + "/static/logo.png";
+		var _imgUrl = Interface.domain + "/static/logo.png";
 		var wxSet = {
 			title: title || "法国里昂商学院",
 			desc: dec || "全球工商管理博士项目",
-			link: share_url || __domain,
+			link: share_url || Interface.domain,
 			imgUrl: imgUrl || _imgUrl,
 			success: function() {
 
@@ -203,11 +203,6 @@ const module = {
 		// 		console.log(type)
 
 		//_this.userLogin("061AMrz72wh1XR0VkTB72Knmz72AMrzb"); //测试用
-		var test_openid = Interface.wx.test_openid;
-		if (!_this.isWeixin() && test_openid == "") {
-			_this.goHomePage();
-			return
-		}
 		var _uWXInfo = "";
 		uni.getStorage({
 			key: 'uWXInfo',
@@ -217,9 +212,8 @@ const module = {
 			complete: function() {
 				// console.log("=====getStorage-_uWXInfo======")
 				// console.log(_uWXInfo)
-				if ((_uWXInfo && _uWXInfo.openid) || test_openid) {
-					var __openid = _uWXInfo.openid || test_openid;
-					_this.userLogin("", __openid);
+				if (_uWXInfo && _uWXInfo.openid) {
+					var __openid = _uWXInfo.openid;
 				} else {
 					let redirect_uri = redirect_uri ? redirect_uri : Interface.domain;
 					//授权后重定向的回调链接地址， 请使用 urlEncode 对链接进行处理
@@ -235,7 +229,7 @@ const module = {
 					//console.log(_url)
 					if (code) {
 						//console.log(code)
-						// _this.userLogin(code);
+						_this.userLogin(code);
 					} else {
 						window.location.href = _url;
 					}

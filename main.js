@@ -24,7 +24,7 @@ Vue.prototype.websiteUrl = 'http://emlyon.meetji.com';
 Vue.prototype.sourceUrl = 'http://api_test.meetji.com';
 
 
-Vue.prototype.$lgChane = false; //中英文切换
+Vue.prototype.$lgChane = true; //中英文切换
 
 App.mpType = 'app'
 

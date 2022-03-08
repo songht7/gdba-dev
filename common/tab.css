@@ -54,9 +54,11 @@
 	height: 100vh;
 	/* #endif */
 }
-.uni-swiper-tab{
+
+.uni-swiper-tab {
 	border-bottom: none;
 }
+
 .tab-img-list {
 	padding: 0;
 	margin: 0;
@@ -129,6 +131,7 @@
 .title-block {
 	color: #000;
 	background-color: inherit;
+	text-transform: uppercase;
 }
 
 .title-block.uni-tab-item-title-active {
