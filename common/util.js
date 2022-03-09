@@ -135,7 +135,7 @@ const module = {
 					'updateAppMessageShareData',
 					'updateTimelineShareData',
 					'onMenuShareAppMessage',
-					'onMenuShareTimeline'
+					'onMenuShareTimeline',
 				]
 			}
 			// console.log('wx.config:', _config)
