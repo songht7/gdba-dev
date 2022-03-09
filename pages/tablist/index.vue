@@ -143,7 +143,16 @@
 			// let lang = option.lg || "cn";
 			// this.setLang(lang)
 		},
-		onReady() {},
+		onReady() {
+			if (this.$store.state.isWeixin) {
+				//location.origin, //window.location.href, //"http://emlyon.meetji.com",
+				var share_url = window.location.href,
+					title = "法国里昂商学院",
+					dec = "全球工商管理博士项目",
+					imgUrl = "http://emlyon.meetji.com/static/logo.png";
+				mdl.wxShare(share_url, title, dec, imgUrl);
+			}
+		},
 		methods: {
 			getData() {
 				var _lg = this.$store.state.lang

@@ -107,6 +107,7 @@ const module = {
 	},
 	wxShare: function(share_url, title, imgUrl, dec) {
 		var that = this;
+
 		//console.log(share_url, title, dec)
 		var funTicket = function(res) {
 			console.log("=======getTicket======")
@@ -137,10 +138,10 @@ const module = {
 					'onMenuShareTimeline'
 				]
 			}
-			console.log('wx.config:', _config)
+			// console.log('wx.config:', _config)
 			wx.config(_config);
 		}
-		var _link = share_url || Interface.domain;
+		var _link = share_url || window.location.href.split('#')[0];
 		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + _link;
 		let _head = {};
 		let channel_code = 'emlyon'; //that.queryString("channel_code");
@@ -154,6 +155,7 @@ const module = {
 
 		// _href = "http://main.meetji.com:3001?wxr=" + encodeURIComponent(_href)
 		var _imgUrl = Interface.domain + "/static/logo.png";
+		//location.origin, //window.location.href, //"http://emlyon.meetji.com",
 		var wxSet = {
 			title: title || "法国里昂商学院",
 			desc: dec || "全球工商管理博士项目",
@@ -162,7 +164,7 @@ const module = {
 			success: function() {}
 
 		};
-		console.log('wxSet:', _config)
+		console.log('wxSet:', wxSet)
 		wx.ready(function() {
 			// 2. 分享接口
 			// 2.1 “分享给朋友”及“分享到QQ”
