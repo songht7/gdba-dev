@@ -131,8 +131,6 @@ const module = {
 				nonceStr: res.noncestr,
 				signature: res.signature,
 				jsApiList: [
-					'updateAppMessageShareData',
-					'updateTimelineShareData',
 					'onMenuShareAppMessage',
 					'onMenuShareTimeline',
 					'onMenuShareQQ'
@@ -159,7 +157,7 @@ const module = {
 			link: share_url || Interface.domain,
 			imgUrl: imgUrl || _imgUrl,
 			success: function() {
-
+				
 			}
 		};
 		wx.ready(function() {
