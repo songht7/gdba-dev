@@ -121,7 +121,7 @@ const module = {
 					"expires_in": res.expires_in
 				},
 				success: function() {
-					
+
 				}
 			});
 			var _config = {
@@ -131,14 +131,17 @@ const module = {
 				nonceStr: res.noncestr,
 				signature: res.signature,
 				jsApiList: [
+					'updateAppMessageShareData',
+					'updateTimelineShareData',
 					'onMenuShareAppMessage',
-					'onMenuShareTimeline',
-					'onMenuShareQQ'
+					'onMenuShareTimeline'
 				]
 			}
+			console.log('wx.config:', _config)
 			wx.config(_config);
 		}
-		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + Interface.domain;
+		var _link = share_url || Interface.domain;
+		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + _link;
 		let _head = {};
 		let channel_code = 'emlyon'; //that.queryString("channel_code");
 		if (channel_code) {
@@ -154,22 +157,25 @@ const module = {
 		var wxSet = {
 			title: title || "法国里昂商学院",
 			desc: dec || "全球工商管理博士项目",
-			link: share_url || Interface.domain,
+			link: _link,
 			imgUrl: imgUrl || _imgUrl,
-			success: function() {
-				
-			}
+			success: function() {}
+
 		};
+		console.log('wxSet:', _config)
 		wx.ready(function() {
-			//wx.updateAppMessageShareData(wxSet);
-			//wx.updateTimelineShareData(wxSet);
 			// 2. 分享接口
-			// 2.1 监听“分享给朋友”，按钮点击、自定义分享内容及分享结果接口
-			wx.onMenuShareAppMessage(wxSet);
-			// 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+			// 2.1 “分享给朋友”及“分享到QQ”
+			wx.updateAppMessageShareData(wxSet);
+			// 2.2 “分享到朋友圈”及“分享到QQ空间”
+			wx.updateTimelineShareData(wxSet);
+			// 
 			wx.onMenuShareTimeline(wxSet);
-			// 2.3 监听“分享到QQ”按钮点击、自定义分享内容及分享结果接口
-			wx.onMenuShareQQ(wxSet);
+			wx.onMenuShareAppMessage(wxSet);
+		});
+		wx.error(function(res) {
+			console.log('注册失败:', res)
+			// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
 		});
 	},
 	queryString: function(value) {
