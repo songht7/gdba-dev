@@ -107,9 +107,6 @@ const module = {
 	},
 	wxShare: function(share_url, title, imgUrl, dec) {
 		var that = this;
-		if (!that.isWeixin()) {
-			// return
-		}
 		//console.log(share_url, title, dec)
 		var funTicket = function(res) {
 			console.log("=======getTicket======")
