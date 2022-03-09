@@ -60,11 +60,6 @@
 			// console.log("isWeixin：", this.$store.state.isWeixin)
 
 			if (this.$store.state.isWeixin) {
-				//location.origin, //window.location.href, //"http://emlyon.meetji.com",
-				var share_url = window.location.href.split('#')[0],
-					title = "法国里昂商学院",
-					dec = "全球工商管理博士项目",
-					imgUrl = "http://emlyon.meetji.com/static/logo.png";
 				mdl.wxShare();
 			}
 		},
