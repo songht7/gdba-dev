@@ -1,6 +1,7 @@
 .tab-box {
 	display: flex;
 	flex-direction: row;
+	background: #f1f1f1;
 }
 
 .tab-nav {

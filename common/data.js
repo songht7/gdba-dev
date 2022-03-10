@@ -58,22 +58,22 @@ const Home = {
 		"en": [{
 			"btn": "/home/nav-1.png",
 			"link": "/pages/tablist/index?id=college&lg=",
-			"title": "About College",
+			"title": "School",
 			"key": "college"
 		}, {
 			"btn": `/home/nav-2.png`,
 			"link": `/pages/tablist/index?id=project&lg=`,
-			"title": "Project",
+			"title": "Program",
 			"key": "project"
 		}, {
 			"btn": `/home/nav-3.png`,
 			"link": `/pages/tablist/index?id=doctor&lg=`,
-			"title": "Doctor",
+			"title": "Students Profile",
 			"key": "doctor"
 		}, {
 			"btn": `/home/nav-4.png`,
 			"link": "/pages/tablist/index?id=study&lg=",
-			"title": "Study",
+			"title": "Study Process",
 			"key": "study"
 		}],
 	}
