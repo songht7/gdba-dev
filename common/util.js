@@ -179,7 +179,7 @@ const module = {
 			year = myDate.getYear();
 		var wxSet = {
 			title: obj.title || (obj.lang == "en" ? "Global DBA" : "法国里昂商学院"),
-			desc: obj.dec || (obj.lang == "en" ? "Introduction " + year : "全球工商管理博士项目"),
+			desc: obj.dec || (obj.lang == "en" ? "Asia Track Introduction " + year : "全球工商管理博士项目"),
 			link: _link,
 			imgUrl: obj.imgUrl || _imgUrl,
 			success: function(res) {
