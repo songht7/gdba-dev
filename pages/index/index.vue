@@ -58,10 +58,11 @@
 		},
 		onReady() {
 			// console.log("isWeixin：", this.$store.state.isWeixin)
-
-			if (this.$store.state.isWeixin) {
-				mdl.wxShare();
-			}
+			
+			var lang = this.$store.state.lang;
+			mdl.wxShare({
+				lang
+			});
 		},
 		methods: {
 			getApp(type) {

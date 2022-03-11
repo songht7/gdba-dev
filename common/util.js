@@ -106,11 +106,15 @@ const module = {
 			}
 		})
 	},
-	wxShare: function(share_url, title, imgUrl, dec) {
+	wxShare: function(obj = {}) {
+		//{ title, dec, share_url,imgUrl,lang}
 		var that = this;
-		var _link = share_url || location.origin + "/#/"; //window.location.href.split('#')[0];
+		if (!that.isWeixin()) {
+			return
+		}
+		var _link = obj.share_url || location.origin + "/#/"; //window.location.href.split('#')[0];
 		if (that.isIOS()) {
-			_link = share_url || location.origin + "/";
+			_link = obj.share_url || location.origin + "/";
 		}
 
 		let REDIRECT_URI = encodeURIComponent(_link),
@@ -171,11 +175,13 @@ const module = {
 		// _href = "http://main.meetji.com:3001?wxr=" + encodeURIComponent(_href)
 		var _imgUrl = Interface.domain + "/static/logo.png";
 		//location.origin, //window.location.href, //"http://emlyon.meetji.com",
+		var myDate = new Date(),
+			year = myDate.getYear();
 		var wxSet = {
-			title: title || "法国里昂商学院",
-			desc: dec || "全球工商管理博士项目",
+			title: obj.title || (obj.lang == "en" ? "Global DBA" : "法国里昂商学院"),
+			desc: obj.dec || (obj.lang == "en" ? "Introduction " + year : "全球工商管理博士项目"),
 			link: _link,
-			imgUrl: imgUrl || _imgUrl,
+			imgUrl: obj.imgUrl || _imgUrl,
 			success: function(res) {
 				console.log('wxSet-success:', res)
 			}
