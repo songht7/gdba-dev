@@ -120,7 +120,7 @@
 				/*doctor*/
 				previousMargin: 30,
 				nextMargin: 100,
-				height: 400,
+				height: this.$store.state.lang == 'en' ? 430 : 400,
 				imgRadius: 5,
 				base_lsit: [],
 				/*doctor end*/

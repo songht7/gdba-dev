@@ -1,5 +1,6 @@
 // #ifdef MP-WEIXIN || H5
-const wx = require('jweixin-module')
+// var wx = require('jweixin-module')
+var wx = require('weixin-js-sdk');
 import md5 from "./md5.js";
 // #endif
 const isArray = Array.isArray || function(obj) {
@@ -107,7 +108,22 @@ const module = {
 	},
 	wxShare: function(share_url, title, imgUrl, dec) {
 		var that = this;
+		var _link = share_url || location.origin + "/#/"; //window.location.href.split('#')[0];
+		if (that.isIOS()) {
+			_link = share_url || location.origin + "/";
+		}
 
+		let REDIRECT_URI = encodeURIComponent(_link),
+			appid = Interface.wx.appid,
+			scope = "snsapi_userinfo", //snsapi_base，snsapi_userinfo （弹出授权页面，获取更多信息）
+			state = "STATE"; //重定向后会带上state参数，开发者可以填写a-zA-Z0-9的参数值，最多128字节
+		var _url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
+			appid + '&redirect_uri=' +
+			REDIRECT_URI +
+			'&response_type=code&scope=' + scope + '&state=' + state +
+			'#wechat_redirect';
+		let code = that.queryString('code');
+		//console.log(_url)
 		//console.log(share_url, title, dec)
 		var funTicket = function(res) {
 			console.log("=======getTicket======")
@@ -127,7 +143,7 @@ const module = {
 			});
 			var _config = {
 				debug: false,
-				appId: Interface.wx.appid,
+				appId: appid,
 				timestamp: res.timestamp,
 				nonceStr: res.noncestr,
 				signature: res.signature,
@@ -141,15 +157,14 @@ const module = {
 			// console.log('wx.config:', _config)
 			wx.config(_config);
 		}
-		var _link = share_url || window.location.href.split('#')[0];
 		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + _link;
 		let _head = {};
-		let channel_code = 'emlyon'; //that.queryString("channel_code");
-		if (channel_code) {
-			_head = {
-				"channel_code": channel_code
-			};
-		}
+		// let channel_code = 'emlyon'; //that.queryString("channel_code");
+		// if (channel_code) {
+		// 	_head = {
+		// 		"channel_code": channel_code
+		// 	};
+		// }
 		let wx_ticket = that.getData(url_ticket, funTicket, "GET", "", _head)
 
 
@@ -161,7 +176,9 @@ const module = {
 			desc: dec || "全球工商管理博士项目",
 			link: _link,
 			imgUrl: imgUrl || _imgUrl,
-			success: function() {}
+			success: function(res) {
+				console.log('wxSet-success:', res)
+			}
 
 		};
 		console.log('wxSet:', wxSet)
@@ -179,6 +196,13 @@ const module = {
 			console.log('注册失败:', res)
 			// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
 		});
+		// if (code) {
+
+		// } else {
+		// 	window.location.href = _url;
+		// }
+
+
 	},
 	queryString: function(value) {
 		const reg = new RegExp(`(^|&)${value}=([^&]*)(&|$)`, 'i')
