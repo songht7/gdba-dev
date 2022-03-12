@@ -11,7 +11,12 @@ body {}
 .img-full {
 	width: 100%;
 }
-
+.icons{
+	display: inline-block;
+	height: auto;
+	width: 36upx;
+	margin-right: 10upx;
+}
 /*头部flex层 站位用*/
 .flex-station {
 	height: 44px;

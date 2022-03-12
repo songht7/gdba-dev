@@ -443,7 +443,7 @@ const Contact = {
 	},
 	"c-name": {
 		"cn": "喻老师 Helen YU",
-		"en": "喻老师 Helen YU",
+		"en": "Helen YU",
 	},
 	"form": {
 		"cn": [{

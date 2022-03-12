@@ -61,10 +61,13 @@
 					</view>
 					<view class="c-block c-right">
 						<view class="c-row c-phone" @click="phoneCall('+86 13764186470')">
+							<img src="/static/icon-phone.png" class="icons icon-phone" alt="global dba">
 							+86 137 6418 6470
 						</view>
-						<view class="c-row c-email">
-							<a href="mailto:DBA@em-lyon.com.cn" class="mailto">DBA@em-lyon.com.cn</a>
+						<view class="c-row c-email"><img src="/static/icon-email.png" class="icons icon-email" alt="global dba">
+							<a href="mailto:DBA@em-lyon.com.cn" class="mailto">
+								DBA@em-lyon.com.cn
+							</a>
 						</view>
 					</view>
 				</view>
