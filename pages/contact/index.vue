@@ -2,7 +2,7 @@
 	<view :class="['content','lang-'+$store.state.lang]"
 		:style="{'background-image':`url(/static/${$store.state.lang}/contact/bg.png)`}">
 		<view class="pg-main">
-			<view class="tab-box">
+			<view class="tab-box fixed">
 				<!-- 头部菜单按钮 -->
 				<view class="tab-nav" @click="drawerShow()">
 					<img src="/static/menu.png" class="drawer-menu" />
@@ -17,6 +17,7 @@
 					<block></block>
 				</view>
 			</view>
+			<view class="flex-station"></view>
 			<view class="form-box">
 				<form class="" @submit="formSubmit" @reset="formReset">
 					<view class="form-tip">

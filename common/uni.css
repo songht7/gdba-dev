@@ -17,6 +17,13 @@ body {}
 	width: 36upx;
 	margin-right: 10upx;
 }
+.fixed{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 10;
+}
 /*头部flex层 站位用*/
 .flex-station {
 	height: 44px;

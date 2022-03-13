@@ -114,7 +114,8 @@ body {
 	align-items: center;
 	align-content: center;
 }
-.c-row{
+
+.c-row {
 	width: 82%;
 }
 
@@ -150,6 +151,10 @@ body {
 	z-index: 1;
 }
 
+.c-name {
+	font-weight: bold;
+}
+
 .c-right {
 	width: 62%;
 }
@@ -158,9 +163,11 @@ a.mailto {
 	color: #fff;
 	text-decoration: none;
 }
-.lang-en .form-tip{
+
+.lang-en .form-tip {
 	font-size: 34upx;
 }
+
 .lang-en .form-phone .uni-list-left {
 	width: 40%;
 }
@@ -177,6 +184,7 @@ a.mailto {
 .lang-en .form-mark {
 	flex-direction: column
 }
-.lang-en .c-left .c-row{
+
+.lang-en .c-left .c-row {
 	width: 55%;
 }

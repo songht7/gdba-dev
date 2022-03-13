@@ -2,7 +2,7 @@
 	<view :class="['content','lang-'+$store.state.lang]">
 		<view class="pg-main" :class="[pageis=='doctor'?'doctor-main':'']">
 			<view :class="[pageis!='doctor'?'uni-tab-bar':'']">
-				<view class="tab-box">
+				<view :class="['tab-box',pageis=='doctor'?'fixed':'']" >
 					<!-- 头部菜单按钮 -->
 					<view class="tab-nav" @click="drawerShow()">
 						<img src="/static/menu.png" class="drawer-menu" />
@@ -16,6 +16,9 @@
 						</view>
 					</scroll-view>
 				</view>
+				<block v-if="pageis=='doctor'">
+					<view class="flex-station"></view>
+				</block>
 				<swiper :current="tabIndex" class="swiper-box" duration="300" @change="ontabchange">
 					<swiper-item v-for="(lst,index1) in contList" :key="index1">
 						<scroll-view class="list" scroll-y @scrolltolower="loadMore(index1)">
