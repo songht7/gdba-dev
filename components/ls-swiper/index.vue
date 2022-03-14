@@ -5,7 +5,7 @@
 			<swiper-item v-for="(item,index) in list" :key='index' @click="$emit('clickItem',item)">
 				<view v-if="list && list.length>0" class="item" :class="[!crown ? '' : current==index ? 'crown-active':'crown']">
 					<image v-if="!slots" class="item-img" :class="[imgShadow?'imgShadow':'']" :src='"/static/"+$store.state.lang+item[imgKey]' :style="{ borderRadius: imgRadius + 'px',width:imgWidth}"
-					 mode=""></image>
+					 mode="aspectFill"></image>
 					<slot v-else :data='item'></slot>
 				</view>
 			</swiper-item>
