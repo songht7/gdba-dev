@@ -84,6 +84,7 @@
                     "key" : ""
                 }
             }
-        }
+        },
+        "template" : "pages/h5-index.html"
     }
 }

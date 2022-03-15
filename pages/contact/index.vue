@@ -19,10 +19,14 @@
 			</view>
 			<view class="flex-station"></view>
 			<view class="form-box">
-				<form class="" @submit="formSubmit" @reset="formReset">
-					<view class="form-tip">
-						{{list["tip"][$store.state.lang]}}
-					</view>
+				<view class="form-tip">
+					{{list["tip"][$store.state.lang]}}
+				</view>
+				<view class="" style="height: 1000upx;padding-top: 50upx;position: relative;">
+					<web-view src="http://emlyon.meetji.com/contact/contact.html"></web-view>
+				</view>
+				<!-- <rich-text :nodes="nodes"></rich-text> -->
+				<!-- <form class="" @submit="formSubmit" @reset="formReset">
 					<view class="form-block uni-list-box">
 						<view class="form-row">
 							<block v-for="(obj,key) in list['form'][$store.state.lang]" :key="key">
@@ -48,7 +52,7 @@
 						<button formType="submit" :loading="loading"
 							class="submit-btn">{{list["submit"][$store.state.lang]}}</button>
 					</view>
-				</form>
+				</form> -->
 				<view class="form-block contact-info">
 					<view class="c-block c-left">
 						<view class="c-init">
@@ -65,7 +69,8 @@
 							<img src="/static/icon-phone.png" class="icons icon-phone" alt="global dba">
 							+86 137 6418 6470
 						</view>
-						<view class="c-row c-email"><img src="/static/icon-email.png" class="icons icon-email" alt="global dba">
+						<view class="c-row c-email"><img src="/static/icon-email.png" class="icons icon-email"
+								alt="global dba">
 							<a href="mailto:DBA@em-lyon.com.cn" class="mailto">
 								DBA@em-lyon.com.cn
 							</a>
@@ -129,6 +134,7 @@
 				list: Contact,
 				loading: false,
 				showLeft: false, //侧滑菜单
+				nodes:'<div class="sub-btn">1<input type="submit" name="submit" value="submit" class="submit-btn">2</div>'
 			}
 		},
 		components: {

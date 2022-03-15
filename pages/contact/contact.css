@@ -46,7 +46,8 @@ body {
 	color: #fff;
 	font-size: 40upx;
 	width: 60%;
-	border-radius: 60upx;
+	border-radius: 30upx;
+	text-align: center;
 }
 
 .uni-list-box {

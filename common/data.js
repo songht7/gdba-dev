@@ -366,7 +366,7 @@ const Study = {
 			},
 			{
 				"id": 5,
-				"name": "APPLICATION PROCEDURES"
+				"name": "HOW TO APPLY"
 			}
 		],
 	},
