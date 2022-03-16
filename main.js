@@ -9,6 +9,9 @@ Vue.prototype.$store = store;
 import tabBar from "./components/tab-bar.vue"
 Vue.component("tab-bar", tabBar)
 
+import uniIcons from "./components/uni-icons/uni-icons.vue"
+Vue.component("uni-icons", uniIcons)
+
 import util from "./common/util.js"
 Vue.prototype.$Copyright = util.Interface.copyright;
 

@@ -22,6 +22,7 @@
 				<view class="form-tip">
 					{{list["tip"][$store.state.lang]}}
 				</view>
+
 				<!-- <view class="" style="height: 1000upx;padding-top: 50upx;position: relative;">
 					<web-view src="http://emlyon.meetji.com/contact/contact.html"></web-view>
 				</view> -->
@@ -31,7 +32,7 @@
 						<view class="form-row">
 							<block v-for="(obj,key) in list['form'][$store.state.lang]" :key="key">
 								<view class="uni-list-block"
-									:class="[obj.type=='textarea'?'alignTop':'','form-'+obj.name]">
+									:class="[obj.type=='textarea'?'alignTop':'','form-'+obj.name,obj.err?'row-err':'']">
 									<view class="uni-list-left">
 										<text v-if="obj.notnull">*</text>{{obj.label}}
 									</view>
@@ -40,17 +41,29 @@
 											<textarea class="uni-input u-ipt u-txtarea" :name="obj.name"
 												:type="obj.type" />
 										</block>
-										<block v-else-if="obj.type=='picker'">
-											<picker @change="bindPickerChange" :value="eduIndex" :range="obj['picker']"
-												:data-name="obj.name" :data-val="obj">
+										<block v-else-if="obj.type=='picker'&&obj.name=='age'">
+											<picker class="ey-picker" mode="date" :value="date" :start="startDate"
+												:end="endDate" @change="bindDateChange" :data-name="obj.name"
+												:data-val="obj">
+												<view class="uni-input">{{date}}</view>
+											</picker>
+										</block>
+										<block v-else-if="obj.type=='picker'&&obj.name=='education'">
+											<picker class="ey-picker" @change="bindPickerChange" :value="eduIndex"
+												:range="obj['picker']" :data-name="obj.name" :data-val="obj">
 												<view class="uni-input">{{obj['picker'][eduIndex]}}</view>
 											</picker>
 										</block>
 										<block v-else>
 											<input class="uni-input u-ipt" :name="obj.name" :type="obj.type"
-												placeholder="" value="" />
+												placeholder="" value="" @focus="clearErr(obj.name)" />
 										</block>
 									</view>
+									<block v-if="obj.errVal">
+										<view class="errVal">
+											<uni-icons type="info" color="#FF3333" size="20"></uni-icons> {{obj.errVal}}
+										</view>
+									</block>
 								</view>
 							</block>
 						</view>
@@ -133,6 +146,9 @@
 	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
 	export default {
 		data() {
+			const currentDate = this.getDate({
+				format: true
+			});
 			return {
 				nav: Home.nav,
 				navFix: Home.navFix,
@@ -142,6 +158,7 @@
 				showLeft: false, //侧滑菜单
 				Education: "",
 				eduIndex: -1,
+				date: "",
 				formData: {}
 			}
 		},
@@ -171,9 +188,18 @@
 				mdl.wxShare(share_url, title, dec, imgUrl);
 			}
 		},
+		computed: {
+			startDate() {
+				return this.getDate('start');
+			},
+			endDate() {
+				return this.getDate('end');
+			}
+		},
 		methods: {
 			formSubmit: function(e) {
 				var that = this;
+				var _lg = that.$store.state.lang
 				if (that.loading == true) {
 					return
 				}
@@ -189,62 +215,66 @@
 						name: "name",
 						checkType: "notnull",
 						checkRule: "",
-						errorMsg: "请填写姓名"
+						errorMsg: _lg == "cn" ? "必填项不能为空" : "Please fill out the required fields"
 					}, {
 						name: "age",
-						checkType: "betweenD",
-						checkRule: "18,100",
-						errorMsg: "请填写正确的年龄"
+						checkType: "notnull",
+						checkRule: "",
+						errorMsg: _lg == "cn" ? "必填项不能为空" : "Please fill out the required fields"
 					},
 					{
 						name: "phone",
 						checkType: "phoneno",
 						checkRule: "",
-						errorMsg: "请填写正确的手机号"
+						errorMsg: _lg == "cn" ? "请填写正确的手机号" : "Please fill in the correct phone number"
 					},
 					{
 						name: "email",
 						checkType: "email",
 						checkRule: "",
-						errorMsg: "请填写正确的邮箱"
+						errorMsg: _lg == "cn" ? "请填写正确的邮箱" : "Please fill in the correct email address"
 					},
 					{
 						name: "company",
 						checkType: "notnull",
 						checkRule: "",
-						errorMsg: "请填写公司"
+						errorMsg: _lg == "cn" ? "必填项不能为空" : "Please fill out the required fields"
 					},
 					{
 						name: "position",
 						checkType: "notnull",
 						checkRule: "",
-						errorMsg: "请填写职位"
+						errorMsg: _lg == "cn" ? "必填项不能为空" : "Please fill out the required fields"
 					},
 					{
 						name: "workyear",
 						checkType: "notnull",
 						checkRule: "",
-						errorMsg: "请填写工作年限"
+						errorMsg: _lg == "cn" ? "必填项不能为空" : "Please fill out the required fields"
 					},
 					{
 						name: "education",
 						checkType: "notnull",
-						checkRule: "请选择",
-						errorMsg: "请选择最高学历"
+						checkRule: _lg == "cn" ? "请选择" : "Please select",
+						errorMsg: _lg == "cn" ? "必填项不能为空" : "Please fill out the required fields"
 					},
 					{
 						name: "graduation",
 						checkType: "notnull",
 						checkRule: "",
-						errorMsg: "请填写毕业学校"
+						errorMsg: _lg == "cn" ? "必填项不能为空" : "Please fill out the required fields"
 					}
 				];
 				//进行表单检查
 				var checkRes = graceChecker.check(_formData, rule);
 				if (checkRes) {
 					_formData['name'] = _formData['name'] + " * 来自：Global DBA";
-					_formData['note'] = "公司：" + _formData['company'] + "  职位：" + _formData['position'] + "  附言：" +
-						_formData['mark'];
+					_formData['note'] = "姓名：" + _formData['name'] + "  年龄：" + _formData['age'] +
+						"  手机号：" + _formData['phone'] + "  邮箱：" + _formData['email'] +
+						"  公司：" + _formData['company'] + "  职位：" + _formData['position'] +
+						"  工作年限：" + _formData['workyear'] + "  最高学历：" + _formData['education'] +
+						"  毕业学校：" + _formData['graduation'] +
+						"  附言：" + _formData['mark'];
 					console.log(_formData);
 					// return
 					let url = "http://api_test.meetji.com/v2/ApiHome-saveSingle.htm"; //预约POST
@@ -287,10 +317,17 @@
 					})
 
 				} else {
-					uni.showToast({
-						title: graceChecker.error,
-						icon: "none"
+					console.log(graceChecker.typeName, graceChecker.error);
+					this.list['form'][this.$store.state.lang].map((obj, key) => {
+						if (obj.name == graceChecker.typeName) {
+							obj['err'] = true;
+							obj['errVal'] = graceChecker.error;
+						}
 					});
+					// uni.showToast({
+					// 	title: graceChecker.error,
+					// 	icon: "none"
+					// });
 					this.loading = false
 				}
 
@@ -306,6 +343,7 @@
 				// console.log('val：', val)
 				// console.log('name：', name)
 				console.log('picker：', val["picker"][index])
+				this.clearErr(name);
 				switch (name) {
 					case "education":
 						that.formData = {
@@ -316,6 +354,51 @@
 					default:
 						break;
 				}
+			},
+			clearErr(name) {
+				var that = this;
+				// that.$nextTick(function() {})
+				that.list['form'][that.$store.state.lang].map((obj, key) => {
+					if (obj.name == name) {
+						console.log("clearErr:", obj.name, name)
+						obj['err'] = false;
+						obj['errVal'] = "";
+					}
+				});
+			},
+			bindDateChange: function(e) {
+				var that = this;
+				console.log(e)
+				var val = e.target.dataset.val,
+					name = e.target.dataset.name,
+					value = e.target.value;
+				this.date = value;
+				this.clearErr(name);
+				switch (name) {
+					case "age":
+						that.formData = {
+							...that.formData,
+							"age": value
+						}
+						break;
+					default:
+						break;
+				}
+			},
+			getDate(type) {
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+
+				if (type === 'start') {
+					year = year - 60;
+				} else if (type === 'end') {
+					year = year + 2;
+				}
+				month = month > 9 ? month : '0' + month;
+				day = day > 9 ? day : '0' + day;
+				return `${year}-${month}-${day}`;
 			},
 			phoneCall(numb) {
 				uni.makePhoneCall({

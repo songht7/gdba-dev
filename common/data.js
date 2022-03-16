@@ -450,103 +450,141 @@ const Contact = {
 			"type": "text",
 			"label": "姓名",
 			"name": "name",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
-			"type": "number",
+			"type": "picker",
 			"label": "年龄",
 			"name": "age",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "number",
 			"label": "手机号",
 			"name": "phone",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "email",
 			"label": "邮箱",
 			"name": "email",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "text",
 			"label": "公司",
 			"name": "company",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "text",
 			"label": "职位",
 			"name": "position",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "number",
 			"label": "工作年限",
 			"name": "workyear",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "picker",
 			"label": "最高学历",
 			"name": "education",
 			"notnull": true,
+			"err": false,
+			"errVal": "",
 			"picker": ['硕士', 'MBA/EMBA', '博士']
 		}, {
 			"type": "text",
 			"label": "毕业学校",
 			"name": "graduation",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "textarea",
 			"label": "附言",
-			"name": "mark"
+			"name": "mark",
+			"errVal": "",
+			"err": false
 		}],
 		"en": [{
 			"type": "text",
 			"label": "Name",
 			"name": "name",
+			"err": false,
 			"notnull": true
 		}, {
 			"type": "number",
 			"label": "Age",
 			"name": "age",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "phone",
 			"label": "Phone Number",
 			"name": "phone",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "email",
 			"label": "Email",
 			"name": "email",
+			"err": false,
 			"notnull": true
 		}, {
 			"type": "text",
 			"label": "Company",
 			"name": "company",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "text",
 			"label": "Position",
 			"name": "position",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "number",
 			"label": "Working years",
 			"name": "workyear",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "picker",
 			"label": "Education",
 			"name": "education",
 			"notnull": true,
+			"err": false,
+			"errVal": "",
 			"picker": ['Master', 'MBA/EMBA', 'phD']
 		}, {
 			"type": "text",
 			"label": "Graduation",
 			"name": "graduation",
+			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "textarea",
 			"label": "Additional comments",
-			"name": "mark"
+			"name": "mark",
+			"errVal": "",
+			"err": false
 		}],
 	}
 };

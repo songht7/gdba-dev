@@ -6,7 +6,7 @@ body {
 }
 
 .content {
-	height: 100%;
+	min-height: 100%;
 	/* background: url(../../static/cn/home/1.jpg) no-repeat 50% bottom; */
 	background-repeat: no-repeat;
 	background-position: right 10%;
@@ -64,6 +64,21 @@ body {
 	flex-direction: row;
 	border-bottom: 1rpx solid #dcdddd;
 	padding: 10upx;
+	position: relative;
+	margin-bottom: 25upx;
+}
+
+.errVal {
+	position: absolute;
+	color: #FF3333;
+	bottom: -65%;
+	left: 0;
+	/* right: 0;
+	top:25%; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
 }
 
 .alignTop {
@@ -92,6 +107,10 @@ body {
 	font-size: 34upx;
 	padding: 10upx 8upx;
 	background-color: transparent;
+}
+
+.row-err {
+	border-bottom-color: #FF4400;
 }
 
 .contact-info {
@@ -160,6 +179,10 @@ body {
 	width: 62%;
 }
 
+.ey-picker .uni-input {
+	background-color: transparent;
+}
+
 a.mailto {
 	color: #fff;
 	text-decoration: none;
@@ -169,11 +192,24 @@ a.mailto {
 	font-size: 34upx;
 }
 
-.lang-en .form-phone .uni-list-left {
+.lang-en .uni-list-left,
+.lang-en .uni-list-right {
+	width: 100%;
+}
+
+.lang-en .uni-list-block {
+	flex-direction: column
+}
+
+/* 
+.lang-en .form-phone .uni-list-left,
+.lang-en .form-workyear .uni-list-left {
 	width: 40%;
 }
 
-.lang-en .form-company .uni-list-left {
+.lang-en .form-company .uni-list-left,
+.lang-en .form-education .uni-list-left,
+.lang-en .form-graduation .uni-list-left {
 	width: 30%;
 }
 
@@ -185,7 +221,7 @@ a.mailto {
 .lang-en .form-mark {
 	flex-direction: column
 }
-
+ */
 .lang-en .c-left .c-row {
 	width: 55%;
 }
