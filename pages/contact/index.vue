@@ -42,14 +42,14 @@
 												:type="obj.type" />
 										</block>
 										<block v-else-if="obj.type=='picker'&&obj.name=='age'">
-											<picker class="ey-picker" mode="date" :value="date" :start="startDate"
+											<picker class="ey-picker uni-input u-ipt" mode="date" :value="date" :start="startDate"
 												:end="endDate" @change="bindDateChange" :data-name="obj.name"
 												:data-val="obj">
 												<view class="uni-input">{{date}}</view>
 											</picker>
 										</block>
 										<block v-else-if="obj.type=='picker'&&obj.name=='education'">
-											<picker class="ey-picker" @change="bindPickerChange" :value="eduIndex"
+											<picker class="ey-picker uni-input u-ipt" @change="bindPickerChange" :value="eduIndex"
 												:range="obj['picker']" :data-name="obj.name" :data-val="obj">
 												<view class="uni-input">{{obj['picker'][eduIndex]}}</view>
 											</picker>

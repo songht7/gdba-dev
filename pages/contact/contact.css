@@ -181,6 +181,7 @@ body {
 
 .ey-picker .uni-input {
 	background-color: transparent;
+	padding: 0;
 }
 
 a.mailto {
