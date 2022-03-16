@@ -522,9 +522,10 @@ const Contact = {
 			"label": "Name",
 			"name": "name",
 			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
-			"type": "number",
+			"type": "picker",
 			"label": "Age",
 			"name": "age",
 			"err": false,
@@ -542,6 +543,7 @@ const Contact = {
 			"label": "Email",
 			"name": "email",
 			"err": false,
+			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "text",

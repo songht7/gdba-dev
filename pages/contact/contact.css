@@ -74,7 +74,7 @@ body {
 	bottom: -65%;
 	left: 0;
 	/* right: 0;
-	top:25%; */
+	top: 25%; */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -199,6 +199,10 @@ a.mailto {
 
 .lang-en .uni-list-block {
 	flex-direction: column
+}
+.lang-en .errVal {
+	bottom: -40%;
+	left: 0;
 }
 
 /* 
