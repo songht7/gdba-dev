@@ -40,6 +40,12 @@
 											<textarea class="uni-input u-ipt u-txtarea" :name="obj.name"
 												:type="obj.type" />
 										</block>
+										<block v-else-if="obj.type=='picker'">
+											<picker @change="bindPickerChange" :value="eduIndex" :range="obj['picker']"
+												:data-name="obj.name" :data-val="obj">
+												<view class="uni-input">{{obj['picker'][eduIndex]}}</view>
+											</picker>
+										</block>
 										<block v-else>
 											<input class="uni-input u-ipt" :name="obj.name" :type="obj.type"
 												placeholder="" value="" />
@@ -134,7 +140,9 @@
 				list: Contact,
 				loading: false,
 				showLeft: false, //侧滑菜单
-				nodes:'<div class="sub-btn">1<input type="submit" name="submit" value="submit" class="submit-btn">2</div>'
+				Education: "",
+				eduIndex: -1,
+				formData: {}
 			}
 		},
 		components: {
@@ -170,13 +178,23 @@
 					return
 				}
 				//console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
-				let formData = e.detail.value;
+				var _formData = e.detail.value;
+				_formData = {
+					..._formData,
+					...that.formData
+				}
+				console.log("_formData：", _formData)
 				that.loading = true;
 				var rule = [{
 						name: "name",
 						checkType: "notnull",
 						checkRule: "",
 						errorMsg: "请填写姓名"
+					}, {
+						name: "age",
+						checkType: "betweenD",
+						checkRule: "18,100",
+						errorMsg: "请填写正确的年龄"
 					},
 					{
 						name: "phone",
@@ -195,22 +213,46 @@
 						checkType: "notnull",
 						checkRule: "",
 						errorMsg: "请填写公司"
+					},
+					{
+						name: "position",
+						checkType: "notnull",
+						checkRule: "",
+						errorMsg: "请填写职位"
+					},
+					{
+						name: "workyear",
+						checkType: "notnull",
+						checkRule: "",
+						errorMsg: "请填写工作年限"
+					},
+					{
+						name: "education",
+						checkType: "notnull",
+						checkRule: "请选择",
+						errorMsg: "请选择最高学历"
+					},
+					{
+						name: "graduation",
+						checkType: "notnull",
+						checkRule: "",
+						errorMsg: "请填写毕业学校"
 					}
 				];
 				//进行表单检查
-				var checkRes = graceChecker.check(formData, rule);
+				var checkRes = graceChecker.check(_formData, rule);
 				if (checkRes) {
-					formData['name'] = formData['name'] + " * 来自：Global DBA";
-					formData['note'] = "公司：" + formData['company'] + "  职位：" + formData['position'] + "  附言：" +
-						formData['mark'];
-					console.log(formData);
+					_formData['name'] = _formData['name'] + " * 来自：Global DBA";
+					_formData['note'] = "公司：" + _formData['company'] + "  职位：" + _formData['position'] + "  附言：" +
+						_formData['mark'];
+					console.log(_formData);
 					// return
 					let url = "http://api_test.meetji.com/v2/ApiHome-saveSingle.htm"; //预约POST
 					//console.log(url_saveSingle);
 					uni.request({
 						url: url,
 						method: "POST",
-						data: formData,
+						data: _formData,
 						header: {},
 						success: function(res) {
 							let __res = res.data;
@@ -252,6 +294,28 @@
 					this.loading = false
 				}
 
+			},
+			bindPickerChange: function(e) {
+				// console.log('picker发送选择改变，携带值为', e)
+				// this.Education=val
+				var that = this;
+				var val = e.currentTarget.dataset.val,
+					name = e.currentTarget.dataset.name,
+					index = e.target.value;
+				this.eduIndex = index;
+				// console.log('val：', val)
+				// console.log('name：', name)
+				console.log('picker：', val["picker"][index])
+				switch (name) {
+					case "education":
+						that.formData = {
+							...that.formData,
+							"education": val["picker"][index]
+						}
+						break;
+					default:
+						break;
+				}
 			},
 			phoneCall(numb) {
 				uni.makePhoneCall({

@@ -453,6 +453,11 @@ const Contact = {
 			"notnull": true
 		}, {
 			"type": "number",
+			"label": "年龄",
+			"name": "age",
+			"notnull": true
+		}, {
+			"type": "number",
 			"label": "手机号",
 			"name": "phone",
 			"notnull": true
@@ -468,17 +473,39 @@ const Contact = {
 			"notnull": true
 		}, {
 			"type": "text",
+			"label": "职位",
 			"name": "position",
-			"label": "职位"
+			"notnull": true
+		}, {
+			"type": "number",
+			"label": "工作年限",
+			"name": "workyear",
+			"notnull": true
+		}, {
+			"type": "picker",
+			"label": "最高学历",
+			"name": "education",
+			"notnull": true,
+			"picker": ['硕士', 'MBA/EMBA', '博士']
+		}, {
+			"type": "text",
+			"label": "毕业学校",
+			"name": "graduation",
+			"notnull": true
 		}, {
 			"type": "textarea",
-			"name": "mark",
-			"label": "附言"
+			"label": "附言",
+			"name": "mark"
 		}],
 		"en": [{
 			"type": "text",
 			"label": "Name",
 			"name": "name",
+			"notnull": true
+		}, {
+			"type": "number",
+			"label": "Age",
+			"name": "age",
 			"notnull": true
 		}, {
 			"type": "phone",
@@ -498,7 +525,24 @@ const Contact = {
 		}, {
 			"type": "text",
 			"label": "Position",
-			"name": "position"
+			"name": "position",
+			"notnull": true
+		}, {
+			"type": "number",
+			"label": "Working years",
+			"name": "workyear",
+			"notnull": true
+		}, {
+			"type": "picker",
+			"label": "Education",
+			"name": "education",
+			"notnull": true,
+			"picker": ['Master', 'MBA/EMBA', 'phD']
+		}, {
+			"type": "text",
+			"label": "Graduation",
+			"name": "graduation",
+			"notnull": true
 		}, {
 			"type": "textarea",
 			"label": "Additional comments",
