@@ -22,11 +22,11 @@
 				<view class="form-tip">
 					{{list["tip"][$store.state.lang]}}
 				</view>
-				<view class="" style="height: 1000upx;padding-top: 50upx;position: relative;">
+				<!-- <view class="" style="height: 1000upx;padding-top: 50upx;position: relative;">
 					<web-view src="http://emlyon.meetji.com/contact/contact.html"></web-view>
-				</view>
+				</view> -->
 				<!-- <rich-text :nodes="nodes"></rich-text> -->
-				<!-- <form class="" @submit="formSubmit" @reset="formReset">
+				<form class="" @submit="formSubmit" @reset="formReset">
 					<view class="form-block uni-list-box">
 						<view class="form-row">
 							<block v-for="(obj,key) in list['form'][$store.state.lang]" :key="key">
@@ -52,7 +52,7 @@
 						<button formType="submit" :loading="loading"
 							class="submit-btn">{{list["submit"][$store.state.lang]}}</button>
 					</view>
-				</form> -->
+				</form>
 				<view class="form-block contact-info">
 					<view class="c-block c-left">
 						<view class="c-init">
