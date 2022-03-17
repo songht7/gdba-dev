@@ -1,5 +1,6 @@
 <template>
-	<text :style="{ color: color, 'font-size': size + 'px' }" class="uni-icons" @click="_onClick">{{icons[type]}}</text>
+	<text :style="{ color: color, 'font-size': size + 'px' ,'transform':'rotate('+rotate+'deg)'}" class="uni-icons"
+		@click="_onClick">{{icons[type]}}</text>
 </template>
 
 <script>
@@ -35,6 +36,10 @@
 			size: {
 				type: [Number, String],
 				default: 16
+			},
+			rotate: {
+				type: [Number, String],
+				default: 0
 			}
 		},
 		data() {

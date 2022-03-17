@@ -33,6 +33,10 @@ body {
 
 .form-row {
 	padding: 0 0 30upx;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .form-block {
@@ -66,19 +70,27 @@ body {
 	padding: 10upx;
 	position: relative;
 	margin-bottom: 25upx;
+	width: 100%;
 }
 
+
+.row-err {
+	border-bottom-color: #d73743;
+}
 .errVal {
 	position: absolute;
-	color: #FF3333;
-	bottom: -65%;
+	color: #d73743;
+	bottom: -42upx;
 	left: 0;
 	/* right: 0;
-	top: 25%; */
+	bottom: 0; */
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	align-content: center;
+	z-index: 1;
+	line-height: 1;
+	width: 100%;
 }
 
 .alignTop {
@@ -89,13 +101,31 @@ body {
 	border-bottom: none;
 }
 
+.uni-list-warp {
+	line-height: 1.4;
+}
+
 .uni-list-left {
 	width: 21%;
 	font-size: 30upx;
 }
 
+
+.uni-list-block.form-name,
+.uni-list-block.form-age {
+	width: 45%;
+	flex-direction: column;
+}
+
+.form-name .uni-list-warp,
+.form-age .uni-list-warp {
+	width: 100%;
+}
+
 .uni-list-right {
 	flex: 1;
+	position: relative;
+	z-index: 2;
 }
 
 .u-txtarea {
@@ -105,12 +135,8 @@ body {
 
 .u-ipt {
 	font-size: 34upx;
-	padding: 10upx 8upx;
+	padding: 4upx 8upx;
 	background-color: transparent;
-}
-
-.row-err {
-	border-bottom-color: #FF4400;
 }
 
 .contact-info {
@@ -201,8 +227,9 @@ a.mailto {
 .lang-en .uni-list-block {
 	flex-direction: column
 }
+
 .lang-en .errVal {
-	bottom: -40%;
+	bottom: 0;
 	left: 0;
 }
 

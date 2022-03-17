@@ -33,24 +33,25 @@
 							<block v-for="(obj,key) in list['form'][$store.state.lang]" :key="key">
 								<view class="uni-list-block"
 									:class="[obj.type=='textarea'?'alignTop':'','form-'+obj.name,obj.err?'row-err':'']">
-									<view class="uni-list-left">
+									<view class="uni-list-warp uni-list-left">
 										<text v-if="obj.notnull">*</text>{{obj.label}}
 									</view>
-									<view class="uni-list-right">
+									<view class="uni-list-warp uni-list-right">
 										<block v-if="obj.type=='textarea'">
 											<textarea class="uni-input u-ipt u-txtarea" :name="obj.name"
 												:type="obj.type" />
 										</block>
 										<block v-else-if="obj.type=='picker'&&obj.name=='age'">
-											<picker class="ey-picker uni-input u-ipt" mode="date" :value="date" :start="startDate"
-												:end="endDate" @change="bindDateChange" :data-name="obj.name"
-												:data-val="obj">
+											<picker class="ey-picker uni-input u-ipt" mode="date" :value="date"
+												:start="startDate" :end="endDate" @change="bindDateChange"
+												:data-name="obj.name" :data-val="obj">
 												<view class="uni-input">{{date}}</view>
 											</picker>
 										</block>
 										<block v-else-if="obj.type=='picker'&&obj.name=='education'">
-											<picker class="ey-picker uni-input u-ipt" @change="bindPickerChange" :value="eduIndex"
-												:range="obj['picker']" :data-name="obj.name" :data-val="obj">
+											<picker class="ey-picker uni-input u-ipt" @change="bindPickerChange"
+												:value="eduIndex" :range="obj['picker']" :data-name="obj.name"
+												:data-val="obj">
 												<view class="uni-input">{{obj['picker'][eduIndex]}}</view>
 											</picker>
 										</block>
@@ -61,7 +62,7 @@
 									</view>
 									<block v-if="obj.errVal">
 										<view class="errVal">
-											<uni-icons type="info" color="#FF3333" size="20"></uni-icons> {{obj.errVal}}
+											<uni-icons type="info" color="#d73743" rotate="0" size="20"></uni-icons> {{obj.errVal}}
 										</view>
 									</block>
 								</view>
@@ -214,8 +215,8 @@
 				var rule = [{
 						name: "name",
 						checkType: "notnull",
-						checkRule: "",
-						errorMsg: _lg == "cn" ? "必填项不能为空" : "Please fill out the required fields"
+						checkRule: "", //"Can`t be empty"，"Please fill out the required fields"
+						errorMsg: _lg == "cn" ? "必填项不能为空" : "Can`t be empty"
 					}, {
 						name: "age",
 						checkType: "notnull",
@@ -392,9 +393,9 @@
 				let day = date.getDate();
 
 				if (type === 'start') {
-					year = year - 60;
+					year = year - 90;
 				} else if (type === 'end') {
-					year = year + 2;
+					year = year;
 				}
 				month = month > 9 ? month : '0' + month;
 				day = day > 9 ? day : '0' + day;
