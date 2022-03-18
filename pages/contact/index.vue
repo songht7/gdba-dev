@@ -221,7 +221,7 @@
 						name: "age",
 						checkType: "notnull",
 						checkRule: "",
-						errorMsg: _lg == "cn" ? "必填项不能为空" : "Please fill out the required fields"
+						errorMsg: _lg == "cn" ? "必填项不能为空" : "Can`t be empty"
 					},
 					{
 						name: "phone",
