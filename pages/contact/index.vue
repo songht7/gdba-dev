@@ -62,7 +62,7 @@
 									</view>
 									<block v-if="obj.errVal">
 										<view class="errVal">
-											<uni-icons type="info" color="#d73743" rotate="0" size="20"></uni-icons> {{obj.errVal}}
+											<uni-icons type="info" color="#d73743" rotate="0" size="16"></uni-icons> {{obj.errVal}}
 										</view>
 									</block>
 								</view>
