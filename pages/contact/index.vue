@@ -152,6 +152,7 @@
 				format: true
 			});
 			return {
+				channel: "", //账户自建 "CHANNEL 渠道" 值，需匹配，用户预约列表对应账号
 				nav: Home.nav,
 				navFix: Home.navFix,
 				pageis: "",
@@ -171,6 +172,8 @@
 			const that = this;
 			let pageis = option.id || "";
 			this.pageis = pageis;
+			let channel = option.cl || "gdba"; //xxx.com?cl=test, 账号：emlyon，测试：test，正式：gdba
+			this.channel = channel;
 
 			// let lang = option.lg || "cn";
 			// this.setLang(lang)
@@ -280,6 +283,7 @@
 						"  工作年限：" + _formData['workyear'] + "  最高学历：" + _formData['education'] +
 						"  毕业学校：" + _formData['graduation'] +
 						"  附言：" + _formData['mark'];
+					// _formData['note'] = _formData['mark'];
 					console.log(_formData);
 					// return
 					let url = "http://api_test.meetji.com/v2/ApiHome-saveSingle.htm"; //预约POST
@@ -289,7 +293,7 @@
 						method: "POST",
 						data: _formData,
 						header: {
-							'channel': 'emlyon'
+							'channel': that.channel
 						},
 						success: function(res) {
 							console.log("======success========");
