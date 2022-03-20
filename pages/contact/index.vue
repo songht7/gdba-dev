@@ -29,7 +29,7 @@
 				<!-- <rich-text :nodes="nodes"></rich-text> -->
 				<form class="" @submit="formSubmit" @reset="formReset">
 					<view class="form-block uni-list-box">
-						<view class="form-row">
+						<view class="form-row row-full">
 							<block v-for="(obj,key) in list['form'][$store.state.lang]" :key="key">
 								<view class="uni-list-block"
 									:class="[obj.type=='textarea'?'alignTop':'','form-'+obj.name,obj.err?'row-err':'']">

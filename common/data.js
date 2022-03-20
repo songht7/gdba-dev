@@ -561,14 +561,14 @@ const Contact = {
 			"notnull": true
 		}, {
 			"type": "number",
-			"label": "Working years",
+			"label": "Years of Working Experience",
 			"name": "workyear",
 			"err": false,
 			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "picker",
-			"label": "Education",
+			"label": "Highest Degree",
 			"name": "education",
 			"notnull": true,
 			"err": false,
@@ -576,14 +576,14 @@ const Contact = {
 			"picker": ['Master', 'MBA/EMBA', 'phD']
 		}, {
 			"type": "text",
-			"label": "Graduation",
+			"label": "Graduated Institutions",
 			"name": "graduation",
 			"err": false,
 			"errVal": "",
 			"notnull": true
 		}, {
 			"type": "textarea",
-			"label": "Additional comments",
+			"label": "Additional Comments",
 			"name": "mark",
 			"errVal": "",
 			"err": false
