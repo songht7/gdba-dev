@@ -62,7 +62,8 @@
 									</view>
 									<block v-if="obj.errVal">
 										<view class="errVal">
-											<uni-icons type="info" color="#d73743" rotate="0" size="16"></uni-icons> {{obj.errVal}}
+											<uni-icons type="info" color="#d73743" rotate="0" size="16"></uni-icons>
+											{{obj.errVal}}
 										</view>
 									</block>
 								</view>
@@ -269,7 +270,8 @@
 				//进行表单检查
 				var checkRes = graceChecker.check(_formData, rule);
 				if (checkRes) {
-					_formData['name'] = _formData['name'] + " （来自：emlyon）";
+					_formData['code'] = "emlyon";
+					_formData['name'] = _formData['name']; // + " （来自：emlyon）"
 					_formData['note'] = "姓名：" + _formData['name'] + "  年龄：" + _formData['age'] +
 						"  手机号：" + _formData['phone'] + "  邮箱：" + _formData['email'] +
 						"  公司：" + _formData['company'] + "  职位：" + _formData['position'] +
@@ -286,6 +288,8 @@
 						data: _formData,
 						header: {},
 						success: function(res) {
+							console.log("======success========");
+							console.log(res)
 							let __res = res.data;
 							if (__res.success) {
 								uni.showToast({
@@ -311,8 +315,6 @@
 							});
 						},
 						complete: function(comp) {
-							console.log("======complete========");
-							console.log(comp)
 							this.loading = false
 						}
 					})
