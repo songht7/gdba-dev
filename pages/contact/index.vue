@@ -269,7 +269,7 @@
 				//进行表单检查
 				var checkRes = graceChecker.check(_formData, rule);
 				if (checkRes) {
-					_formData['name'] = _formData['name'] + " * 来自：Global DBA";
+					_formData['name'] = _formData['name'] + " （来自：emlyon）";
 					_formData['note'] = "姓名：" + _formData['name'] + "  年龄：" + _formData['age'] +
 						"  手机号：" + _formData['phone'] + "  邮箱：" + _formData['email'] +
 						"  公司：" + _formData['company'] + "  职位：" + _formData['position'] +
