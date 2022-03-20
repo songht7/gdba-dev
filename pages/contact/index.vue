@@ -270,9 +270,11 @@
 				//进行表单检查
 				var checkRes = graceChecker.check(_formData, rule);
 				if (checkRes) {
+					var _age = _formData['age'];
 					_formData['code'] = "emlyon";
 					_formData['name'] = _formData['name']; // + " （来自：emlyon）"
-					_formData['note'] = "姓名：" + _formData['name'] + "  年龄：" + _formData['age'] +
+					_formData['age'] = ""; // 年龄字段字数限制
+					_formData['note'] = "姓名：" + _formData['name'] + "  年龄：" + _age +
 						"  手机号：" + _formData['phone'] + "  邮箱：" + _formData['email'] +
 						"  公司：" + _formData['company'] + "  职位：" + _formData['position'] +
 						"  工作年限：" + _formData['workyear'] + "  最高学历：" + _formData['education'] +
@@ -286,7 +288,9 @@
 						url: url,
 						method: "POST",
 						data: _formData,
-						header: {},
+						header: {
+							'channel': 'emlyon'
+						},
 						success: function(res) {
 							console.log("======success========");
 							console.log(res)
