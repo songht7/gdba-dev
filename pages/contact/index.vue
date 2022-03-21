@@ -323,7 +323,7 @@
 							});
 						},
 						complete: function(comp) {
-							this.loading = false
+							that.loading = false
 						}
 					})
 
