@@ -172,7 +172,7 @@
 			const that = this;
 			let pageis = option.id || "";
 			this.pageis = pageis;
-			let channel = option.cl || "gdba"; //xxx.com?cl=test, 账号：emlyon，测试：test，正式：gdba
+			let channel = option.cl || "emlyon"; //xxx.com?cl=test, 账号：emlyon，测试channel：emlyon，test，正式channel：gdba
 			this.channel = channel;
 
 			// let lang = option.lg || "cn";
