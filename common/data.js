@@ -506,7 +506,7 @@ const Contact = {
 		}, {
 			"type": "text",
 			"label": "毕业学校",
-			"name": "graduation",
+			"name": "school",
 			"err": false,
 			"errVal": "",
 			"notnull": true
@@ -577,7 +577,7 @@ const Contact = {
 		}, {
 			"type": "text",
 			"label": "Graduated Institutions",
-			"name": "graduation",
+			"name": "school",
 			"err": false,
 			"errVal": "",
 			"notnull": true
