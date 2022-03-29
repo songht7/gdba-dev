@@ -282,6 +282,7 @@
 					// _formData['note']
 					_formData['years'] = _formData['workyear']
 					_formData['highest_education'] = _formData['education']
+					_formData['note'] = _formData['mark']
 
 
 					// var _age = _formData['age'];
@@ -295,11 +296,10 @@
 					// 	"  毕业学校：" + _formData['school'] +
 					// 	"  附言：" + _formData['mark'];
 					// // _formData['note'] = _formData['mark'];
-					
-					// console.log("_formData：", _formData)
+
+					console.log("_formData：", _formData)
 					// return
 					let url = "http://api_test.meetji.com/v4/ApiHome-saveSingle.htm"; //预约POST
-					//console.log(url_saveSingle);
 					uni.request({
 						url: url,
 						method: "POST",
@@ -308,8 +308,9 @@
 							'channel': that.channel
 						},
 						success: function(res) {
-							// console.log("======success========");
-							// console.log(res)
+							console.log("======success========");
+							console.log(url);
+							console.log(res)
 							let _data = res.data;
 							if (res.errMsg == 'request:ok') {
 								uni.showToast({
