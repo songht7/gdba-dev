@@ -454,7 +454,7 @@ const Contact = {
 			"errVal": "",
 			"notnull": true
 		}, {
-			"type": "picker",
+			"type": "number",
 			"label": "年龄",
 			"name": "age",
 			"err": false,
@@ -525,7 +525,7 @@ const Contact = {
 			"errVal": "",
 			"notnull": true
 		}, {
-			"type": "picker",
+			"type": "number",
 			"label": "Age",
 			"name": "age",
 			"err": false,

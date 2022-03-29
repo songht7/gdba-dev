@@ -309,8 +309,8 @@
 						},
 						success: function(res) {
 							console.log("======success========");
-							console.log(url);
-							console.log(res)
+							// console.log(url);
+							// console.log(res)
 							let _data = res.data;
 							if (res.errMsg == 'request:ok') {
 								uni.showToast({
