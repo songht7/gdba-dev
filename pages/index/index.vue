@@ -19,7 +19,7 @@
 			<view class="nav-box">
 				<block v-for="(obj,key) in list['nav'][lang]" :key="key">
 					<navigator class="nav-btn" :url="obj.link+lang">
-						<image lazy-load="true" class="nav-btn-img" :src='"/static/"+lang+obj.btn' mode="widthFix"
+						<image lazy-load="true" class="nav-btn-img" :src='imgUrl+lang+obj.btn' mode="widthFix"
 							:alt='obj.title'></image>
 					</navigator>
 				</block>
