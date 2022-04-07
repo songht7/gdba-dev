@@ -1,25 +1,26 @@
 <template>
-	<view class="content" :style="{'background-image':`url(/static/${$store.state.lang}/home/1.jpg)`}">
+	<view class="content" :style="{'background-image':'url(/static/'+lang+'/home/1.jpg)'}">
 		<view class="pg-main">
-
-			<img lazy-load="true" class="logo-type" src='/static/logo-type.png' />
-			<img lazy-load="true" class="logo" src='/static/logo.png' />
-			<view v-if="$lgChane" class="lang-box">
-				<view v-if="$store.state.lang=='en'" class="lg-btn" @click="setLang('cn')">
+			<!-- <img lazy-load="true" class="logo-type" src='/static/logo-type.png' /> -->
+			<!-- <img lazy-load="true" class="logo" src='/static/logo.png' /> -->
+			<image lazy-load="true" class="logo-type" src="/static/logo-type.png" mode="widthFix"></image>
+			<image lazy-load="true" class="logo" src="/static/logo.png" mode="aspectFill"></image>
+			<view class="lang-box">
+				<view v-if="lang=='en'" class="lg-btn" @click="setLang('cn')">
 					中文
 				</view>
 				<!-- <view class="lg-cut">
 					/
 				</view> -->
-				<view v-if="$store.state.lang=='cn'" class="lg-btn" @click="setLang('en')">
+				<view v-if="lang=='cn'" class="lg-btn" @click="setLang('en')">
 					EN
 				</view>
 			</view>
 			<view class="nav-box">
-				<block v-for="(obj,key) in list['nav'][$store.state.lang]" :key="key">
-					<navigator class="nav-btn" :url="obj.link+$store.state.lang">
-						<img lazy-load="true" class="nav-btn-img" :src='"/static/"+$store.state.lang+obj.btn'
-							mode="aspectFit" :alt='obj.title' />
+				<block v-for="(obj,key) in list['nav'][lang]" :key="key">
+					<navigator class="nav-btn" :url="obj.link+lang">
+						<image lazy-load="true" class="nav-btn-img" :src='"/static/"+lang+obj.btn' mode="widthFix"
+							:alt='obj.title'></image>
 					</navigator>
 				</block>
 			</view>
@@ -45,6 +46,7 @@
 		data() {
 			return {
 				list: Home,
+				lang: ''
 			}
 		},
 		components: {
@@ -58,11 +60,15 @@
 		},
 		onReady() {
 			// console.log("isWeixin：", this.$store.state.isWeixin)
-			
+
 			var lang = this.$store.state.lang;
+			this.lang = lang;
+			//console.log("lang lang：", lang, this.lang)
+			//#ifdef H5
 			mdl.wxShare({
 				lang
 			});
+			//#endif
 		},
 		methods: {
 			getApp(type) {
@@ -77,6 +83,7 @@
 						let lg = val || "cn";
 						that.$store.state.lang = lg;
 						that.$store.dispatch('getLang');
+						that.lang = lg;
 						uni.setNavigationBarTitle({
 							title: that.list['title'][that.$store.state.lang]
 						})
@@ -122,6 +129,7 @@
 		top: 0;
 		right: 0;
 		width: 150upx;
+		height: 150upx;
 	}
 
 	.logo-type {

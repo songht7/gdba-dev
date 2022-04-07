@@ -47,6 +47,7 @@ const store = new Vuex.Store({
 			uni.getStorage({
 				key: 'DBA-Lang',
 				success: function(res) {
+					console.log("getLang success")
 					ctx.commit("setLang", res.data)
 					// const _nav = [{
 					// 	"btn": `/static/${lg}/home/nav-1.png`,
@@ -68,6 +69,7 @@ const store = new Vuex.Store({
 					// ctx.state.nav = _nav;
 				},
 				fail() {
+					console.log("getLang fail")
 					ctx.commit("setLang", "cn")
 				}
 			});

@@ -1,8 +1,8 @@
-// #ifdef MP-WEIXIN || H5
+// #ifdef H5
 // var wx = require('jweixin-module')
 var wx = require('weixin-js-sdk');
-import md5 from "./md5.js";
 // #endif
+import md5 from "./md5.js";
 const isArray = Array.isArray || function(obj) {
 	return obj instanceof Array;
 };
@@ -161,14 +161,18 @@ const module = {
 			// console.log('wx.config:', _config)
 			wx.config(_config);
 		}
+		//var _link='http://emlyon.meetji.com/';
 		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + _link;
-		let _head = {};
+		let _head = {
+			'channel': 'yimei'
+		};
 		// let channel_code = 'emlyon'; //that.queryString("channel_code");
 		// if (channel_code) {
 		// 	_head = {
 		// 		"channel_code": channel_code
 		// 	};
 		// }
+
 		let wx_ticket = that.getData(url_ticket, funTicket, "GET", "", _head)
 
 

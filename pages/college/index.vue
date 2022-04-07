@@ -63,6 +63,7 @@
 			this.tabBars = College['tabBars'][_lg];
 			this.contList = College['contList'][_lg];
 
+			//#ifdef H5
 			if (this.$store.state.isWeixin) {
 				//location.origin, //window.location.href, //"http://emlyon.meetji.com",
 				var share_url = window.location.href,
@@ -71,6 +72,7 @@
 					imgUrl = "http://emlyon.meetji.com/static/logo.png";
 				mdl.wxShare(share_url, title, dec, imgUrl);
 			}
+			//#endif
 		},
 		methods: {
 			ontabtap(e) {

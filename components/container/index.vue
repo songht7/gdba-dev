@@ -2,7 +2,7 @@
 	<view class="wrap">
 		<!-- <view class="header" v-if="title">{{title}}</view> -->
 		<view class="tab-header" v-if="titleImg">
-			<img :src="titleImg" style="width: 50%;" alt="">
+			<image :src="titleImg" style="width: 50%;" mode="widthFix"></image>
 		</view>
 		<view class="content">
 			<slot></slot>
@@ -45,7 +45,8 @@
 			letter-spacing: 4rpx;
 			background-color: #f7f7f7;
 		}
-		.content{
+
+		.content {
 			padding: 20rpx 0;
 		}
 	}

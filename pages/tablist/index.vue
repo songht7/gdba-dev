@@ -1,11 +1,11 @@
 <template>
-	<view :class="['content','lang-'+$store.state.lang]">
+	<view :class="['content','lang-'+lang]">
 		<view class="pg-main" :class="[pageis=='doctor'?'doctor-main':'']">
 			<view :class="[pageis!='doctor'?'uni-tab-bar':'']">
-				<view :class="['tab-box',pageis=='doctor'?'fixed':'']" >
+				<view :class="['tab-box',pageis=='doctor'?'fixed':'']">
 					<!-- 头部菜单按钮 -->
 					<view class="tab-nav" @click="drawerShow()">
-						<img src="/static/menu.png" class="drawer-menu" />
+						<image src="/static/menu.png" class="drawer-menu" mode="widthFix"></image>
 					</view>
 					<scroll-view id="tab-bar" style="width: 90%;" class="uni-swiper-tab" :scroll-x="true"
 						:show-scrollbar="false" :scroll-into-view="scrollInto">
@@ -24,8 +24,9 @@
 						<scroll-view class="list" scroll-y @scrolltolower="loadMore(index1)">
 							<view class="tab-img-list">
 								<block v-if="lst['val'].length" v-for="(img,k) in lst.val" :key="k">
-									<img class="tab-dtl-img" :src='"/static/"+$store.state.lang+img'
-										@click="linkto(lst,k)" alt="">
+									<image class="tab-dtl-img" :src='"/static/"+lang+img' @click="linkto(lst,k)"
+										mode="widthFix"></image>
+									<!-- <img class="tab-dtl-img" :src='"/static/"+lang+img' @click="linkto(lst,k)" alt=""> -->
 								</block>
 							</view>
 						</scroll-view>
@@ -36,7 +37,7 @@
 			<!-- 同窗学友页（同窗寄语） -->
 			<block v-if="pageis=='doctor'">
 				<view>
-					<container :titleImg='"/static/"+$store.state.lang+list["titleImg"][$store.state.lang]'>
+					<container :titleImg='"/static/"+lang+list["titleImg"][lang]'>
 						<ls-swiper :list="base_lsit" imgKey="imgUrl" imgWidth="98%" :previousMargin="previousMargin"
 							:nextMargin="nextMargin" :height="height" :imgRadius="imgRadius" />
 					</container>
@@ -51,26 +52,25 @@
 			<view class="drawer-nav">
 				<view class="d-nav-list">
 					<view class="tab-nav" @click="drawerHide()">
-						<img src="/static/menu.png" class="drawer-menu" />
+						<image src="/static/menu.png" class="drawer-menu" mode="widthFix"></image>
 					</view>
-					<navigator class="drawer-nav-btn" :url='navFix["home"][$store.state.lang]["link"]'>
-						{{navFix["home"][$store.state.lang]["title"]}}
+					<navigator class="drawer-nav-btn" :url="getLT(navFix,'link','home')">
+						{{getLT(navFix,'title','home')}}
 					</navigator>
-					<block v-for="(obj,key) in nav[$store.state.lang]" :key="key">
-						<navigator :class="['drawer-nav-btn',obj.key==pageis?'active':'']"
-							:url="obj.link+$store.state.lang">
+					<block v-for="(obj,key) in nav[lang]" :key="key">
+						<navigator :class="['drawer-nav-btn',obj.key==pageis?'active':'']" :url="obj.link+lang">
 							{{obj.title}}
 						</navigator>
 					</block>
-					<navigator class="drawer-nav-btn" :url='navFix["contact"][$store.state.lang]["link"]'>
-						{{navFix["contact"][$store.state.lang]["title"]}}
+					<navigator class="drawer-nav-btn" :url="getLT(navFix,'link','contact')">
+						{{getLT(navFix,'title','contact')}}
 					</navigator>
 
-					<view v-if="$lgChane" class="lang-box">
-						<view v-if="$store.state.lang=='en'" class="lg-btn" @click="setLang('cn')">
+					<view class="lang-box">
+						<view v-if="lang=='en'" class="lg-btn" @click="setLang('cn')">
 							中文
 						</view>
-						<view v-if="$store.state.lang=='cn'" class="lg-btn" @click="setLang('en')">
+						<view v-if="lang=='cn'" class="lg-btn" @click="setLang('en')">
 							EN
 						</view>
 					</view>
@@ -107,6 +107,7 @@
 			return {
 				nav: Home.nav,
 				navFix: Home.navFix,
+				lang: this.$store.state.lang,
 				pageis: "",
 				list: [],
 				tabBars: [],
@@ -135,6 +136,27 @@
 			container,
 			LsSwiper,
 		},
+		computed: {
+			getLT() {
+				var that = this;
+				return function(navFix, type, page) {
+					var dt = '';
+					var lg = that.$store.state.lang;
+					switch (type) {
+						case 'link':
+							dt = navFix[page][lg]["link"];
+							break;
+						case 'title':
+							dt = navFix[page][lg]["title"];
+							break;
+						default:
+							break;
+					}
+					return dt;
+				}
+
+			}
+		},
 		onLoad(option) {
 			const that = this;
 			that.$store.dispatch('getLang');
@@ -147,6 +169,9 @@
 			// this.setLang(lang)
 		},
 		onReady() {
+			var lang = this.$store.state.lang;
+			this.lang = lang;
+			//#ifdef H5
 			if (this.$store.state.isWeixin) {
 				//location.origin, //window.location.href, //"http://emlyon.meetji.com",
 				var share_url = window.location.href,
@@ -155,6 +180,7 @@
 					imgUrl = "http://emlyon.meetji.com/static/logo.png";
 				mdl.wxShare(share_url, title, dec, imgUrl);
 			}
+			//#endif
 		},
 		methods: {
 			getData() {
@@ -243,6 +269,7 @@
 					success: function() {
 						let lg = val || "cn";
 						that.$store.state.lang = lg;
+						that.lang = lg;
 						that.$store.dispatch('getLang');
 						that.getData();
 					},

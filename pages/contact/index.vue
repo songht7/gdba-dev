@@ -1,17 +1,16 @@
 <template>
-	<view :class="['content','lang-'+$store.state.lang]"
-		:style="{'background-image':`url(/static/${$store.state.lang}/contact/bg.png)`}">
+	<view :class="['content','lang-'+lang]" :style="{'background-image':`url(/static/${lang}/contact/bg.png)`}">
 		<view class="pg-main">
 			<view class="tab-box fixed">
 				<!-- 头部菜单按钮 -->
 				<view class="tab-nav" @click="drawerShow()">
-					<img src="/static/menu.png" class="drawer-menu" />
+					<image src="/static/menu.png" class="drawer-menu" mode="widthFix"></image>
 				</view>
 				<view class="tabs">
 					<scroll-view id="tab-bar" class="scroll-h" :scroll-x="true" :show-scrollbar="false">
 						<view class="uni-tab-item">
 							<text
-								class="uni-tab-item-title uni-tab-item-title-active title-block">{{list.title[$store.state.lang]}}</text>
+								class="uni-tab-item-title uni-tab-item-title-active title-block">{{list.title[lang]}}</text>
 						</view>
 					</scroll-view>
 					<block></block>
@@ -20,7 +19,7 @@
 			<view class="flex-station"></view>
 			<view class="form-box">
 				<view class="form-tip">
-					{{list["tip"][$store.state.lang]}}
+					{{list["tip"][lang]}}
 				</view>
 
 				<!-- <view class="" style="height: 1000upx;padding-top: 50upx;position: relative;">
@@ -30,7 +29,7 @@
 				<form class="" @submit="formSubmit" @reset="formReset">
 					<view class="form-block uni-list-box">
 						<view class="form-row row-full">
-							<block v-for="(obj,key) in list['form'][$store.state.lang]" :key="key">
+							<block v-for="(obj,key) in list['form'][lang]" :key="key">
 								<view class="uni-list-block"
 									:class="[obj.type=='textarea'?'alignTop':'','form-'+obj.name,obj.err?'row-err':'']">
 									<view class="uni-list-warp uni-list-left">
@@ -56,8 +55,8 @@
 											</picker>
 										</block>
 										<block v-else>
-											<input class="uni-input u-ipt" :name="obj.name" :type="obj.type"
-												placeholder="" value="" @focus="clearErr(obj.name)" />
+											<input class="uni-input u-ipt" :name="obj.name" :type="obj.type" value=""
+												@focus="clearErr(obj.name)" />
 										</block>
 									</view>
 									<block v-if="obj.errVal">
@@ -71,27 +70,27 @@
 						</view>
 
 						<button formType="submit" :loading="loading"
-							class="submit-btn">{{list["submit"][$store.state.lang]}}</button>
+							class="submit-btn">{{list["submit"][lang]}}</button>
 					</view>
 				</form>
 				<view class="form-block contact-info">
 					<view class="c-block c-left">
 						<view class="c-init">
 							<view class="c-row c-tip">
-								{{list["c-tip"][$store.state.lang]}}
+								{{list["c-tip"][lang]}}
 							</view>
 							<view class="c-row c-name">
-								{{list["c-name"][$store.state.lang]}}
+								{{list["c-name"][lang]}}
 							</view>
 						</view>
 					</view>
 					<view class="c-block c-right">
 						<view class="c-row c-phone" @click="phoneCall('+86 13764186470')">
-							<img src="/static/icon-phone.png" class="icons icon-phone" alt="global dba">
+							<image src="/static/icon-phone.png" class="icons icon-phone" alt="global dba" mode="widthFix"></image>
 							+86 137 6418 6470
 						</view>
-						<view class="c-row c-email"><img src="/static/icon-email.png" class="icons icon-email"
-								alt="global dba">
+						<view class="c-row c-email">
+							<image src="/static/icon-email.png" class="icons icon-email" alt="global dba" mode="widthFix"></image>
 							<a href="mailto:DBA@em-lyon.com.cn" class="mailto">
 								DBA@em-lyon.com.cn
 							</a>
@@ -100,7 +99,7 @@
 				</view>
 			</view>
 			<view class="">
-				<img src="/static/footer-logos.jpg" class="img-full" />
+				<image src="/static/footer-logos.jpg" class="img-full" mode="widthFix"></image>
 			</view>
 		</view>
 
@@ -109,26 +108,25 @@
 			<view class="drawer-nav">
 				<view class="d-nav-list">
 					<view class="tab-nav" @click="drawerHide()">
-						<img src="/static/menu.png" class="drawer-menu" />
+						<image src="/static/menu.png" class="drawer-menu" mode="widthFix"></image>
 					</view>
-					<navigator class="drawer-nav-btn" :url='navFix["home"][$store.state.lang]["link"]'>
-						{{navFix["home"][$store.state.lang]["title"]}}
+					<navigator class="drawer-nav-btn" :url="getLT(navFix,'link','home')">
+						{{getLT(navFix,'title','home')}}
 					</navigator>
-					<block v-for="(obj,key) in nav[$store.state.lang]" :key="key">
-						<navigator :class="['drawer-nav-btn',obj.key==pageis?'active':'']"
-							:url="obj.link+$store.state.lang">
+					<block v-for="(obj,key) in nav[lang]" :key="key">
+						<navigator :class="['drawer-nav-btn',obj.key==pageis?'active':'']" :url="obj.link+lang">
 							{{obj.title}}
 						</navigator>
 					</block>
-					<navigator :class="['drawer-nav-btn','active']" :url='navFix["contact"][$store.state.lang]["link"]'>
-						{{navFix["contact"][$store.state.lang]["title"]}}
+					<navigator class="drawer-nav-btn" :url="getLT(navFix,'link','contact')">
+						{{getLT(navFix,'title','contact')}}
 					</navigator>
 
-					<view v-if="$lgChane" class="lang-box">
-						<view v-if="$store.state.lang=='en'" class="lg-btn" @click="setLang('cn')">
+					<view class="lang-box">
+						<view v-if="lang=='en'" class="lg-btn" @click="setLang('cn')">
 							中文
 						</view>
-						<view v-if="$store.state.lang=='cn'" class="lg-btn" @click="setLang('en')">
+						<view v-if="lang=='cn'" class="lg-btn" @click="setLang('en')">
 							EN
 						</view>
 					</view>
@@ -153,6 +151,7 @@
 			});
 			return {
 				channel: "", //账户自建 "CHANNEL 渠道" 值，需匹配，用户预约列表对应账号
+				lang: this.$store.state.lang,
 				nav: Home.nav,
 				navFix: Home.navFix,
 				pageis: "",
@@ -168,6 +167,33 @@
 		components: {
 			uniDrawer
 		},
+		computed: {
+			getLT() {
+				var that = this;
+				return function(navFix, type, page) {
+					var dt = '';
+					var lg = that.$store.state.lang;
+					switch (type) {
+						case 'link':
+							dt = navFix[page][lg]["link"];
+							break;
+						case 'title':
+							dt = navFix[page][lg]["title"];
+							break;
+						default:
+							break;
+					}
+					return dt;
+				}
+
+			},
+			startDate() {
+				return this.getDate('start');
+			},
+			endDate() {
+				return this.getDate('end');
+			}
+		},
 		onLoad(option) {
 			const that = this;
 			let pageis = option.id || "";
@@ -181,9 +207,12 @@
 		},
 		onReady() {
 			var _lg = this.$store.state.lang
+			this.lang = _lg;
 			uni.setNavigationBarTitle({
 				title: Contact['title'][_lg]
 			})
+			this.lang = _lg;
+			//#ifdef H5
 			if (this.$store.state.isWeixin) {
 				//location.origin, //window.location.href, //"http://emlyon.meetji.com",
 				var share_url = window.location.href,
@@ -192,14 +221,7 @@
 					imgUrl = "http://emlyon.meetji.com/static/logo.png";
 				mdl.wxShare(share_url, title, dec, imgUrl);
 			}
-		},
-		computed: {
-			startDate() {
-				return this.getDate('start');
-			},
-			endDate() {
-				return this.getDate('end');
-			}
+			//#endif
 		},
 		methods: {
 			formSubmit: function(e) {
@@ -310,7 +332,7 @@
 						success: function(res) {
 							console.log("======success========");
 							// console.log(url);
-							// console.log(res)
+							console.log(res)
 							let _data = res.data;
 							if (res.errMsg == 'request:ok') {
 								uni.showToast({
@@ -446,6 +468,7 @@
 						let lg = val || "cn";
 						that.$store.state.lang = lg;
 						that.$store.dispatch('getLang');
+						that.lang = lg;
 						uni.setNavigationBarTitle({
 							title: that.list['title'][that.$store.state.lang]
 						})

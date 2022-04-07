@@ -5,7 +5,9 @@
 		},
 		onShow: function() {
 			console.log('App Show')
+			//#ifdef H5
 			this.$store.dispatch('checkWeixin');
+			//#endif
 		},
 		onHide: function() {
 			console.log('App Hide')

@@ -1,11 +1,13 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+
+		//#ifdef H5
 		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "法国里昂商学院",
-				"navigationStyle": "custom"
-				// ,"app-plus": {
+				"navigationStyle": "custom" //h5
+				// "app-plus": { //mp
 				// 	"titleNView": {
 				// 		"type": "transparent"
 				// 	}
@@ -15,27 +17,14 @@
 			"path": "pages/tablist/index",
 			"style": {
 				"navigationBarTitleText": "",
-				"navigationStyle": "custom"
-				// ,"backgroundColor": "#E3E3E3"
-				// ,"navigationStyle": "custom",
-				// "app-plus": {
-				// 	"titleNView": {
-				// 		"type": "transparent"
-				// 	}
-				// }
+				 "navigationStyle": "custom"//h5
 			}
 		},
 		{
 			"path": "pages/college/index",
 			"style": {
 				"navigationBarTitleText": "关于学院",
-				"navigationStyle": "custom"
-				// ,"navigationStyle": "custom",
-				// "app-plus": {
-				// 	"titleNView": {
-				// 		"type": "transparent"
-				// 	}
-				// }
+				 "navigationStyle": "custom"//h5
 			}
 		},
 		// {
@@ -49,9 +38,58 @@
 			"path": "pages/contact/index",
 			"style": {
 				"navigationBarTitleText": "联系我们",
-				"navigationStyle": "custom"
+				"navigationStyle": "custom"//h5
 			}
 		}
+		//#endif
+		// #ifdef NOT-SHOW  
+		,
+		// #endif
+		//#ifdef MP-WEIXIN
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "法国里昂商学院",
+				"app-plus": { //mp
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		}, {
+			"path": "pages/tablist/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"app-plus": { //mp
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/college/index",
+			"style": {
+				"navigationBarTitleText": "关于学院",
+				"app-plus": { //mp
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/contact/index",
+			"style": {
+				"navigationBarTitleText": "联系我们",
+				"app-plus": { //mp
+					"titleNView": {
+						"type": "transparent"
+					}
+				}
+			}
+		}
+		//#endif
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
