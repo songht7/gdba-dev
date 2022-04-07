@@ -24,7 +24,7 @@
 						<scroll-view class="list" scroll-y @scrolltolower="loadMore(index1)">
 							<view class="tab-img-list">
 								<block v-if="lst['val'].length" v-for="(img,k) in lst.val" :key="k">
-									<image class="tab-dtl-img" :src='"/static/"+lang+img' @click="linkto(lst,k)"
+									<image class="tab-dtl-img" :src='imgUrl+lang+img' @click="linkto(lst,k)"
 										mode="widthFix"></image>
 									<!-- <img class="tab-dtl-img" :src='"/static/"+lang+img' @click="linkto(lst,k)" alt=""> -->
 								</block>
@@ -37,7 +37,7 @@
 			<!-- 同窗学友页（同窗寄语） -->
 			<block v-if="pageis=='doctor'">
 				<view>
-					<container :titleImg='"/static/"+lang+list["titleImg"][lang]'>
+					<container :titleImg='imgUrl+lang+list["titleImg"][lang]'>
 						<ls-swiper :list="base_lsit" imgKey="imgUrl" imgWidth="98%" :previousMargin="previousMargin"
 							:nextMargin="nextMargin" :height="height" :imgRadius="imgRadius" />
 					</container>
@@ -106,6 +106,7 @@
 		data() {
 			return {
 				nav: Home.nav,
+				imgUrl:Home.imgUrl,
 				navFix: Home.navFix,
 				lang: this.$store.state.lang,
 				pageis: "",
@@ -301,7 +302,7 @@
 	}
 
 	.doctor-main {
-		background: url(../../static/cn/doctor/bg.jpg) no-repeat 50% bottom;
+		background: url(http://emlyon.meetji.com/image/cn/doctor/bg.jpg) no-repeat 50% bottom;
 		background-size: cover;
 	}
 

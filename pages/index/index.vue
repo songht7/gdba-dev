@@ -1,5 +1,5 @@
 <template>
-	<view class="content" :style="{'background-image':'url(/static/'+lang+'/home/1.jpg)'}">
+	<view class="content" :style="{'background-image':'url('+imgUrl+lang+'/home/1.jpg)'}">
 		<view class="pg-main">
 			<!-- <img lazy-load="true" class="logo-type" src='/static/logo-type.png' /> -->
 			<!-- <img lazy-load="true" class="logo" src='/static/logo.png' /> -->
@@ -46,7 +46,8 @@
 		data() {
 			return {
 				list: Home,
-				lang: ''
+				imgUrl:Home.imgUrl,
+				lang: this.$store.state.lang
 			}
 		},
 		components: {

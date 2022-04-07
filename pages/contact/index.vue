@@ -1,5 +1,5 @@
 <template>
-	<view :class="['content','lang-'+lang]" :style="{'background-image':`url(/static/${lang}/contact/bg.png)`}">
+	<view :class="['content','lang-'+lang]" :style="{'background-image':`url(${imgUrl}${lang}/contact/bg.png)`}">
 		<view class="pg-main">
 			<view class="tab-box fixed">
 				<!-- 头部菜单按钮 -->
@@ -150,6 +150,7 @@
 				format: true
 			});
 			return {
+				imgUrl:Home.imgUrl,
 				channel: "", //账户自建 "CHANNEL 渠道" 值，需匹配，用户预约列表对应账号
 				lang: this.$store.state.lang,
 				nav: Home.nav,
