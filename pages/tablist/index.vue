@@ -38,7 +38,7 @@
 			<block v-if="pageis=='doctor'">
 				<view>
 					<container :titleImg='imgUrl+lang+list["titleImg"][lang]'>
-						<ls-swiper :list="base_lsit" imgKey="imgUrl" imgWidth="98%" :previousMargin="previousMargin"
+						<ls-swiper :list="base_lsit" :imgUrl="imgUrl" imgKey="imgUrl" imgWidth="98%" :previousMargin="previousMargin"
 							:nextMargin="nextMargin" :height="height" :imgRadius="imgRadius" />
 					</container>
 				</view>
