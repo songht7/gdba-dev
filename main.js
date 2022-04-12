@@ -23,8 +23,8 @@ Vue.prototype.now = Date.now || function() {
 import swiper from "./components/swiper-block.vue"
 Vue.component("swiper-block", swiper)
 
-Vue.prototype.websiteUrl = 'http://emlyon.meetji.com';
-Vue.prototype.sourceUrl = 'http://api_test.meetji.com';
+Vue.prototype.websiteUrl = 'https://emlyon.meetji.com';
+Vue.prototype.sourceUrl = 'https://api.meetji.com';
 
 
 Vue.prototype.$lgChane = true; //中英文切换

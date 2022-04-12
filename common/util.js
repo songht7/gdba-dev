@@ -19,8 +19,8 @@ const Interface = {
 		"ICP": "沪公网安备 31011702005308号"
 	},
 	// 	,"getData":"http://api_test.meetji.com/v1/ApiEnum-getRegion.htm?id=110000"
-	"apiurl": "http://api_test.meetji.com",
-	"domain": "http://emlyon.meetji.com",
+	"apiurl": "https://api.meetji.com",
+	"domain": "https://emlyon.meetji.com",
 	"template_id": "lArO_3bhjAAoCMdv78bmJ2l46L-HByz-4Co4tCDEiyI", //'4M8RWgwsGDYlZL_NuWg--FecFh3QKWMW1hVZIfm34IU'
 	"addr": {
 		"sendRegistSms": "/v4/ApiSms-sendRegistSms.htm", //发送验证码(有阻拦：手机号已使用) 测试：1111
@@ -46,7 +46,7 @@ const Interface = {
 		"sendWechatMessage": "/v2/ApiWeChat-sendWechatMessage.htm" //发送订阅消息-公众号?code=1
 	},
 	"wx": {
-		"appid": "wx11eb371cd85adfd4",
+		"appid": "wxd582b12c0677558e",//
 		"appidQY": "ww00bf81f97337653e", //企业微信
 		"access_token": "client_credential",
 		"secret": "01ef7de58bc18da629d4ec33a62744f9",

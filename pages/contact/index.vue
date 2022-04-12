@@ -322,7 +322,7 @@
 
 					console.log("_formData：", _formData)
 					// return
-					let url = "http://api_test.meetji.com/v4/ApiHome-saveSingle.htm"; //预约POST
+					let url = "https://api.meetji.com/v4/ApiHome-saveSingle.htm"; //预约POST
 					uni.request({
 						url: url,
 						method: "POST",
