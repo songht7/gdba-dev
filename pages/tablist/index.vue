@@ -26,7 +26,7 @@
 								<block v-if="lst['val'].length" v-for="(img,k) in lst.val" :key="k">
 									<block v-if="img.split('|').length>1&&img.split('|')[0]=='video'">
 										<view class="video-box">
-											<video class="myVideo" :src="domain+img.split('|')[1]" controls style="width: 100%;"></video>
+											<video class="myVideo" :src="domain+img.split('|')[1]" :autoplay='autoplay' :loop='loop' controls style="width: 100%;"></video>
 										</view>
 									</block>
 									<block v-else>
@@ -136,6 +136,8 @@
 				height: this.$store.state.lang == 'en' ? 430 : 400,
 				imgRadius: 5,
 				base_lsit: [],
+				autoplay:true,
+				loop:true
 				/*doctor end*/
 			}
 		},

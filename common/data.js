@@ -193,7 +193,7 @@ const Project = {
 		],
 		"en": [{
 				"id": 1,
-				"val": ["/project/1-1.jpg", "/project/1-2.jpg", "/project/1-3.jpg", "/project/1-4.jpg"]
+				"val": ["/project/1-1.jpg", "/project/1-2-1.jpg",'video|/video/project-1.m4v', "/project/1-2-2.jpg","/project/1-3.jpg", "/project/1-4.jpg"]
 			},
 			{
 				"id": 2,
