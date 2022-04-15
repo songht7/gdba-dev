@@ -1,4 +1,5 @@
 const Home = {
+	'domain': 'https://emlyon.meetji.com',
 	'imgUrl': 'https://emlyon.meetji.com/image/',
 	"title": {
 		"cn": "法国里昂商学院",
@@ -179,7 +180,7 @@ const Project = {
 	"contList": {
 		"cn": [{
 				"id": 1,
-				"val": ["/project/1-1.jpg", "/project/1-2.jpg", "/project/1-3.jpg", "/project/1-4.jpg"]
+				"val": ["/project/1-1.jpg", "/project/1-2.jpg",'video|/video/project-1.m4v', "/project/1-3.jpg", "/project/1-4.jpg"]
 			},
 			{
 				"id": 2,

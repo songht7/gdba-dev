@@ -24,9 +24,16 @@
 						<scroll-view class="list" scroll-y @scrolltolower="loadMore(index1)">
 							<view class="tab-img-list">
 								<block v-if="lst['val'].length" v-for="(img,k) in lst.val" :key="k">
+									<block v-if="img.split('|').length>1&&img.split('|')[0]=='video'">
+										<view class="video-box">
+											<video class="myVideo" :src="domain+img.split('|')[1]" controls style="width: 100%;"></video>
+										</view>
+									</block>
+									<block v-else>
 									<image class="tab-dtl-img" :src='imgUrl+lang+img' @click="linkto(lst,k)"
 										mode="widthFix"></image>
 									<!-- <img class="tab-dtl-img" :src='"/static/"+lang+img' @click="linkto(lst,k)" alt=""> -->
+									</block>
 								</block>
 							</view>
 						</scroll-view>
@@ -106,6 +113,7 @@
 		data() {
 			return {
 				nav: Home.nav,
+				domain:Home.domain,
 				imgUrl:Home.imgUrl,
 				navFix: Home.navFix,
 				lang: this.$store.state.lang,
@@ -312,5 +320,9 @@
 		left: 10%;
 		bottom: 30%;
 		height: auto;
+	}
+	.video-box{
+		width: 87.5%;
+		padding: 0 6.5%;
 	}
 </style>
