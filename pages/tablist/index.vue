@@ -26,13 +26,14 @@
 								<block v-if="lst['val'].length" v-for="(img,k) in lst.val" :key="k">
 									<block v-if="img.split('|').length>1&&img.split('|')[0]=='video'">
 										<view class="video-box">
-											<video class="myVideo" :src="domain+img.split('|')[1]" :autoplay='autoplay' :show-mute-btn='muteBtn' :loop='loop' controls style="width: 100%;"></video>
+											<video class="myVideo" :src="domain+img.split('|')[1]" :autoplay='autoplay'
+												:show-mute-btn='muteBtn' :loop='loop' controls></video>
 										</view>
 									</block>
 									<block v-else>
-									<image class="tab-dtl-img" :src='imgUrl+lang+img' @click="linkto(lst,k)"
-										mode="widthFix"></image>
-									<!-- <img class="tab-dtl-img" :src='"/static/"+lang+img' @click="linkto(lst,k)" alt=""> -->
+										<image class="tab-dtl-img" :src='imgUrl+lang+img' @click="linkto(lst,k)"
+											mode="widthFix"></image>
+										<!-- <img class="tab-dtl-img" :src='"/static/"+lang+img' @click="linkto(lst,k)" alt=""> -->
 									</block>
 								</block>
 							</view>
@@ -45,8 +46,9 @@
 			<block v-if="pageis=='doctor'">
 				<view>
 					<container :titleImg='imgUrl+lang+list["titleImg"][lang]'>
-						<ls-swiper :list="base_lsit" :imgUrl="imgUrl" imgKey="imgUrl" imgWidth="98%" :previousMargin="previousMargin"
-							:nextMargin="nextMargin" :height="height" :imgRadius="imgRadius" />
+						<ls-swiper :list="base_lsit" :imgUrl="imgUrl" imgKey="imgUrl" imgWidth="98%"
+							:previousMargin="previousMargin" :nextMargin="nextMargin" :height="height"
+							:imgRadius="imgRadius" />
 					</container>
 				</view>
 			</block>
@@ -113,8 +115,8 @@
 		data() {
 			return {
 				nav: Home.nav,
-				domain:Home.domain,
-				imgUrl:Home.imgUrl,
+				domain: Home.domain,
+				imgUrl: Home.imgUrl,
 				navFix: Home.navFix,
 				lang: this.$store.state.lang,
 				pageis: "",
@@ -136,9 +138,9 @@
 				height: this.$store.state.lang == 'en' ? 430 : 400,
 				imgRadius: 5,
 				base_lsit: [],
-				autoplay:true,
-				loop:true,
-				muteBtn:true
+				autoplay: true,
+				loop: true,
+				muteBtn: true
 				/*doctor end*/
 			}
 		},
@@ -324,8 +326,16 @@
 		bottom: 30%;
 		height: auto;
 	}
-	.video-box{
-		width: 87.5%;
-		padding: 0 6.5%;
+
+	.video-box {
+		width: 100%;
+		padding: 20upx 0;
+		background: url(../../static/bg.jpg) repeat-y 50% 50%;
+		background-size: contain;
+	}
+
+	.myVideo {
+		width: 80%;
+		margin: 0 10%;
 	}
 </style>
