@@ -55,7 +55,7 @@ body {
 }
 
 .uni-list-box {
-	background-color: rgba(255, 255, 255, .7);
+	background-color: rgba(255, 255, 255, .5);
 	padding: 25upx;
 	border-radius: 15upx;
 }
@@ -128,6 +128,9 @@ body {
 	padding: 4upx 8upx;
 	background-color: transparent;
 	font-weight: 600;
+    width: 100%;
+    border: none;
+	outline: none;
 }
 
 .contact-info {

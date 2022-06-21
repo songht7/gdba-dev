@@ -3,35 +3,37 @@
 
 		<view class="pg-main">
 			<view class="page-block page-contact">
-				<form class="" @submit="formSubmit" @reset="formReset">
-					<view class="form-block uni-list-box">
-						<view class="form-row row-full">
-							<block v-for="(obj,key) in ContactList['form'][lang]" :key="key">
-								<view class="uni-list-block"
-									:class="[obj.type=='textarea'?'alignTop':'','form-'+obj.name,obj.err?'row-err':'']">
-									<view class="uni-list-warp uni-list-left">
-										<text v-if="obj.notnull">*</text>{{obj.label}}
-									</view>
-									<view class="uni-list-warp uni-list-right">
-										<block>
-											<input class="uni-input u-ipt" :name="obj.name" :type="obj.type" value=""
-												@focus="clearErr(obj.name)" />
+				<view class="block-init">
+					<form class="" @submit="formSubmit" @reset="formReset">
+						<view class="form-block uni-list-box">
+							<view class="form-row row-full">
+								<block v-for="(obj,key) in ContactList['form'][lang]" :key="key">
+									<view class="uni-list-block"
+										:class="[obj.type=='textarea'?'alignTop':'','form-'+obj.name,obj.err?'row-err':'']">
+										<view class="uni-list-warp uni-list-left">
+											<text v-if="obj.notnull">*</text>{{obj.label}}
+										</view>
+										<view class="uni-list-warp uni-list-right">
+											<block>
+												<input class="uni-input u-ipt" :name="obj.name" :type="obj.type"
+													value="" v-model="formData[obj.name]" @focus="clearErr(obj.name)" />
+											</block>
+										</view>
+										<block v-if="obj.errVal">
+											<view class="errVal">
+												<uni-icons type="info" color="#d73743" rotate="0" size="16"></uni-icons>
+												{{obj.errVal}}
+											</view>
 										</block>
 									</view>
-									<block v-if="obj.errVal">
-										<view class="errVal">
-											<uni-icons type="info" color="#d73743" rotate="0" size="16"></uni-icons>
-											{{obj.errVal}}
-										</view>
-									</block>
-								</view>
-							</block>
-						</view>
+								</block>
+							</view>
 
-						<button formType="submit" :loading="loading"
-							class="submit-btn">{{ContactList["submit"][lang]}}</button>
-					</view>
-				</form>
+							<button formType="submit" :loading="loading"
+								class="submit-btn">{{ContactList["submit"][lang]}}</button>
+						</view>
+					</form>
+				</view>
 			</view>
 			<view class="page-block">
 				<swiper :current="tabIndex" class="swiper-box" duration="300" @change="ontabchange">
@@ -63,6 +65,39 @@
 							:previousMargin="previousMargin" :nextMargin="nextMargin" :height="height"
 							:imgRadius="imgRadius" />
 					</container>
+				</view>
+			</view>
+			<view class="page-block page-contact">
+				<view class="block-init">
+					<form class="" @submit="formSubmit" @reset="formReset">
+						<view class="form-block uni-list-box">
+							<view class="form-row row-full">
+								<block v-for="(obj,key) in ContactList['form'][lang]" :key="key">
+									<view class="uni-list-block"
+										:class="[obj.type=='textarea'?'alignTop':'','form-'+obj.name,obj.err?'row-err':'']">
+										<view class="uni-list-warp uni-list-left">
+											<text v-if="obj.notnull">*</text>{{obj.label}}
+										</view>
+										<view class="uni-list-warp uni-list-right">
+											<block>
+												<input class="uni-input u-ipt" :name="obj.name" :type="obj.typve"
+													v-model="formData[obj.name]" @focus="clearErr(obj.name)" />
+											</block>
+										</view>
+										<block v-if="obj.errVal">
+											<view class="errVal">
+												<uni-icons type="info" color="#d73743" rotate="0" size="16"></uni-icons>
+												{{obj.errVal}}
+											</view>
+										</block>
+									</view>
+								</block>
+							</view>
+
+							<button formType="submit" :loading="loading"
+								class="submit-btn">{{ContactList["submit"][lang]}}</button>
+						</view>
+					</form>
 				</view>
 			</view>
 		</view>
@@ -151,6 +186,9 @@
 		},
 		onReady() {
 			this.lang = 'cn';
+			this.ContactList['form'][this.lang].map((obj, key) => {
+				this.$set(this.formData, obj.name, '')
+			});
 			//#ifdef H5
 			if (this.$store.state.isWeixin) {
 				//location.origin, //window.location.href, //"http://emlyon.meetji.com",
@@ -210,11 +248,7 @@
 					return
 				}
 				//console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
-				var _formData = e.detail.value;
-				_formData = {
-					..._formData,
-					...that.formData
-				}
+				var _formData = that.formData; //e.detail.value;
 				that.loading = true;
 				var rule = [{
 						name: "name",
@@ -244,9 +278,9 @@
 				//进行表单检查
 				var checkRes = graceChecker.check(_formData, rule);
 				if (checkRes) {
-					_formData['years'] = _formData['workyear'] || '';
-					_formData['highest_education'] = _formData['education'] || '';
-					_formData['note'] = _formData['mark'] || '';
+					// _formData['years'] = _formData['workyear'] || '';
+					// _formData['highest_education'] = _formData['education'] || '';
+					// _formData['note'] = _formData['mark'] || '';
 
 					console.log("_formData：", _formData)
 					// return
@@ -382,6 +416,7 @@
 <style scoped>
 	@import "/common/tab.css";
 	@import "./contact.css";
+	@import "./single.css";
 
 	.content {
 		display: flex;
