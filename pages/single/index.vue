@@ -1,12 +1,41 @@
 <template>
 	<view :class="['content','lang-'+lang]">
-		<view class="pg-main" :class="[pageis=='doctor'?'doctor-main':'']">
-			<view :class="[pageis!='doctor'?'uni-tab-bar':'']">
-				<block v-if="pageis=='doctor'">
-					<view class="flex-station"></view>
-				</block>
+
+		<view class="pg-main">
+			<view class="page-block page-contact">
+				<form class="" @submit="formSubmit" @reset="formReset">
+					<view class="form-block uni-list-box">
+						<view class="form-row row-full">
+							<block v-for="(obj,key) in ContactList['form'][lang]" :key="key">
+								<view class="uni-list-block"
+									:class="[obj.type=='textarea'?'alignTop':'','form-'+obj.name,obj.err?'row-err':'']">
+									<view class="uni-list-warp uni-list-left">
+										<text v-if="obj.notnull">*</text>{{obj.label}}
+									</view>
+									<view class="uni-list-warp uni-list-right">
+										<block>
+											<input class="uni-input u-ipt" :name="obj.name" :type="obj.type" value=""
+												@focus="clearErr(obj.name)" />
+										</block>
+									</view>
+									<block v-if="obj.errVal">
+										<view class="errVal">
+											<uni-icons type="info" color="#d73743" rotate="0" size="16"></uni-icons>
+											{{obj.errVal}}
+										</view>
+									</block>
+								</view>
+							</block>
+						</view>
+
+						<button formType="submit" :loading="loading"
+							class="submit-btn">{{ContactList["submit"][lang]}}</button>
+					</view>
+				</form>
+			</view>
+			<view class="page-block">
 				<swiper :current="tabIndex" class="swiper-box" duration="300" @change="ontabchange">
-					<swiper-item v-for="(lst,index1) in contList" :key="index1">
+					<swiper-item v-for="(lst,index1) in DoctorList" :key="index1">
 						<scroll-view class="list" scroll-y @scrolltolower="loadMore(index1)">
 							<view class="tab-img-list">
 								<block v-if="lst['val'].length" v-for="(img,k) in lst.val" :key="k">
@@ -17,8 +46,7 @@
 										</view>
 									</block>
 									<block v-else>
-										<image class="tab-dtl-img" :src='imgUrl+lang+img' @click="linkto(lst,k)"
-											mode="widthFix"></image>
+										<image class="tab-dtl-img" :src='imgUrl+lang+img' mode="widthFix"></image>
 										<!-- <img class="tab-dtl-img" :src='"/static/"+lang+img' @click="linkto(lst,k)" alt=""> -->
 									</block>
 								</block>
@@ -26,18 +54,17 @@
 						</scroll-view>
 					</swiper-item>
 				</swiper>
-
 			</view>
-			<!-- 同窗学友页（同窗寄语） -->
-			<block v-if="pageis=='doctor'">
+			<view class="page-block page-doctor">
+				<!-- 同窗学友页（同窗寄语） -->
 				<view>
-					<container :titleImg='imgUrl+lang+list["titleImg"][lang]'>
+					<container :titleImg='imgUrl+lang+Doctor["titleImg"][lang]'>
 						<ls-swiper :list="base_lsit" :imgUrl="imgUrl" imgKey="imgUrl" imgWidth="98%"
 							:previousMargin="previousMargin" :nextMargin="nextMargin" :height="height"
 							:imgRadius="imgRadius" />
 					</container>
 				</view>
-			</block>
+			</view>
 		</view>
 	</view>
 </template>
@@ -48,11 +75,13 @@
 		College, //关于学院
 		Project, //关于项目
 		Doctor, //
-		Study //学习之旅
-	} from "../../common/data.js"
+		Study, //学习之旅
+		Contact //联系 留资
+	} from "../../common/data-single.js"
 
 	import container from '../../components/container/index.vue'
 	import LsSwiper from '../../components/ls-swiper/index.vue'
+	var graceChecker = require("../../common/graceChecker.js");
 
 	// 缓存每页最多
 	const MAX_CACHE_DATA = 100;
@@ -61,14 +90,20 @@
 
 	export default {
 		data() {
+			const currentDate = this.getDate({
+				format: true
+			});
 			return {
 				nav: Home.nav,
 				domain: Home.domain,
 				imgUrl: Home.imgUrl,
 				navFix: Home.navFix,
-				lang: this.$store.state.lang,
+				loading: false,
+				lang: 'cn',
 				pageis: "",
 				list: [],
+				Doctor: [],
+				DoctorList: [],
 				tabBars: [],
 				contList: [],
 				cacheTab: [],
@@ -83,54 +118,39 @@
 				/*doctor*/
 				previousMargin: 30,
 				nextMargin: 100,
-				height: this.$store.state.lang == 'en' ? 430 : 400,
+				height: 400,
 				imgRadius: 5,
 				base_lsit: [],
 				autoplay: true,
 				loop: true,
-				muteBtn: true
+				muteBtn: true,
 				/*doctor end*/
+
+				/*Contact*/
+				ContactList: Contact,
+				channel: "", //账户自建 "CHANNEL 渠道" 值，需匹配，用户预约列表对应账号
+				Education: "",
+				eduIndex: -1,
+				date: "",
+				formData: {},
 			}
 		},
 		components: {
 			container,
 			LsSwiper,
 		},
-		computed: {
-			getLT() {
-				var that = this;
-				return function(navFix, type, page) {
-					var dt = '';
-					var lg = that.$store.state.lang;
-					switch (type) {
-						case 'link':
-							dt = navFix[page][lg]["link"];
-							break;
-						case 'title':
-							dt = navFix[page][lg]["title"];
-							break;
-						default:
-							break;
-					}
-					return dt;
-				}
-
-			}
-		},
+		computed: {},
 		onLoad(option) {
 			const that = this;
-			that.$store.dispatch('getLang');
-
 			let pageis = option.id || "doctor";
 			this.pageis = pageis;
-			this.getData();
+			let channel = option.cl || "yimei"; //xxx.com?cl=test, 账号：emlyon，测试channel：emlyon，test，正式channel：elyGdba，yimei
+			this.channel = channel;
 
-			// let lang = option.lg || "cn";
-			// this.setLang(lang)
+			this.getData();
 		},
 		onReady() {
-			var lang = this.$store.state.lang;
-			this.lang = lang;
+			this.lang = 'cn';
 			//#ifdef H5
 			if (this.$store.state.isWeixin) {
 				//location.origin, //window.location.href, //"http://emlyon.meetji.com",
@@ -144,7 +164,7 @@
 		},
 		methods: {
 			getData() {
-				var _lg = this.$store.state.lang
+				var _lg = this.lang;
 				switch (this.pageis) {
 					case 'college':
 						uni.setNavigationBarTitle({
@@ -169,11 +189,11 @@
 						break;
 					case 'doctor':
 						uni.setNavigationBarTitle({
-							title: Doctor['title'][_lg]
+							title: Home['title'][_lg]
 						})
-						this.list = Doctor;
+						this.Doctor = Doctor;
 						this.tabBars = Doctor['tabBars'][_lg];
-						this.contList = Doctor['contList'][_lg];
+						this.DoctorList = Doctor['contList'][_lg];
 						this.base_lsit = Doctor['docList'][_lg];
 						break;
 					default:
@@ -183,67 +203,185 @@
 						break;
 				}
 			},
-			linkto(obj, index) {
+			formSubmit: function(e) {
 				var that = this;
-				if (obj.link) {
-					// console.log(obj["link"][index])
-					uni.navigateTo({
-						url: `${obj["link"][index]}${that.$store.state.lang}`
-					})
+				var _lg = that.lang
+				if (that.loading == true) {
+					return
 				}
-			},
-			ontabtap(e) {
-				// console.log(e)
-				let index = e.target.dataset.current || e.currentTarget.dataset.current;
-				this.switchTab(index);
-			},
-			ontabchange(e) {
-				// console.log("ontabchange:", e)
-				let index = e.target.current || e.detail.current;
-				this.switchTab(index);
-			},
-			switchTab(index) {
-				// console.log(this.tabIndex, index)
-				if (this.tabIndex === index) {
-					return;
+				//console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
+				var _formData = e.detail.value;
+				_formData = {
+					..._formData,
+					...that.formData
 				}
-				this.tabIndex = index;
-				this.scrollInto = `tb-${this.tabBars[index].id}`;
-			},
-			loadMore(e) {
-				var that = this;
-			},
-			drawerShow(e) {
-				console.log("show", e);
-				this.showLeft = true
-			},
-			drawerHide() {
-				console.log("hide");
-				this.showLeft = false
-			},
-			setLang(val) {
-				var that = this;
-				uni.setStorage({
-					key: 'DBA-Lang',
-					data: val,
-					success: function() {
-						let lg = val || "cn";
-						that.$store.state.lang = lg;
-						that.lang = lg;
-						that.$store.dispatch('getLang');
-						that.getData();
+				that.loading = true;
+				var rule = [{
+						name: "name",
+						checkType: "notnull",
+						checkRule: "", //"Can`t be empty"，"Please fill out the required fields"
+						errorMsg: _lg == "cn" ? "必填项不能为空" : "Can`t be empty"
 					},
-					fail() {
-						// that.$store.state.lang = "cn";
+					{
+						name: "phone",
+						checkType: "phoneno",
+						checkRule: "",
+						errorMsg: _lg == "cn" ? "请填写正确的手机号" : "Please fill in the correct phone number"
+					},
+					{
+						name: "company",
+						checkType: "notnull",
+						checkRule: "",
+						errorMsg: _lg == "cn" ? "必填项不能为空" : "Please fill out the required fields"
+					},
+					{
+						name: "position",
+						checkType: "notnull",
+						checkRule: "",
+						errorMsg: _lg == "cn" ? "必填项不能为空" : "Please fill out the required fields"
+					}
+				];
+				//进行表单检查
+				var checkRes = graceChecker.check(_formData, rule);
+				if (checkRes) {
+					_formData['years'] = _formData['workyear'] || '';
+					_formData['highest_education'] = _formData['education'] || '';
+					_formData['note'] = _formData['mark'] || '';
+
+					console.log("_formData：", _formData)
+					// return
+					let url = "https://api.meetji.com/v4/ApiHome-saveSingle.htm"; //预约POST
+					uni.request({
+						url: url,
+						method: "POST",
+						data: _formData,
+						header: {
+							'channel': that.channel
+						},
+						success: function(res) {
+							console.log("======success========");
+							// console.log(url);
+							console.log(res)
+							let _data = res.data;
+							if (res.errMsg == 'request:ok') {
+								uni.showToast({
+									title: '提交成功！',
+									icon: "success",
+									duration: 2000
+								});
+							} else {
+								uni.showToast({
+									title: '提交失败',
+									icon: "error",
+									duration: 2000
+								});
+							}
+						},
+						fail: function(err) {
+							console.log("======fail========");
+							console.log(err);
+							uni.showToast({
+								title: '接口请求失败',
+								icon: "fail",
+								duration: 2000
+							});
+						},
+						complete: function(comp) {
+							that.loading = false
+						}
+					})
+
+				} else {
+					console.log(graceChecker.typeName, graceChecker.error);
+					this.ContactList['form'][this.lang].map((obj, key) => {
+						if (obj.name == graceChecker.typeName) {
+							obj['err'] = true;
+							obj['errVal'] = graceChecker.error;
+						}
+					});
+					// uni.showToast({
+					// 	title: graceChecker.error,
+					// 	icon: "none"
+					// });
+					this.loading = false
+				}
+
+			},
+			bindPickerChange: function(e) {
+				// console.log('picker发送选择改变，携带值为', e)
+				// this.Education=val
+				var that = this;
+				var val = e.currentTarget.dataset.val,
+					name = e.currentTarget.dataset.name,
+					index = e.target.value;
+				this.eduIndex = index;
+				// console.log('val：', val)
+				// console.log('name：', name)
+				// console.log('picker：', val["picker"][index])
+				this.clearErr(name);
+				switch (name) {
+					case "education":
+						that.formData = {
+							...that.formData,
+							"education": val["picker"][index]
+						}
+						break;
+					default:
+						break;
+				}
+			},
+			clearErr(name) {
+				var that = this;
+				// that.$nextTick(function() {})
+				that.ContactList['form'][that.lang].map((obj, key) => {
+					if (obj.name == name) {
+						// console.log("clearErr:", obj.name, name)
+						obj['err'] = false;
+						obj['errVal'] = "";
 					}
 				});
-			}
+			},
+			bindDateChange: function(e) {
+				var that = this;
+				// console.log(e)
+				var val = e.target.dataset.val,
+					name = e.target.dataset.name,
+					value = e.target.value;
+				this.date = value;
+				this.clearErr(name);
+				switch (name) {
+					case "age":
+						that.formData = {
+							...that.formData,
+							"age": value
+						}
+						break;
+					default:
+						break;
+				}
+			},
+			getDate(type) {
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+
+				if (type === 'start') {
+					year = year - 90;
+				} else if (type === 'end') {
+					year = year;
+				}
+				month = month > 9 ? month : '0' + month;
+				day = day > 9 ? day : '0' + day;
+				return `${year}-${month}-${day}`;
+			},
 		}
 	}
 </script>
 
 <style scoped>
 	@import "/common/tab.css";
+	@import "./contact.css";
 
 	.content {
 		display: flex;

@@ -1,11 +1,14 @@
 <template>
 	<view class="wrap">
-		<swiper class="swiper" :style="{height: height *2 + 'rpx'}" :autoplay="autoplay" :interval="interval" :duration="duration"
-		 :circular='loop' @change='change' :previous-margin='previousMargin + "rpx"' :next-margin='nextMargin + "rpx"'>
+		<swiper class="swiper" :style="{height: height *2 + 'rpx'}" :autoplay="autoplay" :interval="interval"
+			:duration="duration" :circular='loop' @change='change' :previous-margin='previousMargin + "rpx"'
+			:next-margin='nextMargin + "rpx"'>
 			<swiper-item v-for="(item,index) in list" :key='index' @click="$emit('clickItem',item)">
-				<view v-if="list && list.length>0" class="item" :class="[!crown ? '' : current==index ? 'crown-active':'crown']">
-					<image v-if="!slots" class="item-img" :class="[imgShadow?'imgShadow':'']" :src='imgUrl+getLang+item[imgKey]' :style="{ borderRadius: imgRadius + 'px',width:imgWidth}"
-					 mode="aspectFill"></image>
+				<view v-if="list && list.length>0" class="item"
+					:class="[!crown ? '' : current==index ? 'crown-active':'crown']">
+					<image v-if="!slots" class="item-img" :class="[imgShadow?'imgShadow':'']"
+						:src='imgUrl+getLang+item[imgKey]' :style="{ borderRadius: imgRadius + 'px',width:imgWidth}"
+						mode="aspectFill"></image>
 					<slot v-else :data='item'></slot>
 				</view>
 			</swiper-item>
@@ -24,7 +27,7 @@
 				type: Array,
 				default: () => []
 			},
-			imgUrl:{
+			imgUrl: {
 				type: String,
 				default: ''
 			},
@@ -118,7 +121,7 @@
 		},
 		computed: {
 			getLang() {
-				return this.$store.state.lang;
+				return this.$store.state.lang || 'cn';
 			}
 		},
 		methods: {
