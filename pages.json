@@ -17,14 +17,14 @@
 			"path": "pages/tablist/index",
 			"style": {
 				"navigationBarTitleText": "",
-				 "navigationStyle": "custom"//h5
+				"navigationStyle": "custom" //h5
 			}
 		},
 		{
 			"path": "pages/college/index",
 			"style": {
 				"navigationBarTitleText": "关于学院",
-				 "navigationStyle": "custom"//h5
+				"navigationStyle": "custom" //h5
 			}
 		},
 		// {
@@ -38,7 +38,14 @@
 			"path": "pages/contact/index",
 			"style": {
 				"navigationBarTitleText": "联系我们",
-				"navigationStyle": "custom"//h5
+				"navigationStyle": "custom" //h5
+			}
+		},
+		{
+			"path": "pages/single/index",
+			"style": {
+				"navigationBarTitleText": "法国里昂商学院",
+				"navigationStyle": "custom" //h5
 			}
 		}
 		//#endif
