@@ -1,4 +1,66 @@
-.block-init{
+.block-init {
 	width: 92%;
 	padding: 20upx 4%;
+}
+
+.page-bg {
+	line-height: 0;
+}
+
+
+.page-home {
+	position: relative;
+}
+
+.page-home .logo,
+.page-home .logo-type {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	width: 150upx;
+	height: 150upx;
+}
+
+.page-home .logo-type {
+	top: 20px;
+	left: 20px;
+	right: auto;
+}
+
+.page-home,
+.page-contact,
+.views.video-box,
+.page-doctor {
+	width: 100%;
+	padding: 0;
+	background: url("/static/single/images/s_5.jpg") no-repeat 50% 50%;
+	background-size: 100% 100%;
+}
+
+.page-contact.page-contact-2 {
+	background-image: url("/static/single/images/s_2.jpg");
+}
+
+.page-contact.page-contact-12 {
+	background-image: url("/static/single/images/s_12.jpg");
+	padding-bottom: 50upx;
+}
+
+.page-doctor {
+	background-image: url("/static/single/images/s_9.jpg");
+}
+
+.page-contact .form-block {
+	margin-bottom: 0;
+	width: 80%;
+	margin: 0 auto;
+}
+.page-contact .tab-dtl-img{
+	width: 80%;
+	margin: 15px 0;
+}
+
+.single .submit-btn{
+	width: 90%;
 }

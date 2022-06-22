@@ -1,73 +1,75 @@
 <template>
 	<view :class="['content','lang-'+lang]">
 
-		<view class="pg-main">
-			<view class="page-block page-contact">
-				<view class="block-init">
-					<form class="" @submit="formSubmit" @reset="formReset">
-						<view class="form-block uni-list-box">
-							<view class="form-row row-full">
-								<block v-for="(obj,key) in ContactList['form'][lang]" :key="key">
-									<view class="uni-list-block"
-										:class="[obj.type=='textarea'?'alignTop':'','form-'+obj.name,obj.err?'row-err':'']">
-										<view class="uni-list-warp uni-list-left">
-											<text v-if="obj.notnull">*</text>{{obj.label}}
-										</view>
-										<view class="uni-list-warp uni-list-right">
-											<block>
-												<input class="uni-input u-ipt" :name="obj.name" :type="obj.type"
-													value="" v-model="formData[obj.name]" @focus="clearErr(obj.name)" />
-											</block>
-										</view>
-										<block v-if="obj.errVal">
-											<view class="errVal">
-												<uni-icons type="info" color="#d73743" rotate="0" size="16"></uni-icons>
-												{{obj.errVal}}
+		<view class="single pg-main">
+			<view class="page-block page-bgs">
+				<block v-for="index of pageBgLength" :key="index">
+
+					<view v-if="[1].indexOf(index)>-1" class="page-home">
+						<image lazy-load="true" class="logo-type" src="/static/logo-type.png" mode="widthFix">
+						</image>
+						<image lazy-load="true" class="logo" src="/static/logo.png" mode="aspectFill"></image>
+
+						<image class="tab-dtl-img" :src='`/static/single/images/s_${index}.jpg`' mode="widthFix">
+						</image>
+					</view>
+					<view v-if="[1,2,5,9,12].indexOf(index)==-1" :class="['page-bg','page-img']">
+						<image class="tab-dtl-img" :src='`/static/single/images/s_${index}.jpg`' mode="widthFix">
+						</image>
+					</view>
+					<view v-else :class="['page-bg']">
+						<view v-if="[2,12].indexOf(index)>-1"
+							:class="['block-init','page-contact','page-contact-'+index]">
+							<form class="" @submit="formSubmit" @reset="formReset">
+								<view class="form-block uni-list-box">
+									<image v-if="index==12" class="tab-dtl-img" src='/static/single/images/ct.png'
+										mode="widthFix"></image>
+									<view class="form-row row-full">
+										<block v-for="(obj,key) in ContactList['form'][lang]" :key="key">
+											<view class="uni-list-block"
+												:class="[obj.type=='textarea'?'alignTop':'','form-'+obj.name,obj.err?'row-err':'']">
+												<view class="uni-list-warp uni-list-left">
+													<text v-if="obj.notnull">*</text>{{obj.label}}
+												</view>
+												<view class="uni-list-warp uni-list-right">
+													<block>
+														<input class="uni-input u-ipt" :name="obj.name" :type="obj.type"
+															value="" v-model="formData[obj.name]"
+															@focus="clearErr(obj.name)" />
+													</block>
+												</view>
+												<block v-if="obj.errVal">
+													<view class="errVal">
+														<uni-icons type="info" color="#d73743" rotate="0" size="16">
+														</uni-icons>
+														{{obj.errVal}}
+													</view>
+												</block>
 											</view>
 										</block>
 									</view>
-								</block>
-							</view>
 
-							<button formType="submit" :loading="loading"
-								class="submit-btn">{{ContactList["submit"][lang]}}</button>
+									<button formType="submit" :loading="loading" class="submit-btn">免费领取课程资料</button>
+								</view>
+							</form>
 						</view>
-					</form>
-				</view>
+
+						<view v-if="[5].indexOf(index)>-1" class="views video-box">
+							<video class="myVideo" src="https://emlyon.meetji.com/video/project-1.m4v"
+								:autoplay='autoplay' :show-mute-btn='true' :loop='true' controls></video>
+						</view>
+
+						<!-- 同窗学友页（同窗寄语） -->
+						<view v-if="[9].indexOf(index)>-1" class="page-doctor">
+							<ls-swiper :list="base_lsit" :imgUrl="imgUrl" imgKey="imgUrl" imgWidth="98%"
+								:previousMargin="previousMargin" :nextMargin="nextMargin" :height="height"
+								:imgRadius="imgRadius" />
+						</view>
+					</view>
+				</block>
 			</view>
-			<view class="page-block">
-				<swiper :current="tabIndex" class="swiper-box" duration="300" @change="ontabchange">
-					<swiper-item v-for="(lst,index1) in DoctorList" :key="index1">
-						<scroll-view class="list" scroll-y @scrolltolower="loadMore(index1)">
-							<view class="tab-img-list">
-								<block v-if="lst['val'].length" v-for="(img,k) in lst.val" :key="k">
-									<block v-if="img.split('|').length>1&&img.split('|')[0]=='video'">
-										<view class="video-box">
-											<video class="myVideo" :src="domain+img.split('|')[1]" :autoplay='autoplay'
-												:show-mute-btn='muteBtn' :loop='loop' controls></video>
-										</view>
-									</block>
-									<block v-else>
-										<image class="tab-dtl-img" :src='imgUrl+lang+img' mode="widthFix"></image>
-										<!-- <img class="tab-dtl-img" :src='"/static/"+lang+img' @click="linkto(lst,k)" alt=""> -->
-									</block>
-								</block>
-							</view>
-						</scroll-view>
-					</swiper-item>
-				</swiper>
-			</view>
-			<view class="page-block page-doctor">
-				<!-- 同窗学友页（同窗寄语） -->
-				<view>
-					<container :titleImg='imgUrl+lang+Doctor["titleImg"][lang]'>
-						<ls-swiper :list="base_lsit" :imgUrl="imgUrl" imgKey="imgUrl" imgWidth="98%"
-							:previousMargin="previousMargin" :nextMargin="nextMargin" :height="height"
-							:imgRadius="imgRadius" />
-					</container>
-				</view>
-			</view>
-			<view class="page-block page-contact">
+
+			<!-- <view class="page-block page-contact">
 				<view class="block-init">
 					<form class="" @submit="formSubmit" @reset="formReset">
 						<view class="form-block uni-list-box">
@@ -99,7 +101,7 @@
 						</view>
 					</form>
 				</view>
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
@@ -107,10 +109,7 @@
 <script>
 	import {
 		Home,
-		College, //关于学院
-		Project, //关于项目
 		Doctor, //
-		Study, //学习之旅
 		Contact //联系 留资
 	} from "../../common/data-single.js"
 
@@ -161,6 +160,8 @@
 				muteBtn: true,
 				/*doctor end*/
 
+				pageBgLength: 13, //页面背景图片个数
+
 				/*Contact*/
 				ContactList: Contact,
 				channel: "", //账户自建 "CHANNEL 渠道" 值，需匹配，用户预约列表对应账号
@@ -182,7 +183,7 @@
 			let channel = option.cl || "yimei"; //xxx.com?cl=test, 账号：emlyon，测试channel：emlyon，test，正式channel：elyGdba，yimei
 			this.channel = channel;
 
-			this.getData();
+			this.getData('doctor');
 		},
 		onReady() {
 			this.lang = 'cn';
@@ -201,42 +202,20 @@
 			//#endif
 		},
 		methods: {
-			getData() {
+			getData(type) {
 				var _lg = this.lang;
-				switch (this.pageis) {
-					case 'college':
-						uni.setNavigationBarTitle({
-							title: College['title'][_lg]
-						})
-						this.tabBars = College['tabBars'][_lg];
-						this.contList = College['contList'][_lg];
-						break;
-					case 'project':
-						uni.setNavigationBarTitle({
-							title: Project['title'][_lg]
-						})
-						this.tabBars = Project['tabBars'][_lg];
-						this.contList = Project['contList'][_lg];
-						break;
-					case 'study':
-						uni.setNavigationBarTitle({
-							title: Study['title'][_lg]
-						})
-						this.tabBars = Study['tabBars'][_lg];
-						this.contList = Study['contList'][_lg];
-						break;
+				switch (type) {
 					case 'doctor':
 						uni.setNavigationBarTitle({
 							title: Home['title'][_lg]
 						})
 						this.Doctor = Doctor;
 						this.tabBars = Doctor['tabBars'][_lg];
-						this.DoctorList = Doctor['contList'][_lg];
 						this.base_lsit = Doctor['docList'][_lg];
 						break;
 					default:
 						uni.redirectTo({
-							url: '/pages/index/index',
+							url: '/pages/single/index',
 						})
 						break;
 				}
