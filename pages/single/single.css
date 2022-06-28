@@ -40,6 +40,7 @@
 
 .page-contact.page-contact-2 {
 	background-image: url("/static/single/images/s_2.jpg");
+	padding-bottom: 100upx;
 }
 
 .page-contact.page-contact-12 {
@@ -49,6 +50,7 @@
 
 .page-doctor {
 	background-image: url("/static/single/images/s_9.jpg");
+	padding-bottom: 80upx;
 }
 
 .page-contact .form-block {
@@ -57,10 +59,10 @@
 	margin: 0 auto;
 }
 .page-contact .tab-dtl-img{
-	width: 80%;
-	margin: 15px 0;
+	width: 66%;
+	margin: 40upx 15upx;
 }
 
 .single .submit-btn{
-	width: 90%;
+	width: 95%;
 }
