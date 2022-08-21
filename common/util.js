@@ -46,7 +46,7 @@ const Interface = {
 		"sendWechatMessage": "/v2/ApiWeChat-sendWechatMessage.htm" //发送订阅消息-公众号?code=1
 	},
 	"wx": {
-		"appid": "wxabbe8884bd7b05e6",//
+		"appid": "wxabbe8884bd7b05e6",//https://emlyon.meetji.com/
 		"appidQY": "ww00bf81f97337653e", //企业微信
 		"access_token": "client_credential",
 		"secret": "01ef7de58bc18da629d4ec33a62744f9",
