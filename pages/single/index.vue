@@ -113,6 +113,8 @@
 		Contact //联系 留资
 	} from "../../common/data-single.js"
 
+	import util from '../../common/util.js';
+	const mdl = util.module;
 	import container from '../../components/container/index.vue'
 	import LsSwiper from '../../components/ls-swiper/index.vue'
 	var graceChecker = require("../../common/graceChecker.js");
@@ -193,7 +195,7 @@
 			//#ifdef H5
 			if (this.$store.state.isWeixin) {
 				//location.origin, //window.location.href, //"http://emlyon.meetji.com",
-				var share_url = window.location.href,
+				var share_url = 'https://emlyon.meetji.com/#/pages/single/index',//window.location.href,
 					title = "法国里昂商学院亚洲校区GDBA项目招生简章",
 					dec = "全球工商管理博士2022级",
 					imgUrl = "http://emlyon.meetji.com/static/logo.png";
