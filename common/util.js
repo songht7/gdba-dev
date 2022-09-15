@@ -162,7 +162,7 @@ const module = {
 			wx.config(_config);
 		}
 		//var _link='http://emlyon.meetji.com/';
-		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + _link;
+		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + encodeURIComponent(_link);
 		let _head = {
 			'channel': 'yimei'
 		};
