@@ -2,7 +2,6 @@
 // var wx = require('jweixin-module')
 var wx = require('weixin-js-sdk');
 // #endif
-import VueCookie from 'vue-cookie'
 import md5 from "./md5.js";
 const isArray = Array.isArray || function(obj) {
 	return obj instanceof Array;
@@ -47,7 +46,7 @@ const Interface = {
 		"sendWechatMessage": "/v2/ApiWeChat-sendWechatMessage.htm" //发送订阅消息-公众号?code=1
 	},
 	"wx": {
-		"appid": "wxabbe8884bd7b05e6", //https://emlyon.meetji.com/
+		"appid": "wxabbe8884bd7b05e6",//https://emlyon.meetji.com/
 		"appidQY": "ww00bf81f97337653e", //企业微信
 		"access_token": "client_credential",
 		"secret": "01ef7de58bc18da629d4ec33a62744f9",
@@ -130,7 +129,22 @@ const module = {
 		let code = that.queryString('code');
 		//console.log(_url)
 		//console.log(share_url, title, dec)
-		var setWXConfig = function(res) {
+		var funTicket = function(res) {
+			console.log("=======getTicket======")
+			console.log(res)
+			uni.setStorage({
+				key: 'wx_ticket',
+				data: {
+					"access_token": res.access_token,
+					"jsapi_ticket": res.ticket,
+					"noncestr": res.noncestr,
+					"signature": res.signature,
+					"expires_in": res.expires_in
+				},
+				success: function() {
+
+				}
+			});
 			var _config = {
 				debug: false,
 				appId: appid,
@@ -147,28 +161,6 @@ const module = {
 			// console.log('wx.config:', _config)
 			wx.config(_config);
 		}
-		var getTKCount = 0;
-		var funTicket = function(res) {
-			console.log("=======getTicket======")
-			console.log(res)
-			getTKCount++;
-			var _Storage = {
-				"access_token": res.access_token,
-				"jsapi_ticket": res.ticket,
-				"noncestr": res.noncestr,
-				"signature": res.signature,
-				"expires_in": res.expires_in
-			}
-			uni.setStorage({
-				key: 'wx_ticket',
-				data: _Storage,
-				success: function() {
-
-				}
-			});
-			VueCookie.set("wx_ticket", JSON.stringify(res));
-			setWXConfig(res);
-		}
 		//var _link='http://emlyon.meetji.com/';
 		let url_ticket = Interface.apiurl + Interface.addr.getJsApiTicket + "?url=" + encodeURIComponent(_link);
 		let _head = {
@@ -180,14 +172,9 @@ const module = {
 		// 		"channel_code": channel_code
 		// 	};
 		// }
-		var _Storage_wxTicket = VueCookie.get("wx_ticket");
-		if (_Storage_wxTicket) {
-			var wxtck = JSON.parse(_Storage_wxTicket);
-			console.log("wxtck", wxtck);
-			setWXConfig(wxtck);
-		} else {
-			let wx_ticket = that.getData(url_ticket, funTicket, "GET", "", _head)
-		}
+
+		let wx_ticket = that.getData(url_ticket, funTicket, "GET", "", _head)
+
 
 		// _href = "http://main.meetji.com:3001?wxr=" + encodeURIComponent(_href)
 		var _imgUrl = Interface.domain + "/static/logo.png";
@@ -217,10 +204,6 @@ const module = {
 		});
 		wx.error(function(res) {
 			console.log('注册失败:', res)
-			VueCookie.delete("wx_ticket");
-			if (getTKCount > 3) {
-				let wx_ticket = that.getData(url_ticket, funTicket, "GET", "", _head)
-			}
 			// config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
 		});
 		// if (code) {
