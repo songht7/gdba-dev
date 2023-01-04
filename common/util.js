@@ -196,7 +196,7 @@ const module = {
 			year = myDate.getYear();
 		var wxSet = {
 			title: obj.title || (obj.lang == "en" ? "Global DBA" : "法国里昂商学院亚洲校区GDBA项目招生简章"),
-			desc: obj.dec || (obj.lang == "en" ? "Asia Track Introduction " + year : "全球工商管理博士2022级"),
+			desc: obj.dec || (obj.lang == "en" ? "Asia Track Introduction " + year : "全球工商管理博士"+year+"级"),
 			link: _link,
 			imgUrl: obj.imgUrl || _imgUrl,
 			success: function(res) {
