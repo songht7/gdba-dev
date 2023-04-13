@@ -190,7 +190,7 @@ const module = {
 		}
 
 		// _href = "http://main.meetji.com:3001?wxr=" + encodeURIComponent(_href)
-		var _imgUrl = Interface.domain + "/static/logo.png";
+		var _imgUrl = "http://emlyon.meetji.com/static/logo.png";//Interface.domain + 
 		//location.origin, //window.location.href, //"http://emlyon.meetji.com",
 		var myDate = new Date(),
 			year = myDate.getYear();

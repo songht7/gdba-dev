@@ -1,6 +1,6 @@
 const Home = {
 	'domain': 'https://emlyon.meetji.com',
-	'imgUrl': 'https://emlyon.meetji.com/image/',
+	'imgUrl': 'http://emlyon.meetji.com/image/',
 	"title": {
 		"cn": "法国里昂商学院",
 		"en": "Global DBA (Asia Track)",

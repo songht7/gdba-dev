@@ -100,6 +100,8 @@
 		Study //学习之旅
 	} from "../../common/data.js"
 
+	import util from '../../common/util.js';
+	const mdl = util.module;
 	import dragButton from "@/components/drag-button/drag-button.vue";
 	import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
 
@@ -192,7 +194,7 @@
 					title = "法国里昂商学院",
 					dec = "全球工商管理博士项目",
 					imgUrl = "http://emlyon.meetji.com/static/logo.png";
-				mdl.wxShare(share_url, title, dec, imgUrl);
+				mdl.wxShare();
 			}
 			//#endif
 		},
