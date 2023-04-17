@@ -198,7 +198,7 @@
 				var share_url = 'https://emlyon.meetji.com/#/pages/single/index',//window.location.href,
 					title = "法国里昂商学院亚洲校区GDBA项目招生简章",
 					dec = "全球工商管理博士2023级",
-					imgUrl = "http://emlyon.meetji.com/static/logo.png";
+					imgUrl = "https://emlyon.meetji.com/static/logo.png";
 				mdl.wxShare(share_url, title, dec, imgUrl);
 			}
 			//#endif

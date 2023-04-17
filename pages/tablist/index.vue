@@ -193,7 +193,7 @@
 				var share_url = window.location.href,
 					title = "法国里昂商学院",
 					dec = "全球工商管理博士项目",
-					imgUrl = "http://emlyon.meetji.com/static/logo.png";
+					imgUrl = "https://emlyon.meetji.com/static/logo.png";
 				mdl.wxShare();
 			}
 			//#endif
